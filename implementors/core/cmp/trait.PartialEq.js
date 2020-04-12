@@ -1,0 +1,3 @@
+(function() {var implementors = {};
+implementors["casbin"] = [{"text":"impl <a class=\"trait\" href=\"https://doc.rust-lang.org/nightly/core/cmp/trait.PartialEq.html\" title=\"trait core::cmp::PartialEq\">PartialEq</a>&lt;<a class=\"enum\" href=\"casbin/enum.EffectKind.html\" title=\"enum casbin::EffectKind\">EffectKind</a>&gt; for <a class=\"enum\" href=\"casbin/enum.EffectKind.html\" title=\"enum casbin::EffectKind\">EffectKind</a>","synthetic":false,"types":["casbin::effector::EffectKind"]}];
+if (window.register_implementors) {window.register_implementors(implementors);} else {window.pending_implementors = implementors;}})()

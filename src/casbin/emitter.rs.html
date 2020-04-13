@@ -70,7 +70,7 @@
     <span class="ident">AddPolicies</span>(<span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span><span class="op">&gt;</span>),
     <span class="ident">RemovePolicy</span>(<span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>),
     <span class="ident">RemovePolicies</span>(<span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span><span class="op">&gt;</span>),
-    <span class="ident">RemoveFilteredPolicy</span>,
+    <span class="ident">RemoveFilteredPolicy</span>(<span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span><span class="op">&gt;</span>),
 }
 
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">EventEmitter</span><span class="op">&lt;</span><span class="ident">K</span><span class="op">&gt;</span>
@@ -82,13 +82,13 @@
     <span class="kw">fn</span> <span class="ident">emit</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">e</span>: <span class="ident">K</span>, <span class="ident">d</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">EventData</span><span class="op">&gt;</span>);
 }
 
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">notify_watcher</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">CoreApi</span><span class="op">&gt;</span>(<span class="ident">e</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">T</span>, <span class="ident">d</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">EventData</span><span class="op">&gt;</span>) {
+<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">notify_watcher</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">CoreApi</span><span class="op">&gt;</span>(<span class="ident">e</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">T</span>, <span class="ident">d</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">EventData</span><span class="op">&gt;</span>) {
     <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">w</span>) <span class="op">=</span> <span class="ident">e</span>.<span class="ident">get_mut_watcher</span>() {
         <span class="ident">w</span>.<span class="ident">update</span>(<span class="ident">d</span>);
     }
 }
 
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">clear_cache</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">CoreApi</span> <span class="op">+</span> <span class="ident">CachedApi</span><span class="op">&gt;</span>(<span class="ident">ce</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">T</span>, <span class="ident">_d</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">EventData</span><span class="op">&gt;</span>) {
+<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">clear_cache</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">CoreApi</span> <span class="op">+</span> <span class="ident">CachedApi</span><span class="op">&gt;</span>(<span class="ident">ce</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">T</span>, <span class="ident">_d</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">EventData</span><span class="op">&gt;</span>) {
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;runtime-tokio&quot;</span>)]</span>
     {
         <span class="ident">tokio</span>::<span class="ident">runtime</span>::<span class="ident">Builder</span>::<span class="ident">new</span>()

@@ -220,6 +220,20 @@
 <span id="220">220</span>
 <span id="221">221</span>
 <span id="222">222</span>
+<span id="223">223</span>
+<span id="224">224</span>
+<span id="225">225</span>
+<span id="226">226</span>
+<span id="227">227</span>
+<span id="228">228</span>
+<span id="229">229</span>
+<span id="230">230</span>
+<span id="231">231</span>
+<span id="232">232</span>
+<span id="233">233</span>
+<span id="234">234</span>
+<span id="235">235</span>
+<span id="236">236</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="kw">use</span> <span class="kw">crate</span>::{
     <span class="ident">adapter</span>::<span class="ident">Adapter</span>,
@@ -273,9 +287,12 @@
 <span class="attribute">#[<span class="ident">async_trait</span>]</span>
 <span class="kw">impl</span> <span class="ident">CoreApi</span> <span class="kw">for</span> <span class="ident">CachedEnforcer</span> {
     <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">new</span><span class="op">&lt;</span><span class="ident">M</span>: <span class="ident">TryIntoModel</span>, <span class="ident">A</span>: <span class="ident">TryIntoAdapter</span><span class="op">&gt;</span>(<span class="ident">m</span>: <span class="ident">M</span>, <span class="ident">a</span>: <span class="ident">A</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">CachedEnforcer</span><span class="op">&gt;</span> {
+        <span class="kw">let</span> <span class="ident">enforcer</span> <span class="op">=</span> <span class="ident">Enforcer</span>::<span class="ident">new</span>(<span class="ident">m</span>, <span class="ident">a</span>).<span class="kw">await</span><span class="question-mark">?</span>;
+        <span class="kw">let</span> <span class="ident">cache</span> <span class="op">=</span> <span class="ident">Box</span>::<span class="ident">new</span>(<span class="ident">DefaultCache</span>::<span class="ident">new</span>(<span class="number">1000</span>));
+
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">cached_enforcer</span> <span class="op">=</span> <span class="ident">CachedEnforcer</span> {
-            <span class="ident">enforcer</span>: <span class="ident">Enforcer</span>::<span class="ident">new</span>(<span class="ident">m</span>, <span class="ident">a</span>).<span class="kw">await</span><span class="question-mark">?</span>,
-            <span class="ident">cache</span>: <span class="ident">Box</span>::<span class="ident">new</span>(<span class="ident">DefaultCache</span>::<span class="ident">new</span>(<span class="number">1000</span>)),
+            <span class="ident">enforcer</span>,
+            <span class="ident">cache</span>,
             <span class="ident">events</span>: <span class="ident">HashMap</span>::<span class="ident">new</span>(),
         };
 
@@ -402,8 +419,19 @@
     }
 
     <span class="attribute">#[<span class="ident">inline</span>]</span>
+    <span class="kw">fn</span> <span class="ident">enable_auto_notify_watcher</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">auto_notify_watcher</span>: <span class="ident">bool</span>) {
+        <span class="self">self</span>.<span class="ident">enforcer</span>
+            .<span class="ident">enable_auto_notify_watcher</span>(<span class="ident">auto_notify_watcher</span>);
+    }
+
+    <span class="attribute">#[<span class="ident">inline</span>]</span>
     <span class="kw">fn</span> <span class="ident">has_auto_save_enabled</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="self">self</span>.<span class="ident">enforcer</span>.<span class="ident">has_auto_save_enabled</span>()
+    }
+
+    <span class="attribute">#[<span class="ident">inline</span>]</span>
+    <span class="kw">fn</span> <span class="ident">has_auto_notify_watcher_enabled</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+        <span class="self">self</span>.<span class="ident">enforcer</span>.<span class="ident">has_auto_notify_watcher_enabled</span>()
     }
 }
 

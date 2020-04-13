@@ -1073,6 +1073,23 @@
 <span id="1073">1073</span>
 <span id="1074">1074</span>
 <span id="1075">1075</span>
+<span id="1076">1076</span>
+<span id="1077">1077</span>
+<span id="1078">1078</span>
+<span id="1079">1079</span>
+<span id="1080">1080</span>
+<span id="1081">1081</span>
+<span id="1082">1082</span>
+<span id="1083">1083</span>
+<span id="1084">1084</span>
+<span id="1085">1085</span>
+<span id="1086">1086</span>
+<span id="1087">1087</span>
+<span id="1088">1088</span>
+<span id="1089">1089</span>
+<span id="1090">1090</span>
+<span id="1091">1091</span>
+<span id="1092">1092</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="kw">use</span> <span class="kw">crate</span>::{
     <span class="ident">adapter</span>::<span class="ident">Adapter</span>,
@@ -1141,6 +1158,7 @@
     <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">enabled</span>: <span class="ident">bool</span>,
     <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">auto_save</span>: <span class="ident">bool</span>,
     <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">auto_build_role_links</span>: <span class="ident">bool</span>,
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">auto_notify_watcher</span>: <span class="ident">bool</span>,
     <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">watcher</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="ident">Watcher</span><span class="op">&gt;</span><span class="op">&gt;</span>,
     <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">events</span>: <span class="ident">HashMap</span><span class="op">&lt;</span><span class="ident">Event</span>, <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">EventCallback</span><span class="op">&gt;</span><span class="op">&gt;</span>,
 }
@@ -1181,6 +1199,7 @@
             <span class="ident">enabled</span>: <span class="bool-val">true</span>,
             <span class="ident">auto_save</span>: <span class="bool-val">true</span>,
             <span class="ident">auto_build_role_links</span>: <span class="bool-val">true</span>,
+            <span class="ident">auto_notify_watcher</span>: <span class="bool-val">true</span>,
             <span class="ident">watcher</span>: <span class="prelude-val">None</span>,
             <span class="ident">events</span>: <span class="ident">HashMap</span>::<span class="ident">new</span>(),
         };
@@ -1440,8 +1459,23 @@
     }
 
     <span class="attribute">#[<span class="ident">inline</span>]</span>
+    <span class="kw">fn</span> <span class="ident">enable_auto_notify_watcher</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">auto_notify_watcher</span>: <span class="ident">bool</span>) {
+        <span class="kw">if</span> <span class="op">!</span><span class="ident">auto_notify_watcher</span> {
+            <span class="self">self</span>.<span class="ident">off</span>(<span class="ident">Event</span>::<span class="ident">PolicyChange</span>);
+        } <span class="kw">else</span> {
+            <span class="self">self</span>.<span class="ident">on</span>(<span class="ident">Event</span>::<span class="ident">PolicyChange</span>, <span class="ident">notify_watcher</span>);
+        }
+        <span class="self">self</span>.<span class="ident">auto_notify_watcher</span> <span class="op">=</span> <span class="ident">auto_notify_watcher</span>;
+    }
+
+    <span class="attribute">#[<span class="ident">inline</span>]</span>
     <span class="kw">fn</span> <span class="ident">has_auto_save_enabled</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="self">self</span>.<span class="ident">auto_save</span>
+    }
+
+    <span class="attribute">#[<span class="ident">inline</span>]</span>
+    <span class="kw">fn</span> <span class="ident">has_auto_notify_watcher_enabled</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+        <span class="self">self</span>.<span class="ident">auto_notify_watcher</span>
     }
 }
 

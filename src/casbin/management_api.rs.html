@@ -999,6 +999,8 @@
 <span id="999"> 999</span>
 <span id="1000">1000</span>
 <span id="1001">1001</span>
+<span id="1002">1002</span>
+<span id="1003">1003</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">InternalApi</span>, <span class="prelude-ty">Result</span>};
 
@@ -1244,7 +1246,7 @@
         <span class="ident">field_index</span>: <span class="ident">usize</span>,
         <span class="ident">field_values</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">bool</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">rule_removed</span> <span class="op">=</span> <span class="self">self</span>
+        <span class="kw">let</span> (<span class="ident">rule_removed</span>, <span class="kw">_</span>) <span class="op">=</span> <span class="self">self</span>
             .<span class="ident">remove_filtered_policy_internal</span>(<span class="string">&quot;g&quot;</span>, <span class="ident">ptype</span>, <span class="ident">field_index</span>, <span class="ident">field_values</span>)
             .<span class="kw">await</span><span class="question-mark">?</span>;
         <span class="self">self</span>.<span class="ident">build_role_links</span>()<span class="question-mark">?</span>;
@@ -1257,8 +1259,10 @@
         <span class="ident">field_index</span>: <span class="ident">usize</span>,
         <span class="ident">field_values</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">bool</span><span class="op">&gt;</span> {
-        <span class="self">self</span>.<span class="ident">remove_filtered_policy_internal</span>(<span class="string">&quot;p&quot;</span>, <span class="ident">ptype</span>, <span class="ident">field_index</span>, <span class="ident">field_values</span>)
-            .<span class="kw">await</span>
+        <span class="prelude-val">Ok</span>(<span class="self">self</span>
+            .<span class="ident">remove_filtered_policy_internal</span>(<span class="string">&quot;p&quot;</span>, <span class="ident">ptype</span>, <span class="ident">field_index</span>, <span class="ident">field_values</span>)
+            .<span class="kw">await</span><span class="question-mark">?</span>
+            .<span class="number">0</span>)
     }
 
     <span class="kw">fn</span> <span class="ident">get_named_policy</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">ptype</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span><span class="op">&gt;</span> {

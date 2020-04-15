@@ -1322,7 +1322,7 @@
             <span class="kw">return</span> <span class="prelude-val">Ok</span>(<span class="bool-val">true</span>);
         }
 
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">engine</span> <span class="op">=</span> <span class="ident">Engine</span>::<span class="ident">new</span>();
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">engine</span> <span class="op">=</span> <span class="ident">Engine</span>::<span class="ident">new_raw</span>();
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">scope</span>: <span class="ident">Scope</span> <span class="op">=</span> <span class="ident">Scope</span>::<span class="ident">new</span>();
 
         <span class="kw">let</span> <span class="ident">r_ast</span> <span class="op">=</span> <span class="macro">get_or_err</span><span class="macro">!</span>(<span class="self">self</span>, <span class="string">&quot;r&quot;</span>, <span class="ident">ModelError</span>::<span class="ident">R</span>, <span class="string">&quot;request&quot;</span>);

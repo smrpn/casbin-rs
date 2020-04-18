@@ -234,9 +234,19 @@
 <span id="234">234</span>
 <span id="235">235</span>
 <span id="236">236</span>
+<span id="237">237</span>
+<span id="238">238</span>
+<span id="239">239</span>
+<span id="240">240</span>
+<span id="241">241</span>
+<span id="242">242</span>
+<span id="243">243</span>
+<span id="244">244</span>
+<span id="245">245</span>
+<span id="246">246</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="kw">use</span> <span class="kw">crate</span>::{
-    <span class="ident">adapter</span>::<span class="ident">Adapter</span>,
+    <span class="ident">adapter</span>::{<span class="ident">Adapter</span>, <span class="ident">Filter</span>},
     <span class="ident">cache</span>::{<span class="ident">Cache</span>, <span class="ident">DefaultCache</span>},
     <span class="ident">cached_api</span>::<span class="ident">CachedApi</span>,
     <span class="ident">convert</span>::{<span class="ident">TryIntoAdapter</span>, <span class="ident">TryIntoModel</span>},
@@ -390,6 +400,16 @@
     <span class="attribute">#[<span class="ident">inline</span>]</span>
     <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">load_policy</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
         <span class="self">self</span>.<span class="ident">enforcer</span>.<span class="ident">load_policy</span>().<span class="kw">await</span>
+    }
+
+    <span class="attribute">#[<span class="ident">inline</span>]</span>
+    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">load_filtered_policy</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">f</span>: <span class="ident">Filter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
+        <span class="self">self</span>.<span class="ident">enforcer</span>.<span class="ident">load_filtered_policy</span>(<span class="ident">f</span>).<span class="kw">await</span>
+    }
+
+    <span class="attribute">#[<span class="ident">inline</span>]</span>
+    <span class="kw">fn</span> <span class="ident">is_filtered</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+        <span class="self">self</span>.<span class="ident">enforcer</span>.<span class="ident">is_filtered</span>()
     }
 
     <span class="attribute">#[<span class="ident">inline</span>]</span>

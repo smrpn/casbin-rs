@@ -1081,12 +1081,6 @@
 <span id="1081">1081</span>
 <span id="1082">1082</span>
 <span id="1083">1083</span>
-<span id="1084">1084</span>
-<span id="1085">1085</span>
-<span id="1086">1086</span>
-<span id="1087">1087</span>
-<span id="1088">1088</span>
-<span id="1089">1089</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">MgmtApi</span>, <span class="prelude-ty">Result</span>};
 
@@ -1289,22 +1283,16 @@
     }
 
     <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">delete_user</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">bool</span><span class="op">&gt;</span> {
-        <span class="self">self</span>.<span class="ident">remove_filtered_grouping_policy</span>(
-            <span class="number">0</span>,
-            <span class="macro">vec</span><span class="macro">!</span>[<span class="ident">name</span>].<span class="ident">iter</span>().<span class="ident">map</span>(<span class="op">|</span><span class="ident">s</span><span class="op">|</span> (<span class="kw-2">*</span><span class="ident">s</span>).<span class="ident">to_string</span>()).<span class="ident">collect</span>(),
-        )
-        .<span class="kw">await</span>
+        <span class="self">self</span>.<span class="ident">remove_filtered_grouping_policy</span>(<span class="number">0</span>, <span class="macro">vec</span><span class="macro">!</span>[<span class="ident">name</span>.<span class="ident">to_string</span>()])
+            .<span class="kw">await</span>
     }
 
     <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">delete_role</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">bool</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="ident">res1</span> <span class="op">=</span> <span class="self">self</span>
-            .<span class="ident">remove_filtered_grouping_policy</span>(
-                <span class="number">1</span>,
-                <span class="macro">vec</span><span class="macro">!</span>[<span class="ident">name</span>].<span class="ident">iter</span>().<span class="ident">map</span>(<span class="op">|</span><span class="ident">s</span><span class="op">|</span> (<span class="kw-2">*</span><span class="ident">s</span>).<span class="ident">to_string</span>()).<span class="ident">collect</span>(),
-            )
+            .<span class="ident">remove_filtered_grouping_policy</span>(<span class="number">1</span>, <span class="macro">vec</span><span class="macro">!</span>[<span class="ident">name</span>.<span class="ident">to_string</span>()])
             .<span class="kw">await</span><span class="question-mark">?</span>;
         <span class="kw">let</span> <span class="ident">res2</span> <span class="op">=</span> <span class="self">self</span>
-            .<span class="ident">remove_filtered_policy</span>(<span class="number">0</span>, <span class="macro">vec</span><span class="macro">!</span>[<span class="ident">name</span>].<span class="ident">iter</span>().<span class="ident">map</span>(<span class="op">|</span><span class="ident">s</span><span class="op">|</span> (<span class="kw-2">*</span><span class="ident">s</span>).<span class="ident">to_string</span>()).<span class="ident">collect</span>())
+            .<span class="ident">remove_filtered_policy</span>(<span class="number">0</span>, <span class="macro">vec</span><span class="macro">!</span>[<span class="ident">name</span>.<span class="ident">to_string</span>()])
             .<span class="kw">await</span><span class="question-mark">?</span>;
         <span class="prelude-val">Ok</span>(<span class="ident">res1</span> <span class="op">|</span><span class="op">|</span> <span class="ident">res2</span>)
     }

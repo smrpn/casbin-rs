@@ -89,7 +89,7 @@
     <span class="kw">static</span> <span class="kw-2">ref</span> <span class="ident">ESC_A</span>: <span class="ident">Regex</span> <span class="op">=</span> <span class="ident">Regex</span>::<span class="ident">new</span>(<span class="string">r&quot;(r|p)\.&quot;</span>).<span class="ident">unwrap</span>();
     <span class="kw">static</span> <span class="kw-2">ref</span> <span class="ident">ESC_G</span>: <span class="ident">Regex</span> <span class="op">=</span>
         <span class="ident">Regex</span>::<span class="ident">new</span>(<span class="string">r&quot;(g\d*)\(((?:\s*[r|p]\.\w+\s*,\s*){1,2}\s*[r|p]\.\w+\s*)\)&quot;</span>).<span class="ident">unwrap</span>();
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">static</span> <span class="kw-2">ref</span> <span class="ident">ESC_E</span>: <span class="ident">Regex</span> <span class="op">=</span> <span class="ident">Regex</span>::<span class="ident">new</span>(<span class="string">r&quot;eval\((?P&lt;rule&gt;[^),]*)\)&quot;</span>).<span class="ident">unwrap</span>();
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">static</span> <span class="kw-2">ref</span> <span class="ident">ESC_E</span>: <span class="ident">Regex</span> <span class="op">=</span> <span class="ident">Regex</span>::<span class="ident">new</span>(<span class="string">r&quot;eval\((?P&lt;rule&gt;[^)]*)\)&quot;</span>).<span class="ident">unwrap</span>();
 }
 
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">escape_assertion</span>(<span class="ident">s</span>: <span class="ident">String</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">String</span> {

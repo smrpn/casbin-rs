@@ -1252,6 +1252,8 @@
 <span id="1252">1252</span>
 <span id="1253">1253</span>
 <span id="1254">1254</span>
+<span id="1255">1255</span>
+<span id="1256">1256</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="kw">use</span> <span class="kw">crate</span>::{
     <span class="ident">adapter</span>::{<span class="ident">Adapter</span>, <span class="ident">Filter</span>},
@@ -2420,10 +2422,12 @@
         };
 
         <span class="ident">e</span>.<span class="ident">load_filtered_policy</span>(<span class="ident">filter</span>).<span class="kw">await</span>.<span class="ident">unwrap</span>();
-        <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">e</span>
-            .<span class="ident">enforce</span>(<span class="kw-2">&amp;</span>[<span class="string">&quot;alice&quot;</span>, <span class="string">&quot;domain1&quot;</span>, <span class="string">&quot;data1&quot;</span>, <span class="string">&quot;read&quot;</span>])
-            .<span class="kw">await</span>
-            .<span class="ident">unwrap</span>());
+        <span class="macro">assert_eq</span><span class="macro">!</span>(
+            <span class="ident">e</span>.<span class="ident">enforce</span>(<span class="kw-2">&amp;</span>[<span class="string">&quot;alice&quot;</span>, <span class="string">&quot;domain1&quot;</span>, <span class="string">&quot;data1&quot;</span>, <span class="string">&quot;read&quot;</span>])
+                .<span class="kw">await</span>
+                .<span class="ident">unwrap</span>(),
+            <span class="bool-val">true</span>
+        );
         <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">e</span>
             .<span class="ident">enforce</span>(<span class="kw-2">&amp;</span>[<span class="string">&quot;alice&quot;</span>, <span class="string">&quot;domain1&quot;</span>, <span class="string">&quot;data1&quot;</span>, <span class="string">&quot;write&quot;</span>])
             .<span class="kw">await</span>

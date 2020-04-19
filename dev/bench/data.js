@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1587201214329,
+  "lastUpdate": 1587262812721,
   "repoUrl": "https://github.com/casbin/casbin-rs",
   "entries": {
     "Rust Benchmark": [
@@ -1613,6 +1613,168 @@ window.BENCHMARK_DATA = {
             "name": "b_benmark_cached_basic_model",
             "value": 354,
             "range": "± 23",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "hsluoyz@qq.com",
+            "name": "Yang Luo",
+            "username": "hsluoyz"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "16f45d06f6aaef8586f8927a55a616c0cac35f82",
+          "message": "Merge pull request #121 from GopherJ/scaling-abac-rules\n\nPOC try scaling abac rules",
+          "timestamp": "2020-04-19T10:16:54+08:00",
+          "tree_id": "d767275b74518c91d210b719738185eb703cfd81",
+          "url": "https://github.com/casbin/casbin-rs/commit/16f45d06f6aaef8586f8927a55a616c0cac35f82"
+        },
+        "date": 1587262811922,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "b_benchmark_abac_model",
+            "value": 7190,
+            "range": "± 1342",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_basic_model",
+            "value": 11758,
+            "range": "± 836",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_cached_abac_model",
+            "value": 345,
+            "range": "± 6",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_cached_key_match",
+            "value": 352,
+            "range": "± 73",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_cached_priority_model",
+            "value": 346,
+            "range": "± 11",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_cached_rbac_model",
+            "value": 346,
+            "range": "± 33",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_cached_rbac_model_large",
+            "value": 352,
+            "range": "± 5",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_cached_rbac_model_medium",
+            "value": 346,
+            "range": "± 19",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_cached_rbac_model_small",
+            "value": 347,
+            "range": "± 20",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_cached_rbac_model_with_domains",
+            "value": 391,
+            "range": "± 8",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_cached_rbac_with_deny",
+            "value": 347,
+            "range": "± 44",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_cached_rbac_with_resource_roles",
+            "value": 347,
+            "range": "± 11",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_key_match",
+            "value": 73168,
+            "range": "± 4957",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_priority_model",
+            "value": 10765,
+            "range": "± 271",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_raw",
+            "value": 8,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_rbac_model",
+            "value": 29886,
+            "range": "± 841",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_rbac_model_large",
+            "value": 64112484,
+            "range": "± 1843729",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_rbac_model_medium",
+            "value": 6176062,
+            "range": "± 529655",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_rbac_model_small",
+            "value": 620318,
+            "range": "± 23303",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_rbac_model_with_domains",
+            "value": 44385,
+            "range": "± 1283",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_rbac_with_deny",
+            "value": 36961,
+            "range": "± 1441",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_rbac_with_resource_roles",
+            "value": 26425,
+            "range": "± 1593",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benmark_cached_basic_model",
+            "value": 352,
+            "range": "± 17",
             "unit": "ns/iter"
           }
         ]

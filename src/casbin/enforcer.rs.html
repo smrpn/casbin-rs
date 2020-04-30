@@ -1269,6 +1269,15 @@
 <span id="1269">1269</span>
 <span id="1270">1270</span>
 <span id="1271">1271</span>
+<span id="1272">1272</span>
+<span id="1273">1273</span>
+<span id="1274">1274</span>
+<span id="1275">1275</span>
+<span id="1276">1276</span>
+<span id="1277">1277</span>
+<span id="1278">1278</span>
+<span id="1279">1279</span>
+<span id="1280">1280</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="kw">use</span> <span class="kw">crate</span>::{
     <span class="ident">adapter</span>::{<span class="ident">Adapter</span>, <span class="ident">Filter</span>},
@@ -1286,7 +1295,10 @@
 };
 
 <span class="kw">use</span> <span class="ident">async_trait</span>::<span class="ident">async_trait</span>;
-<span class="kw">use</span> <span class="ident">rhai</span>::{<span class="ident">Array</span>, <span class="ident">Engine</span>, <span class="ident">RegisterFn</span>, <span class="ident">Scope</span>};
+<span class="kw">use</span> <span class="ident">rhai</span>::{
+    <span class="ident">packages</span>::{<span class="ident">ArithmeticPackage</span>, <span class="ident">BasicArrayPackage</span>, <span class="ident">BasicMapPackage</span>, <span class="ident">LogicPackage</span>, <span class="ident">Package</span>},
+    <span class="ident">Array</span>, <span class="ident">Engine</span>, <span class="ident">RegisterFn</span>, <span class="ident">Scope</span>,
+};
 
 <span class="kw">use</span> <span class="ident">std</span>::{
     <span class="ident">collections</span>::<span class="ident">HashMap</span>,
@@ -1342,7 +1354,7 @@
     <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">auto_notify_watcher</span>: <span class="ident">bool</span>,
     <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">watcher</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="ident">Watcher</span><span class="op">&gt;</span><span class="op">&gt;</span>,
     <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">events</span>: <span class="ident">HashMap</span><span class="op">&lt;</span><span class="ident">Event</span>, <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">EventCallback</span><span class="op">&gt;</span><span class="op">&gt;</span>,
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">engine</span>: <span class="ident">Engine</span><span class="op">&lt;</span><span class="lifetime">&#39;static</span><span class="op">&gt;</span>,
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">engine</span>: <span class="ident">Engine</span>,
 }
 
 <span class="kw">impl</span> <span class="ident">EventEmitter</span><span class="op">&lt;</span><span class="ident">Event</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Enforcer</span> {
@@ -1371,7 +1383,13 @@
         <span class="kw">let</span> <span class="ident">fm</span> <span class="op">=</span> <span class="ident">FunctionMap</span>::<span class="ident">default</span>();
         <span class="kw">let</span> <span class="ident">eft</span> <span class="op">=</span> <span class="ident">Box</span>::<span class="ident">new</span>(<span class="ident">DefaultEffector</span>::<span class="ident">default</span>());
         <span class="kw">let</span> <span class="ident">rm</span> <span class="op">=</span> <span class="ident">Arc</span>::<span class="ident">new</span>(<span class="ident">RwLock</span>::<span class="ident">new</span>(<span class="ident">DefaultRoleManager</span>::<span class="ident">new</span>(<span class="number">10</span>)));
+
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">engine</span> <span class="op">=</span> <span class="ident">Engine</span>::<span class="ident">new_raw</span>();
+
+        <span class="ident">engine</span>.<span class="ident">load_package</span>(<span class="ident">ArithmeticPackage</span>::<span class="ident">new</span>().<span class="ident">get</span>());
+        <span class="ident">engine</span>.<span class="ident">load_package</span>(<span class="ident">LogicPackage</span>::<span class="ident">new</span>().<span class="ident">get</span>());
+        <span class="ident">engine</span>.<span class="ident">load_package</span>(<span class="ident">BasicArrayPackage</span>::<span class="ident">new</span>().<span class="ident">get</span>());
+        <span class="ident">engine</span>.<span class="ident">load_package</span>(<span class="ident">BasicMapPackage</span>::<span class="ident">new</span>().<span class="ident">get</span>());
 
         <span class="kw">for</span> (<span class="ident">key</span>, <span class="ident">func</span>) <span class="kw">in</span> <span class="ident">fm</span>.<span class="ident">get_functions</span>() {
             <span class="ident">engine</span>.<span class="ident">register_fn</span>(<span class="ident">key</span>, <span class="kw-2">*</span><span class="ident">func</span>);

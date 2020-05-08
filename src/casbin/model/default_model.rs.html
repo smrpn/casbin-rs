@@ -1453,7 +1453,7 @@
             .<span class="ident">unwrap</span>();
 
         <span class="kw">let</span> <span class="ident">adapter</span> <span class="op">=</span> <span class="ident">FileAdapter</span>::<span class="ident">new</span>(<span class="string">&quot;examples/basic_policy.csv&quot;</span>);
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">e</span> <span class="op">=</span> <span class="ident">Enforcer</span>::<span class="ident">new</span>(<span class="ident">m</span>, <span class="ident">adapter</span>).<span class="kw">await</span>.<span class="ident">unwrap</span>();
+        <span class="kw">let</span> <span class="ident">e</span> <span class="op">=</span> <span class="ident">Enforcer</span>::<span class="ident">new</span>(<span class="ident">m</span>, <span class="ident">adapter</span>).<span class="kw">await</span>.<span class="ident">unwrap</span>();
 
         <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">e</span>.<span class="ident">enforce</span>(<span class="kw-2">&amp;</span><span class="macro">vec</span><span class="macro">!</span>[<span class="string">&quot;alice&quot;</span>, <span class="string">&quot;data1&quot;</span>, <span class="string">&quot;read&quot;</span>]).<span class="kw">await</span>.<span class="ident">unwrap</span>());
         <span class="macro">assert</span><span class="macro">!</span>(<span class="op">!</span><span class="ident">e</span>.<span class="ident">enforce</span>(<span class="kw-2">&amp;</span><span class="macro">vec</span><span class="macro">!</span>[<span class="string">&quot;alice&quot;</span>, <span class="string">&quot;data1&quot;</span>, <span class="string">&quot;write&quot;</span>]).<span class="kw">await</span>.<span class="ident">unwrap</span>());
@@ -1473,7 +1473,7 @@
             .<span class="ident">unwrap</span>();
 
         <span class="kw">let</span> <span class="ident">adapter</span> <span class="op">=</span> <span class="ident">MemoryAdapter</span>::<span class="ident">default</span>();
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">e</span> <span class="op">=</span> <span class="ident">Enforcer</span>::<span class="ident">new</span>(<span class="ident">m</span>, <span class="ident">adapter</span>).<span class="kw">await</span>.<span class="ident">unwrap</span>();
+        <span class="kw">let</span> <span class="ident">e</span> <span class="op">=</span> <span class="ident">Enforcer</span>::<span class="ident">new</span>(<span class="ident">m</span>, <span class="ident">adapter</span>).<span class="kw">await</span>.<span class="ident">unwrap</span>();
 
         <span class="macro">assert</span><span class="macro">!</span>(<span class="op">!</span><span class="ident">e</span>.<span class="ident">enforce</span>(<span class="kw-2">&amp;</span><span class="macro">vec</span><span class="macro">!</span>[<span class="string">&quot;alice&quot;</span>, <span class="string">&quot;data1&quot;</span>, <span class="string">&quot;read&quot;</span>]).<span class="kw">await</span>.<span class="ident">unwrap</span>());
         <span class="macro">assert</span><span class="macro">!</span>(<span class="op">!</span><span class="ident">e</span>.<span class="ident">enforce</span>(<span class="kw-2">&amp;</span><span class="macro">vec</span><span class="macro">!</span>[<span class="string">&quot;alice&quot;</span>, <span class="string">&quot;data1&quot;</span>, <span class="string">&quot;write&quot;</span>]).<span class="kw">await</span>.<span class="ident">unwrap</span>());
@@ -1493,7 +1493,7 @@
             .<span class="ident">unwrap</span>();
 
         <span class="kw">let</span> <span class="ident">adapter</span> <span class="op">=</span> <span class="ident">FileAdapter</span>::<span class="ident">new</span>(<span class="string">&quot;examples/basic_policy.csv&quot;</span>);
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">e</span> <span class="op">=</span> <span class="ident">Enforcer</span>::<span class="ident">new</span>(<span class="ident">m</span>, <span class="ident">adapter</span>).<span class="kw">await</span>.<span class="ident">unwrap</span>();
+        <span class="kw">let</span> <span class="ident">e</span> <span class="op">=</span> <span class="ident">Enforcer</span>::<span class="ident">new</span>(<span class="ident">m</span>, <span class="ident">adapter</span>).<span class="kw">await</span>.<span class="ident">unwrap</span>();
 
         <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">e</span>.<span class="ident">enforce</span>(<span class="kw-2">&amp;</span><span class="macro">vec</span><span class="macro">!</span>[<span class="string">&quot;alice&quot;</span>, <span class="string">&quot;data1&quot;</span>, <span class="string">&quot;read&quot;</span>]).<span class="kw">await</span>.<span class="ident">unwrap</span>());
         <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">e</span>.<span class="ident">enforce</span>(<span class="kw-2">&amp;</span><span class="macro">vec</span><span class="macro">!</span>[<span class="string">&quot;bob&quot;</span>, <span class="string">&quot;data2&quot;</span>, <span class="string">&quot;write&quot;</span>]).<span class="kw">await</span>.<span class="ident">unwrap</span>());
@@ -1517,7 +1517,7 @@
             .<span class="ident">unwrap</span>();
 
         <span class="kw">let</span> <span class="ident">adapter</span> <span class="op">=</span> <span class="ident">MemoryAdapter</span>::<span class="ident">default</span>();
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">e</span> <span class="op">=</span> <span class="ident">Enforcer</span>::<span class="ident">new</span>(<span class="ident">m</span>, <span class="ident">adapter</span>).<span class="kw">await</span>.<span class="ident">unwrap</span>();
+        <span class="kw">let</span> <span class="ident">e</span> <span class="op">=</span> <span class="ident">Enforcer</span>::<span class="ident">new</span>(<span class="ident">m</span>, <span class="ident">adapter</span>).<span class="kw">await</span>.<span class="ident">unwrap</span>();
 
         <span class="macro">assert</span><span class="macro">!</span>(<span class="op">!</span><span class="ident">e</span>.<span class="ident">enforce</span>(<span class="kw-2">&amp;</span><span class="macro">vec</span><span class="macro">!</span>[<span class="string">&quot;alice&quot;</span>, <span class="string">&quot;data1&quot;</span>, <span class="string">&quot;read&quot;</span>]).<span class="kw">await</span>.<span class="ident">unwrap</span>());
         <span class="macro">assert</span><span class="macro">!</span>(<span class="op">!</span><span class="ident">e</span>.<span class="ident">enforce</span>(<span class="kw-2">&amp;</span><span class="macro">vec</span><span class="macro">!</span>[<span class="string">&quot;bob&quot;</span>, <span class="string">&quot;data2&quot;</span>, <span class="string">&quot;write&quot;</span>]).<span class="kw">await</span>.<span class="ident">unwrap</span>());
@@ -1541,7 +1541,7 @@
             .<span class="ident">unwrap</span>();
 
         <span class="kw">let</span> <span class="ident">adapter</span> <span class="op">=</span> <span class="ident">FileAdapter</span>::<span class="ident">new</span>(<span class="string">&quot;examples/basic_without_users_policy.csv&quot;</span>);
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">e</span> <span class="op">=</span> <span class="ident">Enforcer</span>::<span class="ident">new</span>(<span class="ident">m</span>, <span class="ident">adapter</span>).<span class="kw">await</span>.<span class="ident">unwrap</span>();
+        <span class="kw">let</span> <span class="ident">e</span> <span class="op">=</span> <span class="ident">Enforcer</span>::<span class="ident">new</span>(<span class="ident">m</span>, <span class="ident">adapter</span>).<span class="kw">await</span>.<span class="ident">unwrap</span>();
 
         <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">e</span>.<span class="ident">enforce</span>(<span class="kw-2">&amp;</span><span class="macro">vec</span><span class="macro">!</span>[<span class="string">&quot;data1&quot;</span>, <span class="string">&quot;read&quot;</span>]).<span class="kw">await</span>.<span class="ident">unwrap</span>());
         <span class="macro">assert</span><span class="macro">!</span>(<span class="op">!</span><span class="ident">e</span>.<span class="ident">enforce</span>(<span class="kw-2">&amp;</span><span class="macro">vec</span><span class="macro">!</span>[<span class="string">&quot;data1&quot;</span>, <span class="string">&quot;write&quot;</span>]).<span class="kw">await</span>.<span class="ident">unwrap</span>());
@@ -1557,7 +1557,7 @@
             .<span class="ident">unwrap</span>();
 
         <span class="kw">let</span> <span class="ident">adapter</span> <span class="op">=</span> <span class="ident">FileAdapter</span>::<span class="ident">new</span>(<span class="string">&quot;examples/basic_without_resources_policy.csv&quot;</span>);
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">e</span> <span class="op">=</span> <span class="ident">Enforcer</span>::<span class="ident">new</span>(<span class="ident">m</span>, <span class="ident">adapter</span>).<span class="kw">await</span>.<span class="ident">unwrap</span>();
+        <span class="kw">let</span> <span class="ident">e</span> <span class="op">=</span> <span class="ident">Enforcer</span>::<span class="ident">new</span>(<span class="ident">m</span>, <span class="ident">adapter</span>).<span class="kw">await</span>.<span class="ident">unwrap</span>();
 
         <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">e</span>.<span class="ident">enforce</span>(<span class="kw-2">&amp;</span><span class="macro">vec</span><span class="macro">!</span>[<span class="string">&quot;alice&quot;</span>, <span class="string">&quot;read&quot;</span>]).<span class="kw">await</span>.<span class="ident">unwrap</span>());
         <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">e</span>.<span class="ident">enforce</span>(<span class="kw-2">&amp;</span><span class="macro">vec</span><span class="macro">!</span>[<span class="string">&quot;bob&quot;</span>, <span class="string">&quot;write&quot;</span>]).<span class="kw">await</span>.<span class="ident">unwrap</span>());
@@ -1573,7 +1573,7 @@
             .<span class="ident">unwrap</span>();
 
         <span class="kw">let</span> <span class="ident">adapter</span> <span class="op">=</span> <span class="ident">FileAdapter</span>::<span class="ident">new</span>(<span class="string">&quot;examples/rbac_policy.csv&quot;</span>);
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">e</span> <span class="op">=</span> <span class="ident">Enforcer</span>::<span class="ident">new</span>(<span class="ident">m</span>, <span class="ident">adapter</span>).<span class="kw">await</span>.<span class="ident">unwrap</span>();
+        <span class="kw">let</span> <span class="ident">e</span> <span class="op">=</span> <span class="ident">Enforcer</span>::<span class="ident">new</span>(<span class="ident">m</span>, <span class="ident">adapter</span>).<span class="kw">await</span>.<span class="ident">unwrap</span>();
 
         <span class="macro">assert_eq</span><span class="macro">!</span>(
             <span class="bool-val">true</span>,
@@ -1617,7 +1617,7 @@
             .<span class="ident">unwrap</span>();
 
         <span class="kw">let</span> <span class="ident">adapter</span> <span class="op">=</span> <span class="ident">FileAdapter</span>::<span class="ident">new</span>(<span class="string">&quot;examples/rbac_with_resource_roles_policy.csv&quot;</span>);
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">e</span> <span class="op">=</span> <span class="ident">Enforcer</span>::<span class="ident">new</span>(<span class="ident">m</span>, <span class="ident">adapter</span>).<span class="kw">await</span>.<span class="ident">unwrap</span>();
+        <span class="kw">let</span> <span class="ident">e</span> <span class="op">=</span> <span class="ident">Enforcer</span>::<span class="ident">new</span>(<span class="ident">m</span>, <span class="ident">adapter</span>).<span class="kw">await</span>.<span class="ident">unwrap</span>();
 
         <span class="macro">assert_eq</span><span class="macro">!</span>(
             <span class="bool-val">true</span>,
@@ -1661,7 +1661,7 @@
             .<span class="ident">unwrap</span>();
 
         <span class="kw">let</span> <span class="ident">adapter</span> <span class="op">=</span> <span class="ident">FileAdapter</span>::<span class="ident">new</span>(<span class="string">&quot;examples/rbac_with_domains_policy.csv&quot;</span>);
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">e</span> <span class="op">=</span> <span class="ident">Enforcer</span>::<span class="ident">new</span>(<span class="ident">m</span>, <span class="ident">adapter</span>).<span class="kw">await</span>.<span class="ident">unwrap</span>();
+        <span class="kw">let</span> <span class="ident">e</span> <span class="op">=</span> <span class="ident">Enforcer</span>::<span class="ident">new</span>(<span class="ident">m</span>, <span class="ident">adapter</span>).<span class="kw">await</span>.<span class="ident">unwrap</span>();
 
         <span class="macro">assert_eq</span><span class="macro">!</span>(
             <span class="bool-val">true</span>,
@@ -2032,7 +2032,7 @@
             .<span class="ident">unwrap</span>();
 
         <span class="kw">let</span> <span class="ident">adapter</span> <span class="op">=</span> <span class="ident">FileAdapter</span>::<span class="ident">new</span>(<span class="string">&quot;examples/rbac_with_deny_policy.csv&quot;</span>);
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">e</span> <span class="op">=</span> <span class="ident">Enforcer</span>::<span class="ident">new</span>(<span class="ident">m</span>, <span class="ident">adapter</span>).<span class="kw">await</span>.<span class="ident">unwrap</span>();
+        <span class="kw">let</span> <span class="ident">e</span> <span class="op">=</span> <span class="ident">Enforcer</span>::<span class="ident">new</span>(<span class="ident">m</span>, <span class="ident">adapter</span>).<span class="kw">await</span>.<span class="ident">unwrap</span>();
 
         <span class="macro">assert_eq</span><span class="macro">!</span>(
             <span class="bool-val">true</span>,
@@ -2076,7 +2076,7 @@
             .<span class="ident">unwrap</span>();
 
         <span class="kw">let</span> <span class="ident">adapter</span> <span class="op">=</span> <span class="ident">FileAdapter</span>::<span class="ident">new</span>(<span class="string">&quot;examples/rbac_with_deny_policy.csv&quot;</span>);
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">e</span> <span class="op">=</span> <span class="ident">Enforcer</span>::<span class="ident">new</span>(<span class="ident">m</span>, <span class="ident">adapter</span>).<span class="kw">await</span>.<span class="ident">unwrap</span>();
+        <span class="kw">let</span> <span class="ident">e</span> <span class="op">=</span> <span class="ident">Enforcer</span>::<span class="ident">new</span>(<span class="ident">m</span>, <span class="ident">adapter</span>).<span class="kw">await</span>.<span class="ident">unwrap</span>();
 
         <span class="macro">assert_eq</span><span class="macro">!</span>(
             <span class="bool-val">false</span>,
@@ -2187,7 +2187,7 @@
             .<span class="ident">unwrap</span>();
 
         <span class="kw">let</span> <span class="ident">adapter</span> <span class="op">=</span> <span class="ident">FileAdapter</span>::<span class="ident">new</span>(<span class="string">&quot;examples/rbac_policy.csv&quot;</span>);
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">e</span> <span class="op">=</span> <span class="ident">Enforcer</span>::<span class="ident">new</span>(<span class="ident">m</span>, <span class="ident">adapter</span>).<span class="kw">await</span>.<span class="ident">unwrap</span>();
+        <span class="kw">let</span> <span class="ident">e</span> <span class="op">=</span> <span class="ident">Enforcer</span>::<span class="ident">new</span>(<span class="ident">m</span>, <span class="ident">adapter</span>).<span class="kw">await</span>.<span class="ident">unwrap</span>();
 
         <span class="macro">assert_eq</span><span class="macro">!</span>(
             <span class="bool-val">true</span>,
@@ -2231,7 +2231,7 @@
             .<span class="ident">unwrap</span>();
 
         <span class="kw">let</span> <span class="ident">adapter</span> <span class="op">=</span> <span class="ident">MemoryAdapter</span>::<span class="ident">default</span>();
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">e</span> <span class="op">=</span> <span class="ident">Enforcer</span>::<span class="ident">new</span>(<span class="ident">m</span>, <span class="ident">adapter</span>).<span class="kw">await</span>.<span class="ident">unwrap</span>();
+        <span class="kw">let</span> <span class="ident">e</span> <span class="op">=</span> <span class="ident">Enforcer</span>::<span class="ident">new</span>(<span class="ident">m</span>, <span class="ident">adapter</span>).<span class="kw">await</span>.<span class="ident">unwrap</span>();
 
         <span class="macro">assert_eq</span><span class="macro">!</span>(
             <span class="bool-val">false</span>,

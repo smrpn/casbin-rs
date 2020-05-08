@@ -329,7 +329,7 @@
 
         <span class="kw">let</span> <span class="ident">rule_added</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">get_mut_model</span>().<span class="ident">add_policy</span>(<span class="ident">sec</span>, <span class="ident">ptype</span>, <span class="ident">rule</span>.<span class="ident">clone</span>());
         <span class="kw">if</span> <span class="ident">rule_added</span> <span class="kw-2">&amp;</span><span class="op">&amp;</span> <span class="self">self</span>.<span class="ident">has_auto_notify_watcher_enabled</span>() {
-            <span class="self">self</span>.<span class="ident">emit</span>(<span class="ident">Event</span>::<span class="ident">PolicyChange</span>, <span class="prelude-val">Some</span>(<span class="ident">EventData</span>::<span class="ident">AddPolicy</span>(<span class="ident">rule</span>)));
+            <span class="self">self</span>.<span class="ident">emit</span>(<span class="ident">Event</span>::<span class="ident">PolicyChange</span>, <span class="ident">EventData</span>::<span class="ident">AddPolicy</span>(<span class="ident">rule</span>));
         }
 
         <span class="prelude-val">Ok</span>(<span class="ident">rule_added</span>)
@@ -352,7 +352,7 @@
 
         <span class="kw">let</span> <span class="ident">rules_added</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">get_mut_model</span>().<span class="ident">add_policies</span>(<span class="ident">sec</span>, <span class="ident">ptype</span>, <span class="ident">rules</span>.<span class="ident">clone</span>());
         <span class="kw">if</span> <span class="ident">rules_added</span> <span class="kw-2">&amp;</span><span class="op">&amp;</span> <span class="self">self</span>.<span class="ident">has_auto_notify_watcher_enabled</span>() {
-            <span class="self">self</span>.<span class="ident">emit</span>(<span class="ident">Event</span>::<span class="ident">PolicyChange</span>, <span class="prelude-val">Some</span>(<span class="ident">EventData</span>::<span class="ident">AddPolicies</span>(<span class="ident">rules</span>)));
+            <span class="self">self</span>.<span class="ident">emit</span>(<span class="ident">Event</span>::<span class="ident">PolicyChange</span>, <span class="ident">EventData</span>::<span class="ident">AddPolicies</span>(<span class="ident">rules</span>));
         }
 
         <span class="prelude-val">Ok</span>(<span class="ident">rules_added</span>)
@@ -375,7 +375,7 @@
 
         <span class="kw">let</span> <span class="ident">rule_removed</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">get_mut_model</span>().<span class="ident">remove_policy</span>(<span class="ident">sec</span>, <span class="ident">ptype</span>, <span class="ident">rule</span>.<span class="ident">clone</span>());
         <span class="kw">if</span> <span class="ident">rule_removed</span> <span class="kw-2">&amp;</span><span class="op">&amp;</span> <span class="self">self</span>.<span class="ident">has_auto_notify_watcher_enabled</span>() {
-            <span class="self">self</span>.<span class="ident">emit</span>(<span class="ident">Event</span>::<span class="ident">PolicyChange</span>, <span class="prelude-val">Some</span>(<span class="ident">EventData</span>::<span class="ident">RemovePolicy</span>(<span class="ident">rule</span>)));
+            <span class="self">self</span>.<span class="ident">emit</span>(<span class="ident">Event</span>::<span class="ident">PolicyChange</span>, <span class="ident">EventData</span>::<span class="ident">RemovePolicy</span>(<span class="ident">rule</span>));
         }
 
         <span class="prelude-val">Ok</span>(<span class="ident">rule_removed</span>)
@@ -400,7 +400,7 @@
             .<span class="ident">get_mut_model</span>()
             .<span class="ident">remove_policies</span>(<span class="ident">sec</span>, <span class="ident">ptype</span>, <span class="ident">rules</span>.<span class="ident">clone</span>());
         <span class="kw">if</span> <span class="ident">rules_removed</span> <span class="kw-2">&amp;</span><span class="op">&amp;</span> <span class="self">self</span>.<span class="ident">has_auto_notify_watcher_enabled</span>() {
-            <span class="self">self</span>.<span class="ident">emit</span>(<span class="ident">Event</span>::<span class="ident">PolicyChange</span>, <span class="prelude-val">Some</span>(<span class="ident">EventData</span>::<span class="ident">RemovePolicies</span>(<span class="ident">rules</span>)));
+            <span class="self">self</span>.<span class="ident">emit</span>(<span class="ident">Event</span>::<span class="ident">PolicyChange</span>, <span class="ident">EventData</span>::<span class="ident">RemovePolicies</span>(<span class="ident">rules</span>));
         }
 
         <span class="prelude-val">Ok</span>(<span class="ident">rules_removed</span>)
@@ -428,7 +428,7 @@
         <span class="kw">if</span> <span class="ident">rules_removed</span> <span class="kw-2">&amp;</span><span class="op">&amp;</span> <span class="self">self</span>.<span class="ident">has_auto_notify_watcher_enabled</span>() {
             <span class="self">self</span>.<span class="ident">emit</span>(
                 <span class="ident">Event</span>::<span class="ident">PolicyChange</span>,
-                <span class="prelude-val">Some</span>(<span class="ident">EventData</span>::<span class="ident">RemoveFilteredPolicy</span>(<span class="ident">rules</span>.<span class="ident">clone</span>())),
+                <span class="ident">EventData</span>::<span class="ident">RemoveFilteredPolicy</span>(<span class="ident">rules</span>.<span class="ident">clone</span>()),
             );
         }
 
@@ -449,7 +449,7 @@
             <span class="kw">return</span> <span class="prelude-val">Ok</span>(<span class="bool-val">false</span>);
         }
 
-        <span class="self">self</span>.<span class="ident">emit</span>(<span class="ident">Event</span>::<span class="ident">PolicyChange</span>, <span class="prelude-val">None</span>);
+        <span class="self">self</span>.<span class="ident">emit</span>(<span class="ident">Event</span>::<span class="ident">ClearCache</span>, <span class="ident">EventData</span>::<span class="ident">ClearCache</span>);
 
         <span class="prelude-val">Ok</span>(<span class="ident">rule_added</span>)
     }
@@ -468,7 +468,7 @@
             <span class="kw">return</span> <span class="prelude-val">Ok</span>(<span class="bool-val">false</span>);
         }
 
-        <span class="self">self</span>.<span class="ident">emit</span>(<span class="ident">Event</span>::<span class="ident">PolicyChange</span>, <span class="prelude-val">None</span>);
+        <span class="self">self</span>.<span class="ident">emit</span>(<span class="ident">Event</span>::<span class="ident">ClearCache</span>, <span class="ident">EventData</span>::<span class="ident">ClearCache</span>);
 
         <span class="prelude-val">Ok</span>(<span class="ident">all_added</span>)
     }
@@ -487,7 +487,7 @@
             <span class="kw">return</span> <span class="prelude-val">Ok</span>(<span class="bool-val">false</span>);
         }
 
-        <span class="self">self</span>.<span class="ident">emit</span>(<span class="ident">Event</span>::<span class="ident">PolicyChange</span>, <span class="prelude-val">None</span>);
+        <span class="self">self</span>.<span class="ident">emit</span>(<span class="ident">Event</span>::<span class="ident">ClearCache</span>, <span class="ident">EventData</span>::<span class="ident">ClearCache</span>);
 
         <span class="prelude-val">Ok</span>(<span class="ident">all_removed</span>)
     }
@@ -506,7 +506,7 @@
             <span class="kw">return</span> <span class="prelude-val">Ok</span>(<span class="bool-val">false</span>);
         }
 
-        <span class="self">self</span>.<span class="ident">emit</span>(<span class="ident">Event</span>::<span class="ident">PolicyChange</span>, <span class="prelude-val">None</span>);
+        <span class="self">self</span>.<span class="ident">emit</span>(<span class="ident">Event</span>::<span class="ident">ClearCache</span>, <span class="ident">EventData</span>::<span class="ident">ClearCache</span>);
 
         <span class="prelude-val">Ok</span>(<span class="ident">rule_removed</span>)
     }
@@ -526,7 +526,7 @@
             <span class="kw">return</span> <span class="prelude-val">Ok</span>((<span class="bool-val">false</span>, <span class="macro">vec</span><span class="macro">!</span>[]));
         }
 
-        <span class="self">self</span>.<span class="ident">emit</span>(<span class="ident">Event</span>::<span class="ident">PolicyChange</span>, <span class="prelude-val">None</span>);
+        <span class="self">self</span>.<span class="ident">emit</span>(<span class="ident">Event</span>::<span class="ident">ClearCache</span>, <span class="ident">EventData</span>::<span class="ident">ClearCache</span>);
 
         <span class="prelude-val">Ok</span>((<span class="ident">rules_removed</span>, <span class="ident">rules</span>))
     }

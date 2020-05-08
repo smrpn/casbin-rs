@@ -135,25 +135,25 @@
 <span class="doccomment">/// General casbin error</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Error</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">Error</span> {
-    <span class="attribute">#[<span class="ident">error</span>(<span class="ident">transparent</span>)]</span>
+    <span class="attribute">#[<span class="ident">error</span>(<span class="string">&quot;Casbin Io Error: `{0:?}`&quot;</span>)]</span>
     <span class="ident">IoError</span>(<span class="attribute">#[<span class="ident">from</span>]</span> <span class="ident">IoError</span>),
 
-    <span class="attribute">#[<span class="ident">error</span>(<span class="ident">transparent</span>)]</span>
+    <span class="attribute">#[<span class="ident">error</span>(<span class="string">&quot;Casbin Model Error: `{0:?}`&quot;</span>)]</span>
     <span class="ident">ModelError</span>(<span class="attribute">#[<span class="ident">from</span>]</span> <span class="ident">ModelError</span>),
 
-    <span class="attribute">#[<span class="ident">error</span>(<span class="ident">transparent</span>)]</span>
+    <span class="attribute">#[<span class="ident">error</span>(<span class="string">&quot;Casbin Policy Error: `{0:?}`&quot;</span>)]</span>
     <span class="ident">PolicyError</span>(<span class="attribute">#[<span class="ident">from</span>]</span> <span class="ident">PolicyError</span>),
 
-    <span class="attribute">#[<span class="ident">error</span>(<span class="ident">transparent</span>)]</span>
+    <span class="attribute">#[<span class="ident">error</span>(<span class="string">&quot;Casbin Role Manager Error: `{0:?}`&quot;</span>)]</span>
     <span class="ident">RbacError</span>(<span class="attribute">#[<span class="ident">from</span>]</span> <span class="ident">RbacError</span>),
 
-    <span class="attribute">#[<span class="ident">error</span>(<span class="ident">transparent</span>)]</span>
+    <span class="attribute">#[<span class="ident">error</span>(<span class="string">&quot;Casbin Evaluation Error: `{0:?}`&quot;</span>)]</span>
     <span class="ident">RhaiError</span>(<span class="attribute">#[<span class="ident">from</span>]</span> <span class="ident">Box</span><span class="op">&lt;</span><span class="ident">EvalAltResult</span><span class="op">&gt;</span>),
 
-    <span class="attribute">#[<span class="ident">error</span>(<span class="ident">transparent</span>)]</span>
+    <span class="attribute">#[<span class="ident">error</span>(<span class="string">&quot;Casbin Request Error: `{0:?}`&quot;</span>)]</span>
     <span class="ident">RequestError</span>(<span class="attribute">#[<span class="ident">from</span>]</span> <span class="ident">RequestError</span>),
 
-    <span class="attribute">#[<span class="ident">error</span>(<span class="ident">transparent</span>)]</span>
+    <span class="attribute">#[<span class="ident">error</span>(<span class="string">&quot;Casbin Adapter Error: `{0:?}`&quot;</span>)]</span>
     <span class="ident">AdapterError</span>(<span class="attribute">#[<span class="ident">from</span>]</span> <span class="ident">AdapterError</span>),
 }
 

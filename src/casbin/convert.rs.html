@@ -73,6 +73,14 @@
 <span id="73">73</span>
 <span id="74">74</span>
 <span id="75">75</span>
+<span id="76">76</span>
+<span id="77">77</span>
+<span id="78">78</span>
+<span id="79">79</span>
+<span id="80">80</span>
+<span id="81">81</span>
+<span id="82">82</span>
+<span id="83">83</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">Adapter</span>, <span class="ident">DefaultModel</span>, <span class="ident">FileAdapter</span>, <span class="ident">Model</span>, <span class="ident">NullAdapter</span>, <span class="prelude-ty">Result</span>};
 
@@ -127,6 +135,14 @@
         } <span class="kw">else</span> {
             <span class="prelude-val">Ok</span>(<span class="ident">Box</span>::<span class="ident">new</span>(<span class="ident">NullAdapter</span>))
         }
+    }
+}
+
+<span class="attribute">#[<span class="ident">allow</span>(<span class="ident">clippy</span>::<span class="ident">unit_arg</span>)]</span>
+<span class="attribute">#[<span class="ident">async_trait</span>]</span>
+<span class="kw">impl</span> <span class="ident">TryIntoAdapter</span> <span class="kw">for</span> () {
+    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">try_into_adapter</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="ident">Adapter</span><span class="op">&gt;</span><span class="op">&gt;</span> {
+        <span class="prelude-val">Ok</span>(<span class="ident">Box</span>::<span class="ident">new</span>(<span class="ident">NullAdapter</span>))
     }
 }
 

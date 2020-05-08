@@ -1253,6 +1253,14 @@
 <span id="1253">1253</span>
 <span id="1254">1254</span>
 <span id="1255">1255</span>
+<span id="1256">1256</span>
+<span id="1257">1257</span>
+<span id="1258">1258</span>
+<span id="1259">1259</span>
+<span id="1260">1260</span>
+<span id="1261">1261</span>
+<span id="1262">1262</span>
+<span id="1263">1263</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">MgmtApi</span>, <span class="prelude-ty">Result</span>};
 
@@ -2442,6 +2450,14 @@
         <span class="macro">assert_eq</span><span class="macro">!</span>(
             <span class="macro">vec</span><span class="macro">!</span>[<span class="string">&quot;*&quot;</span>, <span class="string">&quot;book_admin&quot;</span>, <span class="string">&quot;pen_admin&quot;</span>],
             <span class="ident">sort_unstable</span>(<span class="ident">e</span>.<span class="ident">get_implicit_roles_for_user</span>(<span class="string">&quot;bob&quot;</span>, <span class="prelude-val">None</span>))
+        );
+        <span class="macro">assert_eq</span><span class="macro">!</span>(
+            <span class="macro">vec</span><span class="macro">!</span>[<span class="string">&quot;&quot;</span>; <span class="number">0</span>],
+            <span class="ident">sort_unstable</span>(<span class="ident">e</span>.<span class="ident">get_implicit_roles_for_user</span>(<span class="string">&quot;book_admin&quot;</span>, <span class="prelude-val">None</span>))
+        );
+        <span class="macro">assert_eq</span><span class="macro">!</span>(
+            <span class="macro">vec</span><span class="macro">!</span>[<span class="string">&quot;&quot;</span>; <span class="number">0</span>],
+            <span class="ident">sort_unstable</span>(<span class="ident">e</span>.<span class="ident">get_implicit_roles_for_user</span>(<span class="string">&quot;pen_admin&quot;</span>, <span class="prelude-val">None</span>))
         );
     }
 

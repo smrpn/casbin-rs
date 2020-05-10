@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1588966366423,
+  "lastUpdate": 1589108557319,
   "repoUrl": "https://github.com/casbin/casbin-rs",
   "entries": {
     "Rust Benchmark": [
@@ -3719,6 +3719,102 @@ window.BENCHMARK_DATA = {
             "name": "b_benmark_cached_basic_model",
             "value": 328,
             "range": "± 38",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "cocathecafe@gmail.com",
+            "name": "Cheng JIANG",
+            "username": "GopherJ"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "23af2bf5da713515425eda4fc9af1a094ce765ed",
+          "message": "Split code into features (#137)\n\n* upgrade async-std to 1.6 beta\r\n\r\n* add ip feature\r\n\r\n* add glob feature\r\n\r\n* add cacehd feature\r\n\r\n* fix runtime-tokio clippy warnings\r\n\r\n* add watcher feature\r\n\r\n* don't clone if watcher feature has been disabled\r\n\r\n* use https://github.com/async-rs/async-std/pull/768 for fixing tests\r\n\r\n* activate all features for bench test over previous version\r\n\r\n* benchmark pull_request and decrease the threshold\r\n\r\n* switch to github actions\r\n\r\n* fix typo\r\n\r\n* Fix: cargo test features doesn't like space\r\n\r\n* better management of feature:logging and feature:watcher\r\n\r\n* use async-std/master for testing\r\n\r\n* add basic wasm32 support\r\n\r\n* use runtime-async-std for wasm32 test\r\n\r\n* fix clippy warnings\r\n\r\n* fix typo\r\n\r\n* make other tests avalaible only on no-wasm32 target\r\n\r\n* finish split code into features && bump version",
+          "timestamp": "2020-05-10T12:58:56+02:00",
+          "tree_id": "452e003504c0fdf73edc42ce7f074da8d13185e8",
+          "url": "https://github.com/casbin/casbin-rs/commit/23af2bf5da713515425eda4fc9af1a094ce765ed"
+        },
+        "date": 1589108556499,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "b_benchmark_abac_model",
+            "value": 6770,
+            "range": "± 919",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_basic_model",
+            "value": 7086,
+            "range": "± 999",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_key_match",
+            "value": 23709,
+            "range": "± 3191",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_priority_model",
+            "value": 8425,
+            "range": "± 1024",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_raw",
+            "value": 8,
+            "range": "± 1",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_rbac_model",
+            "value": 20621,
+            "range": "± 2827",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_rbac_model_large",
+            "value": 61145960,
+            "range": "± 6755344",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_rbac_model_medium",
+            "value": 5889772,
+            "range": "± 1155067",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_rbac_model_small",
+            "value": 579908,
+            "range": "± 86440",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_rbac_model_with_domains",
+            "value": 12167,
+            "range": "± 2039",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_rbac_with_deny",
+            "value": 34374,
+            "range": "± 5191",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_rbac_with_resource_roles",
+            "value": 9377,
+            "range": "± 1428",
             "unit": "ns/iter"
           }
         ]

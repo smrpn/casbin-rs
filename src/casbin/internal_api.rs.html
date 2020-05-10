@@ -449,16 +449,17 @@
         });
         <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;watcher&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;logging&quot;</span>))]</span>
         {
+            <span class="kw">let</span> <span class="ident">event_data</span> <span class="op">=</span> <span class="ident">EventData</span>::<span class="ident">AddPolicy</span>(<span class="ident">sec</span>.<span class="ident">to_owned</span>(), <span class="ident">ptype</span>.<span class="ident">to_owned</span>(), <span class="ident">rule</span>);
             <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;watcher&quot;</span>)]</span>
             {
                 <span class="kw">if</span> <span class="ident">rule_added</span> <span class="kw-2">&amp;</span><span class="op">&amp;</span> <span class="self">self</span>.<span class="ident">has_auto_notify_watcher_enabled</span>() {
-                    <span class="self">self</span>.<span class="ident">emit</span>(<span class="ident">Event</span>::<span class="ident">PolicyChange</span>, <span class="ident">EventData</span>::<span class="ident">AddPolicy</span>(<span class="ident">rule</span>));
+                    <span class="self">self</span>.<span class="ident">emit</span>(<span class="ident">Event</span>::<span class="ident">PolicyChange</span>, <span class="ident">event_data</span>);
                 }
             }
             <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;watcher&quot;</span>))]</span>
             {
                 <span class="kw">if</span> <span class="ident">rule_added</span> {
-                    <span class="self">self</span>.<span class="ident">emit</span>(<span class="ident">Event</span>::<span class="ident">PolicyChange</span>, <span class="ident">EventData</span>::<span class="ident">AddPolicy</span>(<span class="ident">rule</span>));
+                    <span class="self">self</span>.<span class="ident">emit</span>(<span class="ident">Event</span>::<span class="ident">PolicyChange</span>, <span class="ident">event_data</span>);
                 }
             }
         }
@@ -493,16 +494,17 @@
         });
         <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;watcher&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;logging&quot;</span>))]</span>
         {
+            <span class="kw">let</span> <span class="ident">event_data</span> <span class="op">=</span> <span class="ident">EventData</span>::<span class="ident">AddPolicies</span>(<span class="ident">sec</span>.<span class="ident">to_owned</span>(), <span class="ident">ptype</span>.<span class="ident">to_owned</span>(), <span class="ident">rules</span>);
             <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;watcher&quot;</span>)]</span>
             {
                 <span class="kw">if</span> <span class="ident">rules_added</span> <span class="kw-2">&amp;</span><span class="op">&amp;</span> <span class="self">self</span>.<span class="ident">has_auto_notify_watcher_enabled</span>() {
-                    <span class="self">self</span>.<span class="ident">emit</span>(<span class="ident">Event</span>::<span class="ident">PolicyChange</span>, <span class="ident">EventData</span>::<span class="ident">AddPolicies</span>(<span class="ident">rules</span>));
+                    <span class="self">self</span>.<span class="ident">emit</span>(<span class="ident">Event</span>::<span class="ident">PolicyChange</span>, <span class="ident">event_data</span>);
                 }
             }
             <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;watcher&quot;</span>))]</span>
             {
                 <span class="kw">if</span> <span class="ident">rules_added</span> {
-                    <span class="self">self</span>.<span class="ident">emit</span>(<span class="ident">Event</span>::<span class="ident">PolicyChange</span>, <span class="ident">EventData</span>::<span class="ident">AddPolicies</span>(<span class="ident">rules</span>));
+                    <span class="self">self</span>.<span class="ident">emit</span>(<span class="ident">Event</span>::<span class="ident">PolicyChange</span>, <span class="ident">event_data</span>);
                 }
             }
         }
@@ -537,16 +539,17 @@
         });
         <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;watcher&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;logging&quot;</span>))]</span>
         {
+            <span class="kw">let</span> <span class="ident">event_data</span> <span class="op">=</span> <span class="ident">EventData</span>::<span class="ident">RemovePolicy</span>(<span class="ident">sec</span>.<span class="ident">to_owned</span>(), <span class="ident">ptype</span>.<span class="ident">to_owned</span>(), <span class="ident">rule</span>);
             <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;watcher&quot;</span>)]</span>
             {
                 <span class="kw">if</span> <span class="ident">rule_removed</span> <span class="kw-2">&amp;</span><span class="op">&amp;</span> <span class="self">self</span>.<span class="ident">has_auto_notify_watcher_enabled</span>() {
-                    <span class="self">self</span>.<span class="ident">emit</span>(<span class="ident">Event</span>::<span class="ident">PolicyChange</span>, <span class="ident">EventData</span>::<span class="ident">RemovePolicy</span>(<span class="ident">rule</span>));
+                    <span class="self">self</span>.<span class="ident">emit</span>(<span class="ident">Event</span>::<span class="ident">PolicyChange</span>, <span class="ident">event_data</span>);
                 }
             }
             <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;watcher&quot;</span>))]</span>
             {
                 <span class="kw">if</span> <span class="ident">rule_removed</span> {
-                    <span class="self">self</span>.<span class="ident">emit</span>(<span class="ident">Event</span>::<span class="ident">PolicyChange</span>, <span class="ident">EventData</span>::<span class="ident">RemovePolicy</span>(<span class="ident">rule</span>));
+                    <span class="self">self</span>.<span class="ident">emit</span>(<span class="ident">Event</span>::<span class="ident">PolicyChange</span>, <span class="ident">event_data</span>);
                 }
             }
         }
@@ -582,16 +585,17 @@
 
         <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;watcher&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;logging&quot;</span>))]</span>
         {
+            <span class="kw">let</span> <span class="ident">event_data</span> <span class="op">=</span> <span class="ident">EventData</span>::<span class="ident">RemovePolicies</span>(<span class="ident">sec</span>.<span class="ident">to_owned</span>(), <span class="ident">ptype</span>.<span class="ident">to_owned</span>(), <span class="ident">rules</span>);
             <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;watcher&quot;</span>)]</span>
             {
                 <span class="kw">if</span> <span class="ident">rules_removed</span> <span class="kw-2">&amp;</span><span class="op">&amp;</span> <span class="self">self</span>.<span class="ident">has_auto_notify_watcher_enabled</span>() {
-                    <span class="self">self</span>.<span class="ident">emit</span>(<span class="ident">Event</span>::<span class="ident">PolicyChange</span>, <span class="ident">EventData</span>::<span class="ident">RemovePolicies</span>(<span class="ident">rules</span>));
+                    <span class="self">self</span>.<span class="ident">emit</span>(<span class="ident">Event</span>::<span class="ident">PolicyChange</span>, <span class="ident">event_data</span>);
                 }
             }
             <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;watcher&quot;</span>))]</span>
             {
                 <span class="kw">if</span> <span class="ident">rules_removed</span> {
-                    <span class="self">self</span>.<span class="ident">emit</span>(<span class="ident">Event</span>::<span class="ident">PolicyChange</span>, <span class="ident">EventData</span>::<span class="ident">RemovePolicies</span>(<span class="ident">rules</span>));
+                    <span class="self">self</span>.<span class="ident">emit</span>(<span class="ident">Event</span>::<span class="ident">PolicyChange</span>, <span class="ident">event_data</span>);
                 }
             }
         }
@@ -621,22 +625,18 @@
 
         <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;watcher&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;logging&quot;</span>))]</span>
         {
+            <span class="kw">let</span> <span class="ident">event_data</span> <span class="op">=</span>
+                <span class="ident">EventData</span>::<span class="ident">RemoveFilteredPolicy</span>(<span class="ident">sec</span>.<span class="ident">to_owned</span>(), <span class="ident">ptype</span>.<span class="ident">to_owned</span>(), <span class="ident">rules</span>.<span class="ident">clone</span>());
             <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;watcher&quot;</span>)]</span>
             {
                 <span class="kw">if</span> <span class="ident">rules_removed</span> <span class="kw-2">&amp;</span><span class="op">&amp;</span> <span class="self">self</span>.<span class="ident">has_auto_notify_watcher_enabled</span>() {
-                    <span class="self">self</span>.<span class="ident">emit</span>(
-                        <span class="ident">Event</span>::<span class="ident">PolicyChange</span>,
-                        <span class="ident">EventData</span>::<span class="ident">RemoveFilteredPolicy</span>(<span class="ident">rules</span>.<span class="ident">clone</span>()),
-                    );
+                    <span class="self">self</span>.<span class="ident">emit</span>(<span class="ident">Event</span>::<span class="ident">PolicyChange</span>, <span class="ident">event_data</span>);
                 }
             }
             <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;watcher&quot;</span>))]</span>
             {
                 <span class="kw">if</span> <span class="ident">rules_removed</span> {
-                    <span class="self">self</span>.<span class="ident">emit</span>(
-                        <span class="ident">Event</span>::<span class="ident">PolicyChange</span>,
-                        <span class="ident">EventData</span>::<span class="ident">RemoveFilteredPolicy</span>(<span class="ident">rules</span>.<span class="ident">clone</span>()),
-                    );
+                    <span class="self">self</span>.<span class="ident">emit</span>(<span class="ident">Event</span>::<span class="ident">PolicyChange</span>, <span class="ident">event_data</span>);
                 }
             }
         }

@@ -1479,6 +1479,13 @@
 <span id="1479">1479</span>
 <span id="1480">1480</span>
 <span id="1481">1481</span>
+<span id="1482">1482</span>
+<span id="1483">1483</span>
+<span id="1484">1484</span>
+<span id="1485">1485</span>
+<span id="1486">1486</span>
+<span id="1487">1487</span>
+<span id="1488">1488</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="kw">use</span> <span class="kw">crate</span>::{
     <span class="ident">adapter</span>::{<span class="ident">Adapter</span>, <span class="ident">Filter</span>},
@@ -1938,6 +1945,13 @@
     <span class="kw">fn</span> <span class="ident">build_role_links</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
         <span class="self">self</span>.<span class="ident">rm</span>.<span class="ident">write</span>().<span class="ident">unwrap</span>().<span class="ident">clear</span>();
         <span class="self">self</span>.<span class="ident">model</span>.<span class="ident">build_role_links</span>(<span class="ident">Arc</span>::<span class="ident">clone</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">rm</span>))<span class="question-mark">?</span>;
+        <span class="prelude-val">Ok</span>(())
+    }
+
+    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;incremental&quot;</span>)]</span>
+    <span class="kw">fn</span> <span class="ident">build_incremental_role_links</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">d</span>: <span class="ident">EventData</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
+        <span class="self">self</span>.<span class="ident">model</span>
+            .<span class="ident">build_incremental_role_links</span>(<span class="ident">Arc</span>::<span class="ident">clone</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">rm</span>), <span class="ident">d</span>)<span class="question-mark">?</span>;
         <span class="prelude-val">Ok</span>(())
     }
 

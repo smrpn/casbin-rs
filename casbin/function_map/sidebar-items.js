@@ -1,1 +1,1 @@
-initSidebarItems({"fn":[["glob_match",""],["ip_match",""],["key_match",""],["key_match2",""],["key_match3",""],["regex_match",""]],"struct":[["FunctionMap",""]]});
+initSidebarItems({"fn":[["key_match",""],["key_match2",""],["key_match3",""],["regex_match",""]],"struct":[["FunctionMap",""]]});

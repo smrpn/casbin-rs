@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1589184377139,
+  "lastUpdate": 1589192143930,
   "repoUrl": "https://github.com/casbin/casbin-rs",
   "entries": {
     "Rust Benchmark": [
@@ -4391,6 +4391,102 @@ window.BENCHMARK_DATA = {
             "name": "b_benchmark_rbac_with_resource_roles",
             "value": 9205,
             "range": "± 1085",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "cocathecafe@gmail.com",
+            "name": "Cheng JIANG",
+            "username": "GopherJ"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "1b0c794e76d4f534308e56d4fa467feb315f6a43",
+          "message": "Effector stream (#142)\n\n* basic implementation of effector stream on runtime-async-std, runtime-tokio\r\n\r\n* resolve runtime-async-std warnings\r\n\r\n* resolve runtime-tokio warnings\r\n\r\n* fix casbin::error::Error\r\n\r\n* bump version",
+          "timestamp": "2020-05-11T12:12:07+02:00",
+          "tree_id": "46751ea88fe404ff733159d16a4ac60ea9833915",
+          "url": "https://github.com/casbin/casbin-rs/commit/1b0c794e76d4f534308e56d4fa467feb315f6a43"
+        },
+        "date": 1589192143209,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "b_benchmark_abac_model",
+            "value": 58061,
+            "range": "± 6369",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_basic_model",
+            "value": 60557,
+            "range": "± 17608",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_key_match",
+            "value": 106008,
+            "range": "± 28468",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_priority_model",
+            "value": 79210,
+            "range": "± 14248",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_raw",
+            "value": 6,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_rbac_model",
+            "value": 63522,
+            "range": "± 21054",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_rbac_model_large",
+            "value": 53207476,
+            "range": "± 21292239",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_rbac_model_medium",
+            "value": 5759372,
+            "range": "± 1906025",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_rbac_model_small",
+            "value": 586894,
+            "range": "± 96950",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_rbac_model_with_domains",
+            "value": 72156,
+            "range": "± 13846",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_rbac_with_deny",
+            "value": 68315,
+            "range": "± 13559",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_rbac_with_resource_roles",
+            "value": 68146,
+            "range": "± 21408",
             "unit": "ns/iter"
           }
         ]

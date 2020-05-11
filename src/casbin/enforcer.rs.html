@@ -1486,6 +1486,15 @@
 <span id="1486">1486</span>
 <span id="1487">1487</span>
 <span id="1488">1488</span>
+<span id="1489">1489</span>
+<span id="1490">1490</span>
+<span id="1491">1491</span>
+<span id="1492">1492</span>
+<span id="1493">1493</span>
+<span id="1494">1494</span>
+<span id="1495">1495</span>
+<span id="1496">1496</span>
+<span id="1497">1497</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="kw">use</span> <span class="kw">crate</span>::{
     <span class="ident">adapter</span>::{<span class="ident">Adapter</span>, <span class="ident">Filter</span>},
@@ -1878,7 +1887,11 @@
 
     <span class="kw">fn</span> <span class="ident">add_matching_fn</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">f</span>: <span class="kw">fn</span>(<span class="ident">String</span>, <span class="ident">String</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
         <span class="self">self</span>.<span class="ident">rm</span>.<span class="ident">write</span>().<span class="ident">unwrap</span>().<span class="ident">add_matching_fn</span>(<span class="ident">f</span>);
-        <span class="self">self</span>.<span class="ident">build_role_links</span>()
+        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">auto_build_role_links</span> {
+            <span class="self">self</span>.<span class="ident">build_role_links</span>()<span class="question-mark">?</span>;
+        }
+
+        <span class="prelude-val">Ok</span>(())
     }
 
     <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">set_model</span><span class="op">&lt;</span><span class="ident">M</span>: <span class="ident">TryIntoModel</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">m</span>: <span class="ident">M</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
@@ -2047,6 +2060,11 @@
     <span class="attribute">#[<span class="ident">inline</span>]</span>
     <span class="kw">fn</span> <span class="ident">has_auto_notify_watcher_enabled</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="self">self</span>.<span class="ident">auto_notify_watcher</span>
+    }
+
+    <span class="attribute">#[<span class="ident">inline</span>]</span>
+    <span class="kw">fn</span> <span class="ident">has_auto_build_role_links_enabled</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+        <span class="self">self</span>.<span class="ident">auto_build_role_links</span>
     }
 }
 

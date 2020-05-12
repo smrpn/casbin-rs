@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1589242765321,
+  "lastUpdate": 1589242775847,
   "repoUrl": "https://github.com/casbin/casbin-rs",
   "entries": {
     "Rust Benchmark": [
@@ -4771,6 +4771,98 @@ window.BENCHMARK_DATA = {
             "name": "b_benchmark_rbac_with_resource_roles",
             "value": 10106,
             "range": "± 541",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "casbin",
+            "username": "casbin"
+          },
+          "committer": {
+            "name": "casbin",
+            "username": "casbin"
+          },
+          "id": "a17966fca27e367fe6f186fc3bb6d2fab913845e",
+          "message": "Revert \"Effector stream\"",
+          "timestamp": "2020-05-12T00:15:50Z",
+          "url": "https://github.com/casbin/casbin-rs/pull/147/commits/a17966fca27e367fe6f186fc3bb6d2fab913845e"
+        },
+        "date": 1589242775091,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "b_benchmark_abac_model",
+            "value": 6390,
+            "range": "± 1547",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_basic_model",
+            "value": 6940,
+            "range": "± 1096",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_key_match",
+            "value": 23457,
+            "range": "± 3075",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_priority_model",
+            "value": 8069,
+            "range": "± 1285",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_raw",
+            "value": 8,
+            "range": "± 1",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_rbac_model",
+            "value": 18756,
+            "range": "± 6510",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_rbac_model_large",
+            "value": 59002675,
+            "range": "± 5430811",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_rbac_model_medium",
+            "value": 5451759,
+            "range": "± 706711",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_rbac_model_small",
+            "value": 577662,
+            "range": "± 92214",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_rbac_model_with_domains",
+            "value": 11112,
+            "range": "± 1818",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_rbac_with_deny",
+            "value": 34376,
+            "range": "± 7687",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_rbac_with_resource_roles",
+            "value": 8726,
+            "range": "± 1258",
             "unit": "ns/iter"
           }
         ]

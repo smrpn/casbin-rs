@@ -431,81 +431,10 @@
 <span id="431">431</span>
 <span id="432">432</span>
 <span id="433">433</span>
-<span id="434">434</span>
-<span id="435">435</span>
-<span id="436">436</span>
-<span id="437">437</span>
-<span id="438">438</span>
-<span id="439">439</span>
-<span id="440">440</span>
-<span id="441">441</span>
-<span id="442">442</span>
-<span id="443">443</span>
-<span id="444">444</span>
-<span id="445">445</span>
-<span id="446">446</span>
-<span id="447">447</span>
-<span id="448">448</span>
-<span id="449">449</span>
-<span id="450">450</span>
-<span id="451">451</span>
-<span id="452">452</span>
-<span id="453">453</span>
-<span id="454">454</span>
-<span id="455">455</span>
-<span id="456">456</span>
-<span id="457">457</span>
-<span id="458">458</span>
-<span id="459">459</span>
-<span id="460">460</span>
-<span id="461">461</span>
-<span id="462">462</span>
-<span id="463">463</span>
-<span id="464">464</span>
-<span id="465">465</span>
-<span id="466">466</span>
-<span id="467">467</span>
-<span id="468">468</span>
-<span id="469">469</span>
-<span id="470">470</span>
-<span id="471">471</span>
-<span id="472">472</span>
-<span id="473">473</span>
-<span id="474">474</span>
-<span id="475">475</span>
-<span id="476">476</span>
-<span id="477">477</span>
-<span id="478">478</span>
-<span id="479">479</span>
-<span id="480">480</span>
-<span id="481">481</span>
-<span id="482">482</span>
-<span id="483">483</span>
-<span id="484">484</span>
-<span id="485">485</span>
-<span id="486">486</span>
-<span id="487">487</span>
-<span id="488">488</span>
-<span id="489">489</span>
-<span id="490">490</span>
-<span id="491">491</span>
-<span id="492">492</span>
-<span id="493">493</span>
-<span id="494">494</span>
-<span id="495">495</span>
-<span id="496">496</span>
-<span id="497">497</span>
-<span id="498">498</span>
-<span id="499">499</span>
-<span id="500">500</span>
-<span id="501">501</span>
-<span id="502">502</span>
-<span id="503">503</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="kw">use</span> <span class="kw">crate</span>::{
     <span class="ident">core_api</span>::<span class="ident">CoreApi</span>,
     <span class="ident">emitter</span>::{<span class="ident">Event</span>, <span class="ident">EventEmitter</span>},
-    <span class="ident">enforcer</span>::<span class="ident">Enforcer</span>,
     <span class="prelude-ty">Result</span>,
 };
 
@@ -516,9 +445,6 @@
     <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;incremental&quot;</span>
 ))]</span>
 <span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">emitter</span>::<span class="ident">EventData</span>;
-
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;cached&quot;</span>)]</span>
-<span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">cached_enforcer</span>::<span class="ident">CachedEnforcer</span>;
 
 <span class="kw">use</span> <span class="ident">async_trait</span>::<span class="ident">async_trait</span>;
 
@@ -558,7 +484,10 @@
 }
 
 <span class="attribute">#[<span class="ident">async_trait</span>]</span>
-<span class="kw">impl</span> <span class="ident">InternalApi</span> <span class="kw">for</span> <span class="ident">Enforcer</span> {
+<span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span> <span class="ident">InternalApi</span> <span class="kw">for</span> <span class="ident">T</span>
+<span class="kw">where</span>
+    <span class="ident">T</span>: <span class="ident">CoreApi</span> <span class="op">+</span> <span class="ident">EventEmitter</span><span class="op">&lt;</span><span class="ident">Event</span><span class="op">&gt;</span>,
+{
     <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">add_policy_internal</span>(
         <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>,
         <span class="ident">sec</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>,
@@ -611,6 +540,12 @@
                 <span class="kw">if</span> <span class="ident">rule_added</span> {
                     <span class="self">self</span>.<span class="ident">emit</span>(<span class="ident">Event</span>::<span class="ident">PolicyChange</span>, <span class="ident">event_data</span>);
                 }
+            }
+        }
+        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;cached&quot;</span>)]</span>
+        {
+            <span class="kw">if</span> <span class="ident">rule_added</span> {
+                <span class="self">self</span>.<span class="ident">emit</span>(<span class="ident">Event</span>::<span class="ident">ClearCache</span>, <span class="ident">EventData</span>::<span class="ident">ClearCache</span>);
             }
         }
         <span class="kw">if</span> <span class="ident">sec</span> <span class="op">!</span><span class="op">=</span> <span class="string">&quot;g&quot;</span> <span class="op">|</span><span class="op">|</span> <span class="op">!</span><span class="self">self</span>.<span class="ident">has_auto_build_role_links_enabled</span>() {
@@ -686,6 +621,12 @@
                 }
             }
         }
+        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;cached&quot;</span>)]</span>
+        {
+            <span class="kw">if</span> <span class="ident">rules_added</span> {
+                <span class="self">self</span>.<span class="ident">emit</span>(<span class="ident">Event</span>::<span class="ident">ClearCache</span>, <span class="ident">EventData</span>::<span class="ident">ClearCache</span>);
+            }
+        }
         <span class="kw">if</span> <span class="ident">sec</span> <span class="op">!</span><span class="op">=</span> <span class="string">&quot;g&quot;</span> <span class="op">|</span><span class="op">|</span> <span class="op">!</span><span class="self">self</span>.<span class="ident">has_auto_build_role_links_enabled</span>() {
             <span class="kw">return</span> <span class="prelude-val">Ok</span>(<span class="ident">rules_added</span>);
         }
@@ -759,6 +700,12 @@
                 }
             }
         }
+        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;cached&quot;</span>)]</span>
+        {
+            <span class="kw">if</span> <span class="ident">rule_removed</span> {
+                <span class="self">self</span>.<span class="ident">emit</span>(<span class="ident">Event</span>::<span class="ident">ClearCache</span>, <span class="ident">EventData</span>::<span class="ident">ClearCache</span>);
+            }
+        }
         <span class="kw">if</span> <span class="ident">sec</span> <span class="op">!</span><span class="op">=</span> <span class="string">&quot;g&quot;</span> <span class="op">|</span><span class="op">|</span> <span class="op">!</span><span class="self">self</span>.<span class="ident">has_auto_build_role_links_enabled</span>() {
             <span class="kw">return</span> <span class="prelude-val">Ok</span>(<span class="ident">rule_removed</span>);
         }
@@ -807,7 +754,6 @@
                 <span class="ident">rules</span>
             }
         });
-
         <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;watcher&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;logging&quot;</span>))]</span>
         {
             <span class="kw">let</span> <span class="ident">event_data</span> <span class="op">=</span> <span class="ident">EventData</span>::<span class="ident">RemovePolicies</span>(<span class="ident">sec</span>.<span class="ident">to_owned</span>(), <span class="ident">ptype</span>.<span class="ident">to_owned</span>(), {
@@ -831,6 +777,12 @@
                 <span class="kw">if</span> <span class="ident">rules_removed</span> {
                     <span class="self">self</span>.<span class="ident">emit</span>(<span class="ident">Event</span>::<span class="ident">PolicyChange</span>, <span class="ident">event_data</span>);
                 }
+            }
+        }
+        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;cached&quot;</span>)]</span>
+        {
+            <span class="kw">if</span> <span class="ident">rules_removed</span> {
+                <span class="self">self</span>.<span class="ident">emit</span>(<span class="ident">Event</span>::<span class="ident">ClearCache</span>, <span class="ident">EventData</span>::<span class="ident">ClearCache</span>);
             }
         }
         <span class="kw">if</span> <span class="ident">sec</span> <span class="op">!</span><span class="op">=</span> <span class="string">&quot;g&quot;</span> <span class="op">|</span><span class="op">|</span> <span class="op">!</span><span class="self">self</span>.<span class="ident">has_auto_build_role_links_enabled</span>() {
@@ -871,7 +823,6 @@
         <span class="kw">let</span> (<span class="ident">rules_removed</span>, <span class="ident">rules</span>) <span class="op">=</span>
             <span class="self">self</span>.<span class="ident">get_mut_model</span>()
                 .<span class="ident">remove_filtered_policy</span>(<span class="ident">sec</span>, <span class="ident">ptype</span>, <span class="ident">field_index</span>, <span class="ident">field_values</span>);
-
         <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;watcher&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;logging&quot;</span>))]</span>
         {
             <span class="kw">let</span> <span class="ident">event_data</span> <span class="op">=</span>
@@ -889,6 +840,12 @@
                 }
             }
         }
+        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;cached&quot;</span>)]</span>
+        {
+            <span class="kw">if</span> <span class="ident">rules_removed</span> {
+                <span class="self">self</span>.<span class="ident">emit</span>(<span class="ident">Event</span>::<span class="ident">ClearCache</span>, <span class="ident">EventData</span>::<span class="ident">ClearCache</span>);
+            }
+        }
         <span class="kw">if</span> <span class="ident">sec</span> <span class="op">!</span><span class="op">=</span> <span class="string">&quot;g&quot;</span> <span class="op">|</span><span class="op">|</span> <span class="op">!</span><span class="self">self</span>.<span class="ident">has_auto_build_role_links_enabled</span>() {
             <span class="kw">return</span> <span class="prelude-val">Ok</span>((<span class="ident">rules_removed</span>, <span class="ident">rules</span>));
         }
@@ -904,103 +861,6 @@
                 <span class="ident">rules</span>.<span class="ident">clone</span>(),
             ))<span class="question-mark">?</span>;
         }
-
-        <span class="prelude-val">Ok</span>((<span class="ident">rules_removed</span>, <span class="ident">rules</span>))
-    }
-}
-
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;cached&quot;</span>)]</span>
-<span class="attribute">#[<span class="ident">async_trait</span>]</span>
-<span class="kw">impl</span> <span class="ident">InternalApi</span> <span class="kw">for</span> <span class="ident">CachedEnforcer</span> {
-    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">add_policy_internal</span>(
-        <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>,
-        <span class="ident">sec</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>,
-        <span class="ident">ptype</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>,
-        <span class="ident">rule</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">bool</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">rule_added</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">enforcer</span>.<span class="ident">add_policy_internal</span>(<span class="ident">sec</span>, <span class="ident">ptype</span>, <span class="ident">rule</span>).<span class="kw">await</span><span class="question-mark">?</span>;
-        <span class="kw">if</span> <span class="op">!</span><span class="ident">rule_added</span> {
-            <span class="kw">return</span> <span class="prelude-val">Ok</span>(<span class="bool-val">false</span>);
-        }
-
-        <span class="self">self</span>.<span class="ident">emit</span>(<span class="ident">Event</span>::<span class="ident">ClearCache</span>, <span class="ident">EventData</span>::<span class="ident">ClearCache</span>);
-
-        <span class="prelude-val">Ok</span>(<span class="ident">rule_added</span>)
-    }
-
-    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">add_policies_internal</span>(
-        <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>,
-        <span class="ident">sec</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>,
-        <span class="ident">ptype</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>,
-        <span class="ident">rules</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span><span class="op">&gt;</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">bool</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">all_added</span> <span class="op">=</span> <span class="self">self</span>
-            .<span class="ident">enforcer</span>
-            .<span class="ident">add_policies_internal</span>(<span class="ident">sec</span>, <span class="ident">ptype</span>, <span class="ident">rules</span>)
-            .<span class="kw">await</span><span class="question-mark">?</span>;
-        <span class="kw">if</span> <span class="op">!</span><span class="ident">all_added</span> {
-            <span class="kw">return</span> <span class="prelude-val">Ok</span>(<span class="bool-val">false</span>);
-        }
-
-        <span class="self">self</span>.<span class="ident">emit</span>(<span class="ident">Event</span>::<span class="ident">ClearCache</span>, <span class="ident">EventData</span>::<span class="ident">ClearCache</span>);
-
-        <span class="prelude-val">Ok</span>(<span class="ident">all_added</span>)
-    }
-
-    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">remove_policies_internal</span>(
-        <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>,
-        <span class="ident">sec</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>,
-        <span class="ident">ptype</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>,
-        <span class="ident">rules</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span><span class="op">&gt;</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">bool</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">all_removed</span> <span class="op">=</span> <span class="self">self</span>
-            .<span class="ident">enforcer</span>
-            .<span class="ident">remove_policies_internal</span>(<span class="ident">sec</span>, <span class="ident">ptype</span>, <span class="ident">rules</span>)
-            .<span class="kw">await</span><span class="question-mark">?</span>;
-        <span class="kw">if</span> <span class="op">!</span><span class="ident">all_removed</span> {
-            <span class="kw">return</span> <span class="prelude-val">Ok</span>(<span class="bool-val">false</span>);
-        }
-
-        <span class="self">self</span>.<span class="ident">emit</span>(<span class="ident">Event</span>::<span class="ident">ClearCache</span>, <span class="ident">EventData</span>::<span class="ident">ClearCache</span>);
-
-        <span class="prelude-val">Ok</span>(<span class="ident">all_removed</span>)
-    }
-
-    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">remove_policy_internal</span>(
-        <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>,
-        <span class="ident">sec</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>,
-        <span class="ident">ptype</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>,
-        <span class="ident">rule</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">bool</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">rule_removed</span> <span class="op">=</span> <span class="self">self</span>
-            .<span class="ident">enforcer</span>
-            .<span class="ident">remove_policy_internal</span>(<span class="ident">sec</span>, <span class="ident">ptype</span>, <span class="ident">rule</span>)
-            .<span class="kw">await</span><span class="question-mark">?</span>;
-        <span class="kw">if</span> <span class="op">!</span><span class="ident">rule_removed</span> {
-            <span class="kw">return</span> <span class="prelude-val">Ok</span>(<span class="bool-val">false</span>);
-        }
-
-        <span class="self">self</span>.<span class="ident">emit</span>(<span class="ident">Event</span>::<span class="ident">ClearCache</span>, <span class="ident">EventData</span>::<span class="ident">ClearCache</span>);
-
-        <span class="prelude-val">Ok</span>(<span class="ident">rule_removed</span>)
-    }
-
-    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">remove_filtered_policy_internal</span>(
-        <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>,
-        <span class="ident">sec</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>,
-        <span class="ident">ptype</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>,
-        <span class="ident">field_index</span>: <span class="ident">usize</span>,
-        <span class="ident">field_values</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(<span class="ident">bool</span>, <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span><span class="op">&gt;</span>)<span class="op">&gt;</span> {
-        <span class="kw">let</span> (<span class="ident">rules_removed</span>, <span class="ident">rules</span>) <span class="op">=</span> <span class="self">self</span>
-            .<span class="ident">enforcer</span>
-            .<span class="ident">remove_filtered_policy_internal</span>(<span class="ident">sec</span>, <span class="ident">ptype</span>, <span class="ident">field_index</span>, <span class="ident">field_values</span>)
-            .<span class="kw">await</span><span class="question-mark">?</span>;
-        <span class="kw">if</span> <span class="op">!</span><span class="ident">rules_removed</span> {
-            <span class="kw">return</span> <span class="prelude-val">Ok</span>((<span class="bool-val">false</span>, <span class="macro">vec</span><span class="macro">!</span>[]));
-        }
-
-        <span class="self">self</span>.<span class="ident">emit</span>(<span class="ident">Event</span>::<span class="ident">ClearCache</span>, <span class="ident">EventData</span>::<span class="ident">ClearCache</span>);
 
         <span class="prelude-val">Ok</span>((<span class="ident">rules_removed</span>, <span class="ident">rules</span>))
     }

@@ -104,7 +104,6 @@
 <span id="104">104</span>
 <span id="105">105</span>
 <span id="106">106</span>
-<span id="107">107</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;watcher&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;cached&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;logging&quot;</span>))]</span>
 <span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">core_api</span>::<span class="ident">CoreApi</span>;
@@ -203,14 +202,13 @@
     }
 }
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">all</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;cached&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;logging&quot;</span>))]</span>
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;cached&quot;</span>)]</span>
+<span class="attribute">#[<span class="ident">allow</span>(<span class="ident">unused_variables</span>)]</span>
 <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">clear_cache</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">CoreApi</span> <span class="op">+</span> <span class="ident">CachedApi</span><span class="op">&gt;</span>(<span class="ident">ce</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">T</span>, <span class="ident">d</span>: <span class="ident">EventData</span>) {
-    <span class="ident">ce</span>.<span class="ident">get_logger</span>().<span class="ident">print_mgmt_log</span>(<span class="kw-2">&amp;</span><span class="ident">d</span>);
-    <span class="ident">ce</span>.<span class="ident">get_mut_cache</span>().<span class="ident">clear</span>();
-}
-
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">all</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;cached&quot;</span>, <span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;logging&quot;</span>)))]</span>
-<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">clear_cache</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">CoreApi</span> <span class="op">+</span> <span class="ident">CachedApi</span><span class="op">&gt;</span>(<span class="ident">ce</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">T</span>, <span class="ident">_d</span>: <span class="ident">EventData</span>) {
+    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;logging&quot;</span>)]</span>
+    {
+        <span class="ident">ce</span>.<span class="ident">get_logger</span>().<span class="ident">print_mgmt_log</span>(<span class="kw-2">&amp;</span><span class="ident">d</span>);
+    }
     <span class="ident">ce</span>.<span class="ident">get_mut_cache</span>().<span class="ident">clear</span>();
 }
 </pre></div>

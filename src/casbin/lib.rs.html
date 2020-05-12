@@ -52,7 +52,14 @@
 <span id="52">52</span>
 <span id="53">53</span>
 <span id="54">54</span>
+<span id="55">55</span>
+<span id="56">56</span>
+<span id="57">57</span>
+<span id="58">58</span>
 </pre><div class="example-wrap"><pre class="rust ">
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">all</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;logging&quot;</span>), <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;explain&quot;</span>))]</span>
+<span class="macro">compile_error</span><span class="macro">!</span>(<span class="string">&quot;&#39;logging&#39; feature must be enabled along with &#39;explain&#39; feature&quot;</span>);
+
 <span class="kw">mod</span> <span class="ident">adapter</span>;
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;cached&quot;</span>)]</span>
 <span class="kw">mod</span> <span class="ident">cache</span>;
@@ -69,6 +76,7 @@
 <span class="kw">mod</span> <span class="ident">internal_api</span>;
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;logging&quot;</span>)]</span>
 <span class="kw">mod</span> <span class="ident">logger</span>;
+<span class="kw">mod</span> <span class="ident">macros</span>;
 <span class="kw">mod</span> <span class="ident">management_api</span>;
 <span class="kw">mod</span> <span class="ident">model</span>;
 <span class="kw">mod</span> <span class="ident">rbac</span>;

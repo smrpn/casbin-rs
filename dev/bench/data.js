@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1589242784206,
+  "lastUpdate": 1589244013463,
   "repoUrl": "https://github.com/casbin/casbin-rs",
   "entries": {
     "Rust Benchmark": [
@@ -4959,6 +4959,102 @@ window.BENCHMARK_DATA = {
             "name": "b_benchmark_rbac_with_resource_roles",
             "value": 67024,
             "range": "± 14352",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "cocathecafe@gmail.com",
+            "name": "Cheng JIANG",
+            "username": "GopherJ"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "e99cfa32e037de3343744c9bb59c921535e543a3",
+          "message": "finish effector stream (#145)\n\n* finish effector stream\r\n\r\n* simplify code\r\n\r\n* bump version\r\n\r\n* add assert to make sure that when we call current it's already finished\r\n\r\n* Fix: clippy warnings",
+          "timestamp": "2020-05-12T02:36:47+02:00",
+          "tree_id": "ee4ca5f34748f4fdff69b300605eb624c2d20ac3",
+          "url": "https://github.com/casbin/casbin-rs/commit/e99cfa32e037de3343744c9bb59c921535e543a3"
+        },
+        "date": 1589244012625,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "b_benchmark_abac_model",
+            "value": 7430,
+            "range": "± 505",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_basic_model",
+            "value": 7599,
+            "range": "± 494",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_key_match",
+            "value": 25752,
+            "range": "± 1693",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_priority_model",
+            "value": 9230,
+            "range": "± 865",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_raw",
+            "value": 8,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_rbac_model",
+            "value": 22119,
+            "range": "± 2127",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_rbac_model_large",
+            "value": 66038660,
+            "range": "± 3265971",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_rbac_model_medium",
+            "value": 6290208,
+            "range": "± 822761",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_rbac_model_small",
+            "value": 634671,
+            "range": "± 16311",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_rbac_model_with_domains",
+            "value": 12935,
+            "range": "± 1399",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_rbac_with_deny",
+            "value": 37612,
+            "range": "± 3101",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_rbac_with_resource_roles",
+            "value": 10113,
+            "range": "± 556",
             "unit": "ns/iter"
           }
         ]

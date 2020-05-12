@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1589244013463,
+  "lastUpdate": 1589284092373,
   "repoUrl": "https://github.com/casbin/casbin-rs",
   "entries": {
     "Rust Benchmark": [
@@ -5055,6 +5055,102 @@ window.BENCHMARK_DATA = {
             "name": "b_benchmark_rbac_with_resource_roles",
             "value": 10113,
             "range": "± 556",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "cocathecafe@gmail.com",
+            "name": "Cheng JIANG",
+            "username": "GopherJ"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "d58d184b5f4e90f1bfe425fbd54d6a7d64bc64f5",
+          "message": "Explain (#149)\n\n* improve effector stream and memory usage\r\n\r\n* add cap assert\r\n\r\n* simplify code\r\n\r\n* simplify code\r\n\r\n* finish basic explain feature\r\n\r\n* bump version\r\n\r\n* adjust has_policy condition",
+          "timestamp": "2020-05-12T13:45:19+02:00",
+          "tree_id": "e013785c6f5fc937537d6802e0fb653cd5e983f9",
+          "url": "https://github.com/casbin/casbin-rs/commit/d58d184b5f4e90f1bfe425fbd54d6a7d64bc64f5"
+        },
+        "date": 1589284091582,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "b_benchmark_abac_model",
+            "value": 6462,
+            "range": "± 1919",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_basic_model",
+            "value": 6313,
+            "range": "± 1956",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_key_match",
+            "value": 22280,
+            "range": "± 3343",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_priority_model",
+            "value": 7063,
+            "range": "± 2101",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_raw",
+            "value": 6,
+            "range": "± 3",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_rbac_model",
+            "value": 16206,
+            "range": "± 2066",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_rbac_model_large",
+            "value": 52831171,
+            "range": "± 6944959",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_rbac_model_medium",
+            "value": 4926591,
+            "range": "± 1034604",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_rbac_model_small",
+            "value": 492655,
+            "range": "± 223459",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_rbac_model_with_domains",
+            "value": 9647,
+            "range": "± 1822",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_rbac_with_deny",
+            "value": 27970,
+            "range": "± 6229",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_rbac_with_resource_roles",
+            "value": 7534,
+            "range": "± 5593",
             "unit": "ns/iter"
           }
         ]

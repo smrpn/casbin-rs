@@ -1467,6 +1467,11 @@
 <span id="1467">1467</span>
 <span id="1468">1468</span>
 <span id="1469">1469</span>
+<span id="1470">1470</span>
+<span id="1471">1471</span>
+<span id="1472">1472</span>
+<span id="1473">1473</span>
+<span id="1474">1474</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="kw">use</span> <span class="kw">crate</span>::{
     <span class="ident">adapter</span>::{<span class="ident">Adapter</span>, <span class="ident">Filter</span>},
@@ -1648,7 +1653,7 @@
             };
             <span class="ident">eft_stream</span>.<span class="ident">push_effect</span>(<span class="ident">eft</span>);
         }
-        <span class="prelude-val">Ok</span>((<span class="ident">eft_stream</span>.<span class="ident">current</span>(), <span class="ident">eft_stream</span>.<span class="ident">expl</span>()))
+        <span class="prelude-val">Ok</span>((<span class="ident">eft_stream</span>.<span class="ident">next</span>(), <span class="ident">eft_stream</span>.<span class="ident">expl</span>()))
     }
 }
 
@@ -1887,7 +1892,7 @@
                         .<span class="ident">into_iter</span>()
                         .<span class="ident">filter_map</span>(<span class="op">|</span><span class="ident">y</span><span class="op">|</span> <span class="ident">all_rules</span>.<span class="ident">get_index</span>(<span class="ident">y</span>))
                         .<span class="ident">collect</span>();
-                    <span class="self">self</span>.<span class="ident">logger</span>.<span class="ident">print_explain_log</span>(<span class="ident">rules</span>);
+                    <span class="self">self</span>.<span class="ident">logger</span>.<span class="ident">print_expl_log</span>(<span class="ident">rules</span>);
                 }
             }
         }
@@ -1966,6 +1971,11 @@
     <span class="attribute">#[<span class="ident">inline</span>]</span>
     <span class="kw">fn</span> <span class="ident">enable_enforce</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">enabled</span>: <span class="ident">bool</span>) {
         <span class="self">self</span>.<span class="ident">enabled</span> <span class="op">=</span> <span class="ident">enabled</span>;
+
+        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;logging&quot;</span>)]</span>
+        {
+            <span class="self">self</span>.<span class="ident">logger</span>.<span class="ident">print_status_log</span>(<span class="ident">enabled</span>);
+        }
     }
 
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;logging&quot;</span>)]</span>

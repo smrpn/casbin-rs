@@ -140,7 +140,7 @@
 }
 
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">EffectorStream</span>: <span class="ident">Send</span> <span class="op">+</span> <span class="ident">Sync</span> {
-    <span class="kw">fn</span> <span class="ident">current</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
+    <span class="kw">fn</span> <span class="ident">next</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
     <span class="kw">fn</span> <span class="ident">expl</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span><span class="op">&gt;</span>;
     <span class="kw">fn</span> <span class="ident">push_effect</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">eft</span>: <span class="ident">EffectKind</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>;
 }
@@ -183,7 +183,7 @@
 
 <span class="kw">impl</span> <span class="ident">EffectorStream</span> <span class="kw">for</span> <span class="ident">DefaultEffectStream</span> {
     <span class="attribute">#[<span class="ident">inline</span>]</span>
-    <span class="kw">fn</span> <span class="ident">current</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+    <span class="kw">fn</span> <span class="ident">next</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
         <span class="macro">assert</span><span class="macro">!</span>(<span class="self">self</span>.<span class="ident">done</span>);
         <span class="self">self</span>.<span class="ident">res</span>
     }

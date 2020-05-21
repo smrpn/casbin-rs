@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1589905550358,
+  "lastUpdate": 1590067585190,
   "repoUrl": "https://github.com/casbin/casbin-rs",
   "entries": {
     "Rust Benchmark": [
@@ -8193,6 +8193,168 @@ window.BENCHMARK_DATA = {
             "name": "b_benmark_cached_basic_model",
             "value": 446,
             "range": "± 58",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "Stephen.Chung@intexact.com",
+            "name": "Stephen Chung",
+            "username": "schungx"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "c2e45c58f891527b16cbe4758ced7839192370c9",
+          "message": "Speed improvements (#163)\n\n* Use eval_expression to restrict to expressions only.\r\n\r\n* Parse m_ast only once.\r\n\r\n* Reduce allocations.\r\n\r\n* Use replace_all for escape_eval.\r\n\r\n* Do not build explanation if not needed.\r\n\r\n* Always rewind scope.\r\n\r\n* Revise generate_g_function.\r\n\r\n* Detect more than 3 arguments in generate_g_function.\r\n\r\n* Register g functions directly.\r\n\r\n* Use Cow to eliminate cloning of strings.\r\n\r\n* Eliminate unnecessary string cloning in key matching.\r\n\r\n* Fix error with runtime-async-std\r\n\r\n* Remove lifetime parameter for escape_eval.",
+          "timestamp": "2020-05-21T15:22:46+02:00",
+          "tree_id": "cf1c8df583c361e20ad820ff39fa68d08ad2edce",
+          "url": "https://github.com/casbin/casbin-rs/commit/c2e45c58f891527b16cbe4758ced7839192370c9"
+        },
+        "date": 1590067584374,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "b_benchmark_abac_model",
+            "value": 6658,
+            "range": "± 809",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_basic_model",
+            "value": 6918,
+            "range": "± 1033",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_cached_abac_model",
+            "value": 396,
+            "range": "± 48",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_cached_key_match",
+            "value": 395,
+            "range": "± 63",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_cached_priority_model",
+            "value": 408,
+            "range": "± 43",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_cached_rbac_model",
+            "value": 415,
+            "range": "± 50",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_cached_rbac_model_large",
+            "value": 407,
+            "range": "± 37",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_cached_rbac_model_medium",
+            "value": 417,
+            "range": "± 44",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_cached_rbac_model_small",
+            "value": 403,
+            "range": "± 64",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_cached_rbac_model_with_domains",
+            "value": 450,
+            "range": "± 64",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_cached_rbac_with_deny",
+            "value": 399,
+            "range": "± 49",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_cached_rbac_with_resource_roles",
+            "value": 392,
+            "range": "± 55",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_key_match",
+            "value": 23351,
+            "range": "± 3791",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_priority_model",
+            "value": 7736,
+            "range": "± 1140",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_raw",
+            "value": 8,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_rbac_model",
+            "value": 11283,
+            "range": "± 1310",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_rbac_model_large",
+            "value": 17528654,
+            "range": "± 3379591",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_rbac_model_medium",
+            "value": 1669121,
+            "range": "± 104148",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_rbac_model_small",
+            "value": 172752,
+            "range": "± 7197",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_rbac_model_with_domains",
+            "value": 11267,
+            "range": "± 616",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_rbac_with_deny",
+            "value": 17144,
+            "range": "± 763",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_rbac_with_resource_roles",
+            "value": 7993,
+            "range": "± 951",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benmark_cached_basic_model",
+            "value": 419,
+            "range": "± 43",
             "unit": "ns/iter"
           }
         ]

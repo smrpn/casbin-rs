@@ -1472,7 +1472,38 @@
 <span id="1472">1472</span>
 <span id="1473">1473</span>
 <span id="1474">1474</span>
+<span id="1475">1475</span>
+<span id="1476">1476</span>
+<span id="1477">1477</span>
+<span id="1478">1478</span>
+<span id="1479">1479</span>
+<span id="1480">1480</span>
+<span id="1481">1481</span>
+<span id="1482">1482</span>
+<span id="1483">1483</span>
+<span id="1484">1484</span>
+<span id="1485">1485</span>
+<span id="1486">1486</span>
+<span id="1487">1487</span>
+<span id="1488">1488</span>
+<span id="1489">1489</span>
+<span id="1490">1490</span>
+<span id="1491">1491</span>
+<span id="1492">1492</span>
+<span id="1493">1493</span>
+<span id="1494">1494</span>
+<span id="1495">1495</span>
+<span id="1496">1496</span>
+<span id="1497">1497</span>
+<span id="1498">1498</span>
+<span id="1499">1499</span>
+<span id="1500">1500</span>
+<span id="1501">1501</span>
+<span id="1502">1502</span>
+<span id="1503">1503</span>
 </pre><div class="example-wrap"><pre class="rust ">
+<span class="kw">use</span> <span class="ident">lazy_static</span>::<span class="ident">lazy_static</span>;
+
 <span class="kw">use</span> <span class="kw">crate</span>::{
     <span class="ident">adapter</span>::{<span class="ident">Adapter</span>, <span class="ident">Filter</span>},
     <span class="ident">convert</span>::{<span class="ident">TryIntoAdapter</span>, <span class="ident">TryIntoModel</span>},
@@ -1480,11 +1511,11 @@
     <span class="ident">effector</span>::{<span class="ident">DefaultEffector</span>, <span class="ident">EffectKind</span>, <span class="ident">Effector</span>},
     <span class="ident">emitter</span>::{<span class="ident">Event</span>, <span class="ident">EventData</span>, <span class="ident">EventEmitter</span>},
     <span class="ident">error</span>::{<span class="ident">ModelError</span>, <span class="ident">PolicyError</span>, <span class="ident">RequestError</span>},
-    <span class="ident">generate_g_function</span>, <span class="ident">get_or_err</span>,
+    <span class="ident">get_or_err</span>,
     <span class="ident">management_api</span>::<span class="ident">MgmtApi</span>,
     <span class="ident">model</span>::{<span class="ident">FunctionMap</span>, <span class="ident">Model</span>},
     <span class="ident">rbac</span>::{<span class="ident">DefaultRoleManager</span>, <span class="ident">RoleManager</span>},
-    <span class="ident">util</span>::{<span class="ident">escape_eval</span>, <span class="ident">ESC_E</span>},
+    <span class="ident">util</span>::{<span class="ident">escape_assertion</span>, <span class="ident">escape_eval</span>},
     <span class="prelude-ty">Result</span>,
 };
 
@@ -1501,7 +1532,7 @@
 <span class="kw">use</span> <span class="ident">rhai</span>::{
     <span class="ident">def_package</span>,
     <span class="ident">packages</span>::{<span class="ident">ArithmeticPackage</span>, <span class="ident">BasicArrayPackage</span>, <span class="ident">BasicMapPackage</span>, <span class="ident">LogicPackage</span>, <span class="ident">Package</span>},
-    <span class="ident">Engine</span>, <span class="ident">RegisterFn</span>, <span class="ident">Scope</span>,
+    <span class="ident">Engine</span>, <span class="ident">EvalAltResult</span>, <span class="ident">RegisterFn</span>, <span class="ident">Scope</span>,
 };
 
 <span class="macro">def_package</span><span class="macro">!</span>(<span class="ident">rhai</span>:<span class="ident">CasbinPackage</span>:<span class="string">&quot;Package for Casbin&quot;</span>, <span class="ident">lib</span>, {
@@ -1509,6 +1540,10 @@
     <span class="ident">LogicPackage</span>::<span class="ident">init</span>(<span class="ident">lib</span>);
     <span class="ident">BasicArrayPackage</span>::<span class="ident">init</span>(<span class="ident">lib</span>);
     <span class="ident">BasicMapPackage</span>::<span class="ident">init</span>(<span class="ident">lib</span>);
+
+    <span class="ident">lib</span>.<span class="ident">set_fn_1</span>(<span class="string">&quot;escape_assertion&quot;</span>, <span class="op">|</span><span class="ident">s</span>: <span class="ident">String</span><span class="op">|</span> {
+        <span class="prelude-val">Ok</span>(<span class="ident">escape_assertion</span>(<span class="ident">s</span>))
+    });
 });
 
 <span class="kw">use</span> <span class="ident">std</span>::{
@@ -1594,11 +1629,14 @@
             .<span class="ident">new_stream</span>(<span class="kw-2">&amp;</span><span class="ident">e_ast</span>.<span class="ident">value</span>, <span class="kw">if</span> <span class="ident">policy_len</span> <span class="op">&gt;</span> <span class="number">0</span> { <span class="ident">policy_len</span> } <span class="kw">else</span> { <span class="number">1</span> });
         <span class="kw">let</span> <span class="ident">scope_size</span> <span class="op">=</span> <span class="ident">scope</span>.<span class="ident">len</span>();
 
+        <span class="kw">let</span> <span class="ident">m_ast_compiled</span> <span class="op">=</span> <span class="self">self</span>
+            .<span class="ident">engine</span>
+            .<span class="ident">compile_expression</span>(<span class="kw-2">&amp;</span><span class="ident">escape_eval</span>(<span class="ident">m_ast</span>.<span class="ident">value</span>.<span class="ident">as_str</span>()))
+            .<span class="ident">map_err</span>(<span class="op">|</span><span class="ident">err</span><span class="op">|</span> <span class="ident">Box</span>::<span class="op">&lt;</span><span class="ident">EvalAltResult</span><span class="op">&gt;</span>::<span class="ident">from</span>(<span class="kw-2">*</span><span class="ident">err</span>))<span class="question-mark">?</span>;
+
         <span class="kw">if</span> <span class="ident">policy_len</span> <span class="op">!</span><span class="op">=</span> <span class="number">0</span> {
-            <span class="kw">for</span> (<span class="ident">i</span>, <span class="ident">pvals</span>) <span class="kw">in</span> <span class="ident">policies</span>.<span class="ident">iter</span>().<span class="ident">enumerate</span>() {
-                <span class="kw">if</span> <span class="ident">i</span> <span class="op">!</span><span class="op">=</span> <span class="number">0</span> {
-                    <span class="ident">scope</span>.<span class="ident">rewind</span>(<span class="ident">scope_size</span>);
-                }
+            <span class="kw">for</span> <span class="ident">pvals</span> <span class="kw">in</span> <span class="ident">policies</span>.<span class="ident">iter</span>() {
+                <span class="ident">scope</span>.<span class="ident">rewind</span>(<span class="ident">scope_size</span>);
 
                 <span class="kw">if</span> <span class="ident">p_ast</span>.<span class="ident">tokens</span>.<span class="ident">len</span>() <span class="op">!</span><span class="op">=</span> <span class="ident">pvals</span>.<span class="ident">len</span>() {
                     <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">PolicyError</span>::<span class="ident">UnmatchPolicyDefinition</span>(
@@ -1611,30 +1649,26 @@
                     <span class="ident">scope</span>.<span class="ident">push_constant</span>(<span class="ident">ptoken</span>, <span class="ident">pval</span>.<span class="ident">to_owned</span>());
                 }
 
-                <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">expstring</span> <span class="op">=</span> <span class="ident">m_ast</span>.<span class="ident">value</span>.<span class="ident">to_owned</span>();
-                <span class="kw">if</span> <span class="ident">ESC_E</span>.<span class="ident">is_match</span>(<span class="kw-2">&amp;</span><span class="ident">expstring</span>) {
-                    <span class="ident">expstring</span> <span class="op">=</span> <span class="ident">escape_eval</span>(<span class="ident">expstring</span>, <span class="kw-2">&amp;</span><span class="ident">scope</span>);
-                }
-
                 <span class="kw">let</span> <span class="ident">eval_result</span> <span class="op">=</span> <span class="self">self</span>
                     .<span class="ident">engine</span>
-                    .<span class="ident">eval_expression_with_scope</span>::<span class="op">&lt;</span><span class="ident">bool</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">scope</span>, <span class="kw-2">&amp;</span><span class="ident">expstring</span>)<span class="question-mark">?</span>;
-                <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">eft</span> <span class="op">=</span> <span class="kw">if</span> <span class="op">!</span><span class="ident">eval_result</span> {
+                    .<span class="ident">eval_ast_with_scope</span>::<span class="op">&lt;</span><span class="ident">bool</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">scope</span>, <span class="kw-2">&amp;</span><span class="ident">m_ast_compiled</span>)<span class="question-mark">?</span>;
+                <span class="kw">let</span> <span class="ident">eft</span> <span class="op">=</span> <span class="kw">if</span> <span class="op">!</span><span class="ident">eval_result</span> {
                     <span class="ident">EffectKind</span>::<span class="ident">Indeterminate</span>
                 } <span class="kw">else</span> {
-                    <span class="ident">EffectKind</span>::<span class="ident">Allow</span>
-                };
-                <span class="kw">match</span> <span class="ident">p_ast</span>.<span class="ident">tokens</span>.<span class="ident">iter</span>().<span class="ident">position</span>(<span class="op">|</span><span class="ident">x</span><span class="op">|</span> <span class="ident">x</span> <span class="op">=</span><span class="op">=</span> <span class="string">&quot;p_eft&quot;</span>) {
-                    <span class="prelude-val">Some</span>(<span class="ident">j</span>) <span class="kw">if</span> <span class="ident">eft</span> <span class="op">=</span><span class="op">=</span> <span class="ident">EffectKind</span>::<span class="ident">Allow</span> <span class="op">=</span><span class="op">&gt;</span> {
-                        <span class="kw">let</span> <span class="ident">p_eft</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">pvals</span>[<span class="ident">j</span>];
-                        <span class="kw">if</span> <span class="ident">p_eft</span> <span class="op">=</span><span class="op">=</span> <span class="string">&quot;deny&quot;</span> {
-                            <span class="ident">eft</span> <span class="op">=</span> <span class="ident">EffectKind</span>::<span class="ident">Deny</span>;
-                        } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">p_eft</span> <span class="op">!</span><span class="op">=</span> <span class="string">&quot;allow&quot;</span> {
-                            <span class="ident">eft</span> <span class="op">=</span> <span class="ident">EffectKind</span>::<span class="ident">Indeterminate</span>;
-                        };
+                    <span class="kw">match</span> <span class="ident">p_ast</span>.<span class="ident">tokens</span>.<span class="ident">iter</span>().<span class="ident">position</span>(<span class="op">|</span><span class="ident">x</span><span class="op">|</span> <span class="ident">x</span> <span class="op">=</span><span class="op">=</span> <span class="string">&quot;p_eft&quot;</span>) {
+                        <span class="prelude-val">Some</span>(<span class="ident">j</span>) <span class="op">=</span><span class="op">&gt;</span> {
+                            <span class="kw">let</span> <span class="ident">p_eft</span> <span class="op">=</span> <span class="kw-2">&amp;</span><span class="ident">pvals</span>[<span class="ident">j</span>];
+                            <span class="kw">if</span> <span class="ident">p_eft</span> <span class="op">=</span><span class="op">=</span> <span class="string">&quot;deny&quot;</span> {
+                                <span class="ident">EffectKind</span>::<span class="ident">Deny</span>
+                            } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">p_eft</span> <span class="op">!</span><span class="op">=</span> <span class="string">&quot;allow&quot;</span> {
+                                <span class="ident">EffectKind</span>::<span class="ident">Indeterminate</span>
+                            } <span class="kw">else</span> {
+                                <span class="ident">EffectKind</span>::<span class="ident">Allow</span>
+                            }
+                        }
+                        <span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">EffectKind</span>::<span class="ident">Allow</span>,
                     }
-                    <span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> {}
-                }
+                };
                 <span class="kw">if</span> <span class="ident">eft_stream</span>.<span class="ident">push_effect</span>(<span class="ident">eft</span>) {
                     <span class="kw">break</span>;
                 }
@@ -1645,7 +1679,7 @@
             }
             <span class="kw">let</span> <span class="ident">eval_result</span> <span class="op">=</span> <span class="self">self</span>
                 .<span class="ident">engine</span>
-                .<span class="ident">eval_expression_with_scope</span>::<span class="op">&lt;</span><span class="ident">bool</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">scope</span>, <span class="kw-2">&amp;</span><span class="ident">m_ast</span>.<span class="ident">value</span>)<span class="question-mark">?</span>;
+                .<span class="ident">eval_ast_with_scope</span>::<span class="op">&lt;</span><span class="ident">bool</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">scope</span>, <span class="kw-2">&amp;</span><span class="ident">m_ast_compiled</span>)<span class="question-mark">?</span>;
             <span class="kw">let</span> <span class="ident">eft</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">eval_result</span> {
                 <span class="ident">EffectKind</span>::<span class="ident">Allow</span>
             } <span class="kw">else</span> {
@@ -1655,6 +1689,10 @@
         }
         <span class="prelude-val">Ok</span>((<span class="ident">eft_stream</span>.<span class="ident">next</span>(), <span class="ident">eft_stream</span>.<span class="ident">expl</span>()))
     }
+}
+
+<span class="macro">lazy_static</span><span class="macro">!</span> {
+    <span class="kw">static</span> <span class="kw-2">ref</span> <span class="ident">CASBIN_PACKAGE</span>: <span class="ident">CasbinPackage</span> <span class="op">=</span> <span class="ident">CasbinPackage</span>::<span class="ident">new</span>();
 }
 
 <span class="attribute">#[<span class="ident">async_trait</span>]</span>
@@ -1668,7 +1706,7 @@
 
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">engine</span> <span class="op">=</span> <span class="ident">Engine</span>::<span class="ident">new_raw</span>();
 
-        <span class="ident">engine</span>.<span class="ident">load_package</span>(<span class="ident">CasbinPackage</span>::<span class="ident">new</span>().<span class="ident">get</span>());
+        <span class="ident">engine</span>.<span class="ident">load_package</span>(<span class="ident">CASBIN_PACKAGE</span>.<span class="ident">get</span>());
 
         <span class="kw">for</span> (<span class="ident">key</span>, <span class="ident">func</span>) <span class="kw">in</span> <span class="ident">fm</span>.<span class="ident">get_functions</span>() {
             <span class="ident">engine</span>.<span class="ident">register_fn</span>(<span class="ident">key</span>, <span class="kw-2">*</span><span class="ident">func</span>);
@@ -1728,7 +1766,16 @@
         <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">ast_map</span>) <span class="op">=</span> <span class="ident">e</span>.<span class="ident">model</span>.<span class="ident">get_model</span>().<span class="ident">get</span>(<span class="string">&quot;g&quot;</span>) {
             <span class="kw">for</span> (<span class="ident">key</span>, <span class="kw">_</span>) <span class="kw">in</span> <span class="ident">ast_map</span>.<span class="ident">iter</span>() {
                 <span class="kw">let</span> <span class="ident">rm</span> <span class="op">=</span> <span class="ident">Arc</span>::<span class="ident">clone</span>(<span class="kw-2">&amp;</span><span class="ident">e</span>.<span class="ident">rm</span>);
-                <span class="ident">e</span>.<span class="ident">engine</span>.<span class="ident">register_fn</span>(<span class="ident">key</span>, <span class="macro">generate_g_function</span><span class="macro">!</span>(<span class="ident">rm</span>));
+                <span class="ident">e</span>.<span class="ident">engine</span>
+                    .<span class="ident">register_fn</span>(<span class="ident">key</span>, <span class="kw">move</span> <span class="op">|</span><span class="ident">arg1</span>: <span class="ident">String</span>, <span class="ident">arg2</span>: <span class="ident">String</span><span class="op">|</span> {
+                        <span class="ident">rm</span>.<span class="ident">write</span>().<span class="ident">unwrap</span>().<span class="ident">has_link</span>(<span class="kw-2">&amp;</span><span class="ident">arg1</span>, <span class="kw-2">&amp;</span><span class="ident">arg2</span>, <span class="prelude-val">None</span>)
+                    });
+
+                <span class="kw">let</span> <span class="ident">rm</span> <span class="op">=</span> <span class="ident">Arc</span>::<span class="ident">clone</span>(<span class="kw-2">&amp;</span><span class="ident">e</span>.<span class="ident">rm</span>);
+                <span class="ident">e</span>.<span class="ident">engine</span>
+                    .<span class="ident">register_fn</span>(<span class="ident">key</span>, <span class="kw">move</span> <span class="op">|</span><span class="ident">arg1</span>: <span class="ident">String</span>, <span class="ident">arg2</span>: <span class="ident">String</span>, <span class="ident">arg3</span>: <span class="ident">String</span><span class="op">|</span> {
+                        <span class="ident">rm</span>.<span class="ident">write</span>().<span class="ident">unwrap</span>().<span class="ident">has_link</span>(<span class="kw-2">&amp;</span><span class="ident">arg1</span>, <span class="kw-2">&amp;</span><span class="ident">arg2</span>, <span class="prelude-val">Some</span>(<span class="kw-2">&amp;</span><span class="ident">arg3</span>))
+                    });
             }
         }
 
@@ -1814,14 +1861,23 @@
         <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">ast_map</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">model</span>.<span class="ident">get_model</span>().<span class="ident">get</span>(<span class="string">&quot;g&quot;</span>) {
             <span class="kw">for</span> (<span class="ident">key</span>, <span class="kw">_</span>) <span class="kw">in</span> <span class="ident">ast_map</span>.<span class="ident">iter</span>() {
                 <span class="kw">let</span> <span class="ident">rm</span> <span class="op">=</span> <span class="ident">Arc</span>::<span class="ident">clone</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">rm</span>);
-                <span class="self">self</span>.<span class="ident">engine</span>.<span class="ident">register_fn</span>(<span class="ident">key</span>, <span class="macro">generate_g_function</span><span class="macro">!</span>(<span class="ident">rm</span>));
+                <span class="self">self</span>.<span class="ident">engine</span>
+                    .<span class="ident">register_fn</span>(<span class="ident">key</span>, <span class="kw">move</span> <span class="op">|</span><span class="ident">arg1</span>: <span class="ident">String</span>, <span class="ident">arg2</span>: <span class="ident">String</span><span class="op">|</span> {
+                        <span class="ident">rm</span>.<span class="ident">write</span>().<span class="ident">unwrap</span>().<span class="ident">has_link</span>(<span class="kw-2">&amp;</span><span class="ident">arg1</span>, <span class="kw-2">&amp;</span><span class="ident">arg2</span>, <span class="prelude-val">None</span>)
+                    });
+
+                <span class="kw">let</span> <span class="ident">rm</span> <span class="op">=</span> <span class="ident">Arc</span>::<span class="ident">clone</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">rm</span>);
+                <span class="self">self</span>.<span class="ident">engine</span>
+                    .<span class="ident">register_fn</span>(<span class="ident">key</span>, <span class="kw">move</span> <span class="op">|</span><span class="ident">arg1</span>: <span class="ident">String</span>, <span class="ident">arg2</span>: <span class="ident">String</span>, <span class="ident">arg3</span>: <span class="ident">String</span><span class="op">|</span> {
+                        <span class="ident">rm</span>.<span class="ident">write</span>().<span class="ident">unwrap</span>().<span class="ident">has_link</span>(<span class="kw-2">&amp;</span><span class="ident">arg1</span>, <span class="kw-2">&amp;</span><span class="ident">arg2</span>, <span class="prelude-val">Some</span>(<span class="kw-2">&amp;</span><span class="ident">arg3</span>))
+                    });
             }
         }
 
         <span class="prelude-val">Ok</span>(())
     }
 
-    <span class="kw">fn</span> <span class="ident">add_matching_fn</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">f</span>: <span class="kw">fn</span>(<span class="ident">String</span>, <span class="ident">String</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">add_matching_fn</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">f</span>: <span class="kw">fn</span>(<span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
         <span class="self">self</span>.<span class="ident">rm</span>.<span class="ident">write</span>().<span class="ident">unwrap</span>().<span class="ident">add_matching_fn</span>(<span class="ident">f</span>);
         <span class="kw">if</span> <span class="self">self</span>.<span class="ident">auto_build_role_links</span> {
             <span class="self">self</span>.<span class="ident">build_role_links</span>()<span class="question-mark">?</span>;
@@ -2767,7 +2823,9 @@
         <span class="kw">let</span> <span class="ident">adapter1</span> <span class="op">=</span> <span class="ident">FileAdapter</span>::<span class="ident">new</span>(<span class="string">&quot;examples/keymatch_policy.csv&quot;</span>);
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">e</span> <span class="op">=</span> <span class="ident">Enforcer</span>::<span class="ident">new</span>(<span class="ident">m1</span>, <span class="ident">adapter1</span>).<span class="kw">await</span>.<span class="ident">unwrap</span>();
 
-        <span class="ident">e</span>.<span class="ident">add_function</span>(<span class="string">&quot;keyMatchCustom&quot;</span>, <span class="ident">key_match</span>);
+        <span class="ident">e</span>.<span class="ident">add_function</span>(<span class="string">&quot;keyMatchCustom&quot;</span>, <span class="op">|</span><span class="ident">s1</span>: <span class="ident">String</span>, <span class="ident">s2</span>: <span class="ident">String</span><span class="op">|</span> {
+            <span class="ident">key_match</span>(<span class="kw-2">&amp;</span><span class="ident">s1</span>, <span class="kw-2">&amp;</span><span class="ident">s2</span>)
+        });
 
         <span class="macro">assert_eq</span><span class="macro">!</span>(
             <span class="bool-val">true</span>,

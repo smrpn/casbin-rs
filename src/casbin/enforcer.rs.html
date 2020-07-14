@@ -1424,6 +1424,16 @@
             }
         }))
     }
+
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">register_g_functions</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
+        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">ast_map</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">model</span>.<span class="ident">get_model</span>().<span class="ident">get</span>(<span class="string">&quot;g&quot;</span>) {
+            <span class="kw">for</span> (<span class="ident">fname</span>, <span class="ident">ast</span>) <span class="kw">in</span> <span class="ident">ast_map</span> {
+                <span class="macro">register_g_function</span><span class="macro">!</span>(<span class="self">self</span>, <span class="ident">fname</span>, <span class="ident">ast</span>);
+            }
+        }
+
+        <span class="prelude-val">Ok</span>(())
+    }
 }
 
 <span class="attribute">#[<span class="ident">async_trait</span>]</span>
@@ -1465,11 +1475,7 @@
         <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;logging&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;watcher&quot;</span>))]</span>
         <span class="ident">e</span>.<span class="ident">on</span>(<span class="ident">Event</span>::<span class="ident">PolicyChange</span>, <span class="ident">notify_logger_and_watcher</span>);
 
-        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">ast_map</span>) <span class="op">=</span> <span class="ident">e</span>.<span class="ident">model</span>.<span class="ident">get_model</span>().<span class="ident">get</span>(<span class="string">&quot;g&quot;</span>) {
-            <span class="kw">for</span> <span class="ident">fname</span> <span class="kw">in</span> <span class="ident">ast_map</span>.<span class="ident">keys</span>() {
-                <span class="macro">register_g_function</span><span class="macro">!</span>(<span class="ident">e</span>, <span class="ident">fname</span>);
-            }
-        }
+        <span class="ident">e</span>.<span class="ident">register_g_functions</span>()<span class="question-mark">?</span>;
 
         <span class="ident">e</span>.<span class="ident">load_policy</span>().<span class="kw">await</span><span class="question-mark">?</span>;
 
@@ -1552,13 +1558,7 @@
             <span class="self">self</span>.<span class="ident">build_role_links</span>()<span class="question-mark">?</span>;
         }
 
-        <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">ast_map</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">model</span>.<span class="ident">get_model</span>().<span class="ident">get</span>(<span class="string">&quot;g&quot;</span>) {
-            <span class="kw">for</span> <span class="ident">fname</span> <span class="kw">in</span> <span class="ident">ast_map</span>.<span class="ident">keys</span>() {
-                <span class="macro">register_g_function</span><span class="macro">!</span>(<span class="self">self</span>, <span class="ident">fname</span>);
-            }
-        }
-
-        <span class="prelude-val">Ok</span>(())
+        <span class="self">self</span>.<span class="ident">register_g_functions</span>()
     }
 
     <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">set_model</span><span class="op">&lt;</span><span class="ident">M</span>: <span class="ident">TryIntoModel</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">m</span>: <span class="ident">M</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {

@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1594715671993,
+  "lastUpdate": 1594730524023,
   "repoUrl": "https://github.com/casbin/casbin-rs",
   "entries": {
     "Rust Benchmark": [
@@ -9777,6 +9777,186 @@ window.BENCHMARK_DATA = {
             "name": "b_benmark_cached_basic_model",
             "value": 340,
             "range": "± 26",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "cocathecafe@gmail.com",
+            "name": "Cheng JIANG",
+            "username": "GopherJ"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "6851f2018694dab7eea1199743e733e618a9215c",
+          "message": "Cache g (#183)\n\n* feat: add cache for g function\r\n\r\nSigned-off-by: Cheng JIANG <jiang.cheng@vip.163.com>\r\n\r\n* improve: extract register process to a function\r\n\r\nSigned-off-by: Cheng JIANG <jiang.cheng@vip.163.com>\r\n\r\n* fix: ignore cache when feature is not enabled\r\n\r\nSigned-off-by: Cheng JIANG <jiang.cheng@vip.163.com>\r\n\r\n* feat: add forum badge\r\n\r\nSigned-off-by: Cheng JIANG <jiang.cheng@vip.163.com>\r\n\r\n* fix: CI\r\n\r\nSigned-off-by: Cheng JIANG <jiang.cheng@vip.163.com>\r\n\r\n* fix: clippy\r\n\r\nSigned-off-by: Cheng JIANG <jiang.cheng@vip.163.com>",
+          "timestamp": "2020-07-14T14:37:34+02:00",
+          "tree_id": "686b05b2fc90b6ae18e8bc945de1dc4f8ea9336d",
+          "url": "https://github.com/casbin/casbin-rs/commit/6851f2018694dab7eea1199743e733e618a9215c"
+        },
+        "date": 1594730523228,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "b_benchmark_abac_model",
+            "value": 5753,
+            "range": "± 979",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_basic_model",
+            "value": 5739,
+            "range": "± 890",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_cached_abac_model",
+            "value": 271,
+            "range": "± 52",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_cached_key_match",
+            "value": 272,
+            "range": "± 51",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_cached_priority_model",
+            "value": 268,
+            "range": "± 45",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_cached_rbac_model",
+            "value": 256,
+            "range": "± 46",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_cached_rbac_model_large",
+            "value": 281,
+            "range": "± 67",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_cached_rbac_model_medium",
+            "value": 253,
+            "range": "± 38",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_cached_rbac_model_small",
+            "value": 277,
+            "range": "± 48",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_cached_rbac_model_with_domains",
+            "value": 344,
+            "range": "± 81",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_cached_rbac_with_deny",
+            "value": 272,
+            "range": "± 59",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_cached_rbac_with_resource_roles",
+            "value": 271,
+            "range": "± 49",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_key_match",
+            "value": 23096,
+            "range": "± 3324",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_priority_model",
+            "value": 6318,
+            "range": "± 1187",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_raw",
+            "value": 6,
+            "range": "± 1",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_rbac_model",
+            "value": 8653,
+            "range": "± 1557",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_rbac_model_large",
+            "value": 18404116,
+            "range": "± 2862989",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_rbac_model_medium",
+            "value": 1769932,
+            "range": "± 298783",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_rbac_model_small",
+            "value": 167104,
+            "range": "± 61025",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_rbac_model_with_domains",
+            "value": 8845,
+            "range": "± 3437",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_rbac_with_deny",
+            "value": 12136,
+            "range": "± 1709",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_rbac_with_resource_roles",
+            "value": 6301,
+            "range": "± 1263",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_role_manager_large",
+            "value": 8481784,
+            "range": "± 1564065",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_role_manager_medium",
+            "value": 722316,
+            "range": "± 127449",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_role_manager_small",
+            "value": 72795,
+            "range": "± 14359",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benmark_cached_basic_model",
+            "value": 250,
+            "range": "± 37",
             "unit": "ns/iter"
           }
         ]

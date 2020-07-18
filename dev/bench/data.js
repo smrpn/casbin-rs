@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1594894762848,
+  "lastUpdate": 1595108825177,
   "repoUrl": "https://github.com/casbin/casbin-rs",
   "entries": {
     "Rust Benchmark": [
@@ -10137,6 +10137,186 @@ window.BENCHMARK_DATA = {
             "name": "b_benmark_cached_basic_model",
             "value": 217,
             "range": "± 43",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "cocathecafe@gmail.com",
+            "name": "Cheng JIANG",
+            "username": "GopherJ"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "d7a88fcba212d3067b90d002517eddd9cf71fceb",
+          "message": "Fix unhandled dquote (#188)\n\n* fix: bump version\r\n\r\nSigned-off-by: Cheng JIANG <jiang.cheng@vip.163.com>\r\n\r\n* feat: remove unnessary clone\r\n\r\nSigned-off-by: Cheng JIANG <jiang.cheng@vip.163.com>\r\n\r\n* fix: handle escaped strings\r\n\r\nSigned-off-by: Cheng JIANG <jiang.cheng@vip.163.com>\r\n\r\n* chore: bump version\r\n\r\nSigned-off-by: Cheng JIANG <jiang.cheng@vip.163.com>\r\n\r\n* fix: CI\r\n\r\nSigned-off-by: Cheng JIANG <jiang.cheng@vip.163.com>\r\n\r\n* fix: CI\r\n\r\nSigned-off-by: Cheng JIANG <jiang.cheng@vip.163.com>",
+          "timestamp": "2020-07-18T23:42:15+02:00",
+          "tree_id": "eababf740a45b276deeb2f66c4278140b73e1e60",
+          "url": "https://github.com/casbin/casbin-rs/commit/d7a88fcba212d3067b90d002517eddd9cf71fceb"
+        },
+        "date": 1595108824485,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "b_benchmark_abac_model",
+            "value": 5952,
+            "range": "± 994",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_basic_model",
+            "value": 6277,
+            "range": "± 893",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_cached_abac_model",
+            "value": 306,
+            "range": "± 62",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_cached_key_match",
+            "value": 307,
+            "range": "± 68",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_cached_priority_model",
+            "value": 303,
+            "range": "± 45",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_cached_rbac_model",
+            "value": 297,
+            "range": "± 47",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_cached_rbac_model_large",
+            "value": 311,
+            "range": "± 63",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_cached_rbac_model_medium",
+            "value": 305,
+            "range": "± 69",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_cached_rbac_model_small",
+            "value": 314,
+            "range": "± 59",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_cached_rbac_model_with_domains",
+            "value": 349,
+            "range": "± 95",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_cached_rbac_with_deny",
+            "value": 298,
+            "range": "± 65",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_cached_rbac_with_resource_roles",
+            "value": 291,
+            "range": "± 47",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_key_match",
+            "value": 24755,
+            "range": "± 4176",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_priority_model",
+            "value": 7013,
+            "range": "± 806",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_raw",
+            "value": 7,
+            "range": "± 1",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_rbac_model",
+            "value": 9353,
+            "range": "± 2258",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_rbac_model_large",
+            "value": 20061469,
+            "range": "± 2658581",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_rbac_model_medium",
+            "value": 1888076,
+            "range": "± 303965",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_rbac_model_small",
+            "value": 188525,
+            "range": "± 44241",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_rbac_model_with_domains",
+            "value": 8967,
+            "range": "± 1962",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_rbac_with_deny",
+            "value": 13370,
+            "range": "± 1779",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_rbac_with_resource_roles",
+            "value": 6734,
+            "range": "± 1583",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_role_manager_large",
+            "value": 8570754,
+            "range": "± 1743688",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_role_manager_medium",
+            "value": 770767,
+            "range": "± 157401",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_role_manager_small",
+            "value": 73806,
+            "range": "± 17577",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benmark_cached_basic_model",
+            "value": 306,
+            "range": "± 55",
             "unit": "ns/iter"
           }
         ]

@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1595236214261,
+  "lastUpdate": 1595237954595,
   "repoUrl": "https://github.com/casbin/casbin-rs",
   "entries": {
     "Rust Benchmark": [
@@ -10497,6 +10497,186 @@ window.BENCHMARK_DATA = {
             "name": "b_benmark_cached_basic_model",
             "value": 301,
             "range": "± 49",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "cocathecafe@gmail.com",
+            "name": "Cheng JIANG",
+            "username": "GopherJ"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "ca7a25133ef03a61dcab4a763d684fcc37f1aa90",
+          "message": "feat: re-exports rhai & add IEnforcer && bump version (#198)\n\nSigned-off-by: Cheng JIANG <jiang.cheng@vip.163.com>",
+          "timestamp": "2020-07-20T11:35:11+02:00",
+          "tree_id": "79be91cff5364a20dab4e76580422670ad36aa8c",
+          "url": "https://github.com/casbin/casbin-rs/commit/ca7a25133ef03a61dcab4a763d684fcc37f1aa90"
+        },
+        "date": 1595237953432,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "b_benchmark_abac_model",
+            "value": 6848,
+            "range": "± 339",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_basic_model",
+            "value": 6855,
+            "range": "± 904",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_cached_abac_model",
+            "value": 318,
+            "range": "± 19",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_cached_key_match",
+            "value": 327,
+            "range": "± 14",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_cached_priority_model",
+            "value": 330,
+            "range": "± 34",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_cached_rbac_model",
+            "value": 328,
+            "range": "± 12",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_cached_rbac_model_large",
+            "value": 328,
+            "range": "± 29",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_cached_rbac_model_medium",
+            "value": 325,
+            "range": "± 7",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_cached_rbac_model_small",
+            "value": 322,
+            "range": "± 37",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_cached_rbac_model_with_domains",
+            "value": 379,
+            "range": "± 26",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_cached_rbac_with_deny",
+            "value": 317,
+            "range": "± 25",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_cached_rbac_with_resource_roles",
+            "value": 318,
+            "range": "± 26",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_key_match",
+            "value": 26275,
+            "range": "± 4223",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_priority_model",
+            "value": 7543,
+            "range": "± 469",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_raw",
+            "value": 8,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_rbac_model",
+            "value": 10572,
+            "range": "± 2196",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_rbac_model_large",
+            "value": 22052947,
+            "range": "± 1986695",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_rbac_model_medium",
+            "value": 2124695,
+            "range": "± 221183",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_rbac_model_small",
+            "value": 208446,
+            "range": "± 10915",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_rbac_model_with_domains",
+            "value": 10505,
+            "range": "± 479",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_rbac_with_deny",
+            "value": 15065,
+            "range": "± 689",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_rbac_with_resource_roles",
+            "value": 7869,
+            "range": "± 498",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_role_manager_large",
+            "value": 9644322,
+            "range": "± 637056",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_role_manager_medium",
+            "value": 929662,
+            "range": "± 149494",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_role_manager_small",
+            "value": 87147,
+            "range": "± 4764",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benmark_cached_basic_model",
+            "value": 324,
+            "range": "± 54",
             "unit": "ns/iter"
           }
         ]

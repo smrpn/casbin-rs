@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1598452541757,
+  "lastUpdate": 1598811906895,
   "repoUrl": "https://github.com/casbin/casbin-rs",
   "entries": {
     "Rust Benchmark": [
@@ -10857,6 +10857,186 @@ window.BENCHMARK_DATA = {
             "name": "b_benmark_cached_basic_model",
             "value": 284,
             "range": "± 48",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "cocathecafe@gmail.com",
+            "name": "Cheng JIANG",
+            "username": "GopherJ"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "9c67ba4b1655f09483e9331e7229b8d91ff75fe5",
+          "message": "Release v2.0.0 (#204)\n\n* fix: bump version\r\n\r\nSigned-off-by: Cheng JIANG <jiang.cheng@vip.163.com>\r\n\r\n* feat: add clear_policy & rustfmt.toml\r\n\r\nSigned-off-by: Cheng JIANG <jiang.cheng@vip.163.com>\r\n\r\n* feat: rename all_roles to all_domains\r\n\r\nSigned-off-by: Cheng JIANG <jiang.cheng@vip.163.com>\r\n\r\n* feat: add new_raw method which doesn't load policy automatically\r\n\r\nSigned-off-by: Cheng JIANG <jiang.cheng@vip.163.com>\r\n\r\n* feat: make CoreApi being able to be made into object\r\n\r\nSigned-off-by: Cheng JIANG <jiang.cheng@vip.163.com>\r\n\r\n* Fix: typo in example code\r\n\r\n* fix: make IEnforcer interface being able to be made into object\r\n\r\n* fix: don't remove all the policies if field_values is empty\r\n\r\nSigned-off-by: Cheng JIANG <jiang.cheng@vip.163.com>\r\n\r\n* fix: run format\r\n\r\nSigned-off-by: Cheng JIANG <jiang.cheng@vip.163.com>\r\n\r\n* feat: upgrade rhai version to 0.18.1\r\n\r\nSigned-off-by: Cheng JIANG <jiang.cheng@vip.163.com>\r\n\r\n* feat: switch to lru-cache\r\n\r\nSigned-off-by: Cheng JIANG <jiang.cheng@vip.163.com>\r\n\r\n* fix: remove unused ttl\r\n\r\nSigned-off-by: Cheng JIANG <jiang.cheng@vip.163.com>\r\n\r\n* feat: bump deps' version\r\n\r\nSigned-off-by: Cheng JIANG <jiang.cheng@vip.163.com>\r\n\r\n* feat: change cache interface to allow returning owned value\r\n\r\nSigned-off-by: Cheng JIANG <jiang.cheng@vip.163.com>\r\n\r\n* feat: structrued logging\r\n\r\nSigned-off-by: Cheng JIANG <jiang.cheng@vip.163.com>\r\n\r\n* improve: use static dispatchered cache in Rbac manager because we'll never replace it by custom cache\r\n\r\nSigned-off-by: Cheng JIANG <jiang.cheng@vip.163.com>\r\n\r\n* improve: add unit test for escaping rule which sometimes needs to be evaluated\r\n\r\nSigned-off-by: Cheng JIANG <jiang.cheng@vip.163.com>\r\n\r\n* upgrade rhai\r\n\r\nSigned-off-by: Cheng JIANG <jiang.cheng@vip.163.com>\r\n\r\n* fix: potential dead lock in add_role fn\r\n\r\nSigned-off-by: Cheng JIANG <jiang.cheng@vip.163.com>\r\n\r\n* improve: ignore add link request on same roles\r\n\r\n* improve: remove unecessary pub(crate)\r\n\r\n* improve: add is_enabled fn\r\n\r\n* feature: add serde support\r\n\r\n* fix: CI wasm check\r\n\r\n* fix: remove unwanted dep\r\n\r\n* improve: cached enforcer's bench\r\n\r\n* improve: rbac cache perf\r\n\r\n* improve: reset default features\r\n\r\n* feature: pattern matching\r\n\r\n* fix: missing serde\r\n\r\n* fix: example code in README\r\n\r\n* fix: example code",
+          "timestamp": "2020-08-30T20:19:35+02:00",
+          "tree_id": "34965abd117223165034723f517dbea33e0310cf",
+          "url": "https://github.com/casbin/casbin-rs/commit/9c67ba4b1655f09483e9331e7229b8d91ff75fe5"
+        },
+        "date": 1598811906186,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "b_benchmark_abac_model",
+            "value": 5447,
+            "range": "± 867",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_basic_model",
+            "value": 6216,
+            "range": "± 1031",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_cached_abac_model",
+            "value": 1149,
+            "range": "± 268",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_cached_key_match",
+            "value": 567,
+            "range": "± 139",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_cached_priority_model",
+            "value": 549,
+            "range": "± 206",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_cached_rbac_model",
+            "value": 537,
+            "range": "± 121",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_cached_rbac_model_large",
+            "value": 495,
+            "range": "± 69",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_cached_rbac_model_medium",
+            "value": 551,
+            "range": "± 102",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_cached_rbac_model_small",
+            "value": 576,
+            "range": "± 111",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_cached_rbac_model_with_domains",
+            "value": 949,
+            "range": "± 133",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_cached_rbac_with_deny",
+            "value": 587,
+            "range": "± 92",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_cached_rbac_with_resource_roles",
+            "value": 595,
+            "range": "± 83",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_key_match",
+            "value": 26783,
+            "range": "± 3312",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_priority_model",
+            "value": 7252,
+            "range": "± 1353",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_raw",
+            "value": 7,
+            "range": "± 1",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_rbac_model",
+            "value": 9933,
+            "range": "± 1916",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_rbac_model_large",
+            "value": 18030250,
+            "range": "± 2233963",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_rbac_model_medium",
+            "value": 1822806,
+            "range": "± 254048",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_rbac_model_small",
+            "value": 182270,
+            "range": "± 38924",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_rbac_model_with_domains",
+            "value": 9898,
+            "range": "± 2079",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_rbac_with_deny",
+            "value": 13323,
+            "range": "± 2028",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_rbac_with_resource_roles",
+            "value": 8019,
+            "range": "± 2075",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_role_manager_large",
+            "value": 8640797,
+            "range": "± 1005575",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_role_manager_medium",
+            "value": 700620,
+            "range": "± 107941",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_role_manager_small",
+            "value": 76701,
+            "range": "± 15764",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benmark_cached_basic_model",
+            "value": 596,
+            "range": "± 115",
             "unit": "ns/iter"
           }
         ]

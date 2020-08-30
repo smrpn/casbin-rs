@@ -1,0 +1,1 @@
+initSidebarItems({"fn":[["from_dynamic","Deserialize a `Dynamic` value into a Rust type that implements `serde::Deserialize`."]]});

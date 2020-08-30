@@ -430,6 +430,36 @@
 <span id="430">430</span>
 <span id="431">431</span>
 <span id="432">432</span>
+<span id="433">433</span>
+<span id="434">434</span>
+<span id="435">435</span>
+<span id="436">436</span>
+<span id="437">437</span>
+<span id="438">438</span>
+<span id="439">439</span>
+<span id="440">440</span>
+<span id="441">441</span>
+<span id="442">442</span>
+<span id="443">443</span>
+<span id="444">444</span>
+<span id="445">445</span>
+<span id="446">446</span>
+<span id="447">447</span>
+<span id="448">448</span>
+<span id="449">449</span>
+<span id="450">450</span>
+<span id="451">451</span>
+<span id="452">452</span>
+<span id="453">453</span>
+<span id="454">454</span>
+<span id="455">455</span>
+<span id="456">456</span>
+<span id="457">457</span>
+<span id="458">458</span>
+<span id="459">459</span>
+<span id="460">460</span>
+<span id="461">461</span>
+<span id="462">462</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">core_api</span>::<span class="ident">IEnforcer</span>, <span class="prelude-ty">Result</span>};
 
@@ -502,7 +532,11 @@
         }
 
         <span class="kw">let</span> <span class="ident">rule_added</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">get_mut_model</span>().<span class="ident">add_policy</span>(<span class="ident">sec</span>, <span class="ident">ptype</span>, {
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;watcher&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;logging&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;incremental&quot;</span>))]</span>
+            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(
+                <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;watcher&quot;</span>,
+                <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;logging&quot;</span>,
+                <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;incremental&quot;</span>
+            ))]</span>
             {
                 <span class="ident">rule</span>.<span class="ident">clone</span>()
             }
@@ -517,16 +551,17 @@
         });
         <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;watcher&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;logging&quot;</span>))]</span>
         {
-            <span class="kw">let</span> <span class="ident">event_data</span> <span class="op">=</span> <span class="ident">EventData</span>::<span class="ident">AddPolicy</span>(<span class="ident">sec</span>.<span class="ident">to_owned</span>(), <span class="ident">ptype</span>.<span class="ident">to_owned</span>(), {
-                <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;incremental&quot;</span>)]</span>
-                {
-                    <span class="ident">rule</span>.<span class="ident">clone</span>()
-                }
-                <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;incremental&quot;</span>))]</span>
-                {
-                    <span class="ident">rule</span>
-                }
-            });
+            <span class="kw">let</span> <span class="ident">event_data</span> <span class="op">=</span>
+                <span class="ident">EventData</span>::<span class="ident">AddPolicy</span>(<span class="ident">sec</span>.<span class="ident">to_owned</span>(), <span class="ident">ptype</span>.<span class="ident">to_owned</span>(), {
+                    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;incremental&quot;</span>)]</span>
+                    {
+                        <span class="ident">rule</span>.<span class="ident">clone</span>()
+                    }
+                    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;incremental&quot;</span>))]</span>
+                    {
+                        <span class="ident">rule</span>
+                    }
+                });
             <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;watcher&quot;</span>)]</span>
             {
                 <span class="kw">if</span> <span class="ident">rule_added</span> <span class="kw-2">&amp;</span><span class="op">&amp;</span> <span class="self">self</span>.<span class="ident">has_auto_notify_watcher_enabled</span>() {
@@ -581,7 +616,11 @@
         }
 
         <span class="kw">let</span> <span class="ident">rules_added</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">get_mut_model</span>().<span class="ident">add_policies</span>(<span class="ident">sec</span>, <span class="ident">ptype</span>, {
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;watcher&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;logging&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;incremental&quot;</span>))]</span>
+            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(
+                <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;watcher&quot;</span>,
+                <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;logging&quot;</span>,
+                <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;incremental&quot;</span>
+            ))]</span>
             {
                 <span class="ident">rules</span>.<span class="ident">clone</span>()
             }
@@ -596,16 +635,17 @@
         });
         <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;watcher&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;logging&quot;</span>))]</span>
         {
-            <span class="kw">let</span> <span class="ident">event_data</span> <span class="op">=</span> <span class="ident">EventData</span>::<span class="ident">AddPolicies</span>(<span class="ident">sec</span>.<span class="ident">to_owned</span>(), <span class="ident">ptype</span>.<span class="ident">to_owned</span>(), {
-                <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;incremental&quot;</span>)]</span>
-                {
-                    <span class="ident">rules</span>.<span class="ident">clone</span>()
-                }
-                <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;incremental&quot;</span>))]</span>
-                {
-                    <span class="ident">rules</span>
-                }
-            });
+            <span class="kw">let</span> <span class="ident">event_data</span> <span class="op">=</span>
+                <span class="ident">EventData</span>::<span class="ident">AddPolicies</span>(<span class="ident">sec</span>.<span class="ident">to_owned</span>(), <span class="ident">ptype</span>.<span class="ident">to_owned</span>(), {
+                    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;incremental&quot;</span>)]</span>
+                    {
+                        <span class="ident">rules</span>.<span class="ident">clone</span>()
+                    }
+                    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;incremental&quot;</span>))]</span>
+                    {
+                        <span class="ident">rules</span>
+                    }
+                });
             <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;watcher&quot;</span>)]</span>
             {
                 <span class="kw">if</span> <span class="ident">rules_added</span> <span class="kw-2">&amp;</span><span class="op">&amp;</span> <span class="self">self</span>.<span class="ident">has_auto_notify_watcher_enabled</span>() {
@@ -660,7 +700,11 @@
         }
 
         <span class="kw">let</span> <span class="ident">rule_removed</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">get_mut_model</span>().<span class="ident">remove_policy</span>(<span class="ident">sec</span>, <span class="ident">ptype</span>, {
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;watcher&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;logging&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;incremental&quot;</span>))]</span>
+            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(
+                <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;watcher&quot;</span>,
+                <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;logging&quot;</span>,
+                <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;incremental&quot;</span>
+            ))]</span>
             {
                 <span class="ident">rule</span>.<span class="ident">clone</span>()
             }
@@ -675,16 +719,17 @@
         });
         <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;watcher&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;logging&quot;</span>))]</span>
         {
-            <span class="kw">let</span> <span class="ident">event_data</span> <span class="op">=</span> <span class="ident">EventData</span>::<span class="ident">RemovePolicy</span>(<span class="ident">sec</span>.<span class="ident">to_owned</span>(), <span class="ident">ptype</span>.<span class="ident">to_owned</span>(), {
-                <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;incremental&quot;</span>)]</span>
-                {
-                    <span class="ident">rule</span>.<span class="ident">clone</span>()
-                }
-                <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;incremental&quot;</span>))]</span>
-                {
-                    <span class="ident">rule</span>
-                }
-            });
+            <span class="kw">let</span> <span class="ident">event_data</span> <span class="op">=</span>
+                <span class="ident">EventData</span>::<span class="ident">RemovePolicy</span>(<span class="ident">sec</span>.<span class="ident">to_owned</span>(), <span class="ident">ptype</span>.<span class="ident">to_owned</span>(), {
+                    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;incremental&quot;</span>)]</span>
+                    {
+                        <span class="ident">rule</span>.<span class="ident">clone</span>()
+                    }
+                    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;incremental&quot;</span>))]</span>
+                    {
+                        <span class="ident">rule</span>
+                    }
+                });
             <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;watcher&quot;</span>)]</span>
             {
                 <span class="kw">if</span> <span class="ident">rule_removed</span> <span class="kw-2">&amp;</span><span class="op">&amp;</span> <span class="self">self</span>.<span class="ident">has_auto_notify_watcher_enabled</span>() {
@@ -739,7 +784,11 @@
         }
 
         <span class="kw">let</span> <span class="ident">rules_removed</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">get_mut_model</span>().<span class="ident">remove_policies</span>(<span class="ident">sec</span>, <span class="ident">ptype</span>, {
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;watcher&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;logging&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;incremental&quot;</span>))]</span>
+            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(
+                <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;watcher&quot;</span>,
+                <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;logging&quot;</span>,
+                <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;incremental&quot;</span>
+            ))]</span>
             {
                 <span class="ident">rules</span>.<span class="ident">clone</span>()
             }
@@ -754,16 +803,17 @@
         });
         <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;watcher&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;logging&quot;</span>))]</span>
         {
-            <span class="kw">let</span> <span class="ident">event_data</span> <span class="op">=</span> <span class="ident">EventData</span>::<span class="ident">RemovePolicies</span>(<span class="ident">sec</span>.<span class="ident">to_owned</span>(), <span class="ident">ptype</span>.<span class="ident">to_owned</span>(), {
-                <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;incremental&quot;</span>)]</span>
-                {
-                    <span class="ident">rules</span>.<span class="ident">clone</span>()
-                }
-                <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;incremental&quot;</span>))]</span>
-                {
-                    <span class="ident">rules</span>
-                }
-            });
+            <span class="kw">let</span> <span class="ident">event_data</span> <span class="op">=</span>
+                <span class="ident">EventData</span>::<span class="ident">RemovePolicies</span>(<span class="ident">sec</span>.<span class="ident">to_owned</span>(), <span class="ident">ptype</span>.<span class="ident">to_owned</span>(), {
+                    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;incremental&quot;</span>)]</span>
+                    {
+                        <span class="ident">rules</span>.<span class="ident">clone</span>()
+                    }
+                    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">not</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;incremental&quot;</span>))]</span>
+                    {
+                        <span class="ident">rules</span>
+                    }
+                });
             <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;watcher&quot;</span>)]</span>
             {
                 <span class="kw">if</span> <span class="ident">rules_removed</span> <span class="kw-2">&amp;</span><span class="op">&amp;</span> <span class="self">self</span>.<span class="ident">has_auto_notify_watcher_enabled</span>() {
@@ -812,19 +862,27 @@
         <span class="kw">if</span> <span class="self">self</span>.<span class="ident">has_auto_save_enabled</span>()
             <span class="kw-2">&amp;</span><span class="op">&amp;</span> <span class="op">!</span><span class="self">self</span>
                 .<span class="ident">get_mut_adapter</span>()
-                .<span class="ident">remove_filtered_policy</span>(<span class="ident">sec</span>, <span class="ident">ptype</span>, <span class="ident">field_index</span>, <span class="ident">field_values</span>.<span class="ident">clone</span>())
+                .<span class="ident">remove_filtered_policy</span>(
+                    <span class="ident">sec</span>,
+                    <span class="ident">ptype</span>,
+                    <span class="ident">field_index</span>,
+                    <span class="ident">field_values</span>.<span class="ident">clone</span>(),
+                )
                 .<span class="kw">await</span><span class="question-mark">?</span>
         {
             <span class="kw">return</span> <span class="prelude-val">Ok</span>((<span class="bool-val">false</span>, <span class="macro">vec</span><span class="macro">!</span>[]));
         }
 
-        <span class="kw">let</span> (<span class="ident">rules_removed</span>, <span class="ident">rules</span>) <span class="op">=</span>
-            <span class="self">self</span>.<span class="ident">get_mut_model</span>()
-                .<span class="ident">remove_filtered_policy</span>(<span class="ident">sec</span>, <span class="ident">ptype</span>, <span class="ident">field_index</span>, <span class="ident">field_values</span>);
+        <span class="kw">let</span> (<span class="ident">rules_removed</span>, <span class="ident">rules</span>) <span class="op">=</span> <span class="self">self</span>
+            .<span class="ident">get_mut_model</span>()
+            .<span class="ident">remove_filtered_policy</span>(<span class="ident">sec</span>, <span class="ident">ptype</span>, <span class="ident">field_index</span>, <span class="ident">field_values</span>);
         <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;watcher&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;logging&quot;</span>))]</span>
         {
-            <span class="kw">let</span> <span class="ident">event_data</span> <span class="op">=</span>
-                <span class="ident">EventData</span>::<span class="ident">RemoveFilteredPolicy</span>(<span class="ident">sec</span>.<span class="ident">to_owned</span>(), <span class="ident">ptype</span>.<span class="ident">to_owned</span>(), <span class="ident">rules</span>.<span class="ident">clone</span>());
+            <span class="kw">let</span> <span class="ident">event_data</span> <span class="op">=</span> <span class="ident">EventData</span>::<span class="ident">RemoveFilteredPolicy</span>(
+                <span class="ident">sec</span>.<span class="ident">to_owned</span>(),
+                <span class="ident">ptype</span>.<span class="ident">to_owned</span>(),
+                <span class="ident">rules</span>.<span class="ident">clone</span>(),
+            );
             <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;watcher&quot;</span>)]</span>
             {
                 <span class="kw">if</span> <span class="ident">rules_removed</span> <span class="kw-2">&amp;</span><span class="op">&amp;</span> <span class="self">self</span>.<span class="ident">has_auto_notify_watcher_enabled</span>() {
@@ -853,11 +911,13 @@
         }
         <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;incremental&quot;</span>)]</span>
         {
-            <span class="self">self</span>.<span class="ident">build_incremental_role_links</span>(<span class="ident">EventData</span>::<span class="ident">RemoveFilteredPolicy</span>(
-                <span class="ident">sec</span>.<span class="ident">to_owned</span>(),
-                <span class="ident">ptype</span>.<span class="ident">to_owned</span>(),
-                <span class="ident">rules</span>.<span class="ident">clone</span>(),
-            ))<span class="question-mark">?</span>;
+            <span class="self">self</span>.<span class="ident">build_incremental_role_links</span>(
+                <span class="ident">EventData</span>::<span class="ident">RemoveFilteredPolicy</span>(
+                    <span class="ident">sec</span>.<span class="ident">to_owned</span>(),
+                    <span class="ident">ptype</span>.<span class="ident">to_owned</span>(),
+                    <span class="ident">rules</span>.<span class="ident">clone</span>(),
+                ),
+            )<span class="question-mark">?</span>;
         }
 
         <span class="prelude-val">Ok</span>((<span class="ident">rules_removed</span>, <span class="ident">rules</span>))

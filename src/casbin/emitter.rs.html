@@ -104,6 +104,12 @@
 <span id="104">104</span>
 <span id="105">105</span>
 <span id="106">106</span>
+<span id="107">107</span>
+<span id="108">108</span>
+<span id="109">109</span>
+<span id="110">110</span>
+<span id="111">111</span>
+<span id="112">112</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;watcher&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;cached&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;logging&quot;</span>))]</span>
 <span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">core_api</span>::<span class="ident">CoreApi</span>;
@@ -130,6 +136,7 @@
     <span class="ident">RemovePolicies</span>(<span class="ident">String</span>, <span class="ident">String</span>, <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span><span class="op">&gt;</span>),
     <span class="ident">RemoveFilteredPolicy</span>(<span class="ident">String</span>, <span class="ident">String</span>, <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span><span class="op">&gt;</span>),
     <span class="ident">SavePolicy</span>(<span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span><span class="op">&gt;</span>),
+    <span class="ident">ClearPolicy</span>,
     <span class="ident">ClearCache</span>,
 }
 
@@ -139,41 +146,44 @@
         <span class="kw">match</span> <span class="kw-2">*</span><span class="self">self</span> {
             <span class="ident">AddPolicy</span>(<span class="kw-2">ref</span> <span class="ident">sec</span>, <span class="kw-2">ref</span> <span class="ident">ptype</span>, <span class="kw-2">ref</span> <span class="ident">p</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="macro">write</span><span class="macro">!</span>(
                 <span class="ident">f</span>,
-                <span class="string">&quot;Event: AddPolicy, Assertion: {}::{},  Data: {:?}&quot;</span>,
+                <span class="string">&quot;Type: AddPolicy, Assertion: {}::{},  Data: {:?}&quot;</span>,
                 <span class="ident">sec</span>,
                 <span class="ident">ptype</span>,
                 <span class="ident">p</span>.<span class="ident">join</span>(<span class="string">&quot;, &quot;</span>)
             ),
             <span class="ident">AddPolicies</span>(<span class="kw-2">ref</span> <span class="ident">sec</span>, <span class="kw-2">ref</span> <span class="ident">ptype</span>, <span class="kw-2">ref</span> <span class="ident">p</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="macro">write</span><span class="macro">!</span>(
                 <span class="ident">f</span>,
-                <span class="string">&quot;Event: AddPolicies, Assertion: {}::{}, Added: {}&quot;</span>,
+                <span class="string">&quot;Type: AddPolicies, Assertion: {}::{}, Added: {}&quot;</span>,
                 <span class="ident">sec</span>,
                 <span class="ident">ptype</span>,
                 <span class="ident">p</span>.<span class="ident">len</span>()
             ),
             <span class="ident">RemovePolicy</span>(<span class="kw-2">ref</span> <span class="ident">sec</span>, <span class="kw-2">ref</span> <span class="ident">ptype</span>, <span class="kw-2">ref</span> <span class="ident">p</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="macro">write</span><span class="macro">!</span>(
                 <span class="ident">f</span>,
-                <span class="string">&quot;Event: RemovePolicy, Assertion: {}::{}, Data: {:?}&quot;</span>,
+                <span class="string">&quot;Type: RemovePolicy, Assertion: {}::{}, Data: {:?}&quot;</span>,
                 <span class="ident">sec</span>,
                 <span class="ident">ptype</span>,
                 <span class="ident">p</span>.<span class="ident">join</span>(<span class="string">&quot;, &quot;</span>)
             ),
             <span class="ident">RemovePolicies</span>(<span class="kw-2">ref</span> <span class="ident">sec</span>, <span class="kw-2">ref</span> <span class="ident">ptype</span>, <span class="kw-2">ref</span> <span class="ident">p</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="macro">write</span><span class="macro">!</span>(
                 <span class="ident">f</span>,
-                <span class="string">&quot;Event: RemovePolicies, Assertion: {}::{}, Removed: {}&quot;</span>,
+                <span class="string">&quot;Type: RemovePolicies, Assertion: {}::{}, Removed: {}&quot;</span>,
                 <span class="ident">sec</span>,
                 <span class="ident">ptype</span>,
                 <span class="ident">p</span>.<span class="ident">len</span>()
             ),
             <span class="ident">RemoveFilteredPolicy</span>(<span class="kw-2">ref</span> <span class="ident">sec</span>, <span class="kw-2">ref</span> <span class="ident">ptype</span>, <span class="kw-2">ref</span> <span class="ident">p</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="macro">write</span><span class="macro">!</span>(
                 <span class="ident">f</span>,
-                <span class="string">&quot;Event: RemoveFilteredPolicy, Assertion: {}::{}, Removed: {}&quot;</span>,
+                <span class="string">&quot;Type: RemoveFilteredPolicy, Assertion: {}::{}, Removed: {}&quot;</span>,
                 <span class="ident">sec</span>,
                 <span class="ident">ptype</span>,
                 <span class="ident">p</span>.<span class="ident">len</span>()
             ),
-            <span class="ident">SavePolicy</span>(<span class="kw-2">ref</span> <span class="ident">p</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="macro">write</span><span class="macro">!</span>(<span class="ident">f</span>, <span class="string">&quot;Event: SavePolicy, Saved: {}&quot;</span>, <span class="ident">p</span>.<span class="ident">len</span>()),
-            <span class="ident">ClearCache</span> <span class="op">=</span><span class="op">&gt;</span> <span class="macro">write</span><span class="macro">!</span>(<span class="ident">f</span>, <span class="string">&quot;Event: ClearCache, Data: ClearCache&quot;</span>),
+            <span class="ident">SavePolicy</span>(<span class="kw-2">ref</span> <span class="ident">p</span>) <span class="op">=</span><span class="op">&gt;</span> {
+                <span class="macro">write</span><span class="macro">!</span>(<span class="ident">f</span>, <span class="string">&quot;Type: SavePolicy, Saved: {}&quot;</span>, <span class="ident">p</span>.<span class="ident">len</span>())
+            }
+            <span class="ident">ClearPolicy</span> <span class="op">=</span><span class="op">&gt;</span> <span class="macro">write</span><span class="macro">!</span>(<span class="ident">f</span>, <span class="string">&quot;Type: ClearPolicy&quot;</span>),
+            <span class="ident">ClearCache</span> <span class="op">=</span><span class="op">&gt;</span> <span class="macro">write</span><span class="macro">!</span>(<span class="ident">f</span>, <span class="string">&quot;Type: ClearCache, Data: ClearCache&quot;</span>),
         }
     }
 }
@@ -182,7 +192,9 @@
 <span class="kw">where</span>
     <span class="ident">K</span>: <span class="ident">EventKey</span>,
 {
-    <span class="kw">fn</span> <span class="ident">on</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">e</span>: <span class="ident">K</span>, <span class="ident">f</span>: <span class="kw">fn</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">Self</span>, <span class="ident">EventData</span>));
+    <span class="kw">fn</span> <span class="ident">on</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">e</span>: <span class="ident">K</span>, <span class="ident">f</span>: <span class="kw">fn</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">Self</span>, <span class="ident">EventData</span>))
+    <span class="kw">where</span>
+        <span class="self">Self</span>: <span class="ident">Sized</span>;
     <span class="kw">fn</span> <span class="ident">off</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">e</span>: <span class="ident">K</span>);
     <span class="kw">fn</span> <span class="ident">emit</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">e</span>: <span class="ident">K</span>, <span class="ident">d</span>: <span class="ident">EventData</span>);
 }

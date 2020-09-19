@@ -1466,7 +1466,7 @@
             .<span class="ident">into</span>());
         }
 
-        <span class="kw">for</span> (<span class="ident">rtoken</span>, <span class="ident">rval</span>) <span class="kw">in</span> <span class="ident">r_ast</span>.<span class="ident">tokens</span>.<span class="ident">iter</span>().<span class="ident">zip</span>(<span class="ident">rvals</span>.<span class="ident">into_iter</span>()) {
+        <span class="kw">for</span> (<span class="ident">rtoken</span>, <span class="ident">rval</span>) <span class="kw">in</span> <span class="ident">r_ast</span>.<span class="ident">tokens</span>.<span class="ident">iter</span>().<span class="ident">zip</span>(<span class="ident">rvals</span>.<span class="ident">iter</span>()) {
             <span class="ident">scope</span>.<span class="ident">push_constant_dynamic</span>(<span class="ident">rtoken</span>, <span class="ident">rval</span>.<span class="ident">to_owned</span>());
         }
 

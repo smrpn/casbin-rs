@@ -1,4 +1,7 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source to the Rust file `src/management_api.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>management_api.rs.html -- source</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css"><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script src="../../storage.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="shortcut icon" href="../../favicon.ico"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu">&#9776;</div><a href='../../casbin/index.html'><div class='logo-container'><img src='../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!"><img src="../../brush.svg" width="18" alt="Pick another theme!"></button><div id="theme-choices"></div></div><script src="../../theme.js"></script><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><a id="settings-menu" href="../../settings.html"><img src="../../wheel.svg" width="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><pre class="line-numbers"><span id="1">   1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source to the Rust file `src/management_api.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>management_api.rs.html -- source</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled ><script src="../../storage.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+<link rel="alternate icon" type="image/png" href="../../favicon-16x16.png">
+<link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu">&#9776;</div><a href='../../casbin/index.html'><div class='logo-container rust-logo'><img src='../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!"><img src="../../brush.svg" width="18" alt="Pick another theme!"></button><div id="theme-choices"></div></div><script src="../../theme.js"></script><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><span class="help-button">?</span>
+                <a id="settings-menu" href="../../settings.html"><img src="../../wheel.svg" width="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><pre class="line-numbers"><span id="1">   1</span>
 <span id="2">   2</span>
 <span id="3">   3</span>
 <span id="4">   4</span>
@@ -1191,108 +1194,108 @@
 
 <span class="attribute">#[<span class="ident">async_trait</span>]</span>
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">MgmtApi</span>: <span class="ident">InternalApi</span> {
-    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">add_policy</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">params</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">bool</span><span class="op">&gt;</span> {
-        <span class="self">self</span>.<span class="ident">add_named_policy</span>(<span class="string">&quot;p&quot;</span>, <span class="ident">params</span>).<span class="kw">await</span>
+    <span class="ident">async</span> <span class="kw">fn</span> <span class="ident">add_policy</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">params</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">bool</span><span class="op">&gt;</span> {
+        <span class="self">self</span>.<span class="ident">add_named_policy</span>(<span class="string">&quot;p&quot;</span>, <span class="ident">params</span>).<span class="ident">await</span>
     }
 
-    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">add_policies</span>(
+    <span class="ident">async</span> <span class="kw">fn</span> <span class="ident">add_policies</span>(
         <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>,
         <span class="ident">paramss</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span><span class="op">&gt;</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">bool</span><span class="op">&gt;</span> {
-        <span class="self">self</span>.<span class="ident">add_named_policies</span>(<span class="string">&quot;p&quot;</span>, <span class="ident">paramss</span>).<span class="kw">await</span>
+        <span class="self">self</span>.<span class="ident">add_named_policies</span>(<span class="string">&quot;p&quot;</span>, <span class="ident">paramss</span>).<span class="ident">await</span>
     }
 
-    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">remove_policy</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">params</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">bool</span><span class="op">&gt;</span> {
-        <span class="self">self</span>.<span class="ident">remove_named_policy</span>(<span class="string">&quot;p&quot;</span>, <span class="ident">params</span>).<span class="kw">await</span>
+    <span class="ident">async</span> <span class="kw">fn</span> <span class="ident">remove_policy</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">params</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">bool</span><span class="op">&gt;</span> {
+        <span class="self">self</span>.<span class="ident">remove_named_policy</span>(<span class="string">&quot;p&quot;</span>, <span class="ident">params</span>).<span class="ident">await</span>
     }
 
-    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">remove_policies</span>(
+    <span class="ident">async</span> <span class="kw">fn</span> <span class="ident">remove_policies</span>(
         <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>,
         <span class="ident">paramss</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span><span class="op">&gt;</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">bool</span><span class="op">&gt;</span> {
-        <span class="self">self</span>.<span class="ident">remove_named_policies</span>(<span class="string">&quot;p&quot;</span>, <span class="ident">paramss</span>).<span class="kw">await</span>
+        <span class="self">self</span>.<span class="ident">remove_named_policies</span>(<span class="string">&quot;p&quot;</span>, <span class="ident">paramss</span>).<span class="ident">await</span>
     }
 
-    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">add_named_policy</span>(
+    <span class="ident">async</span> <span class="kw">fn</span> <span class="ident">add_named_policy</span>(
         <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>,
         <span class="ident">ptype</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>,
         <span class="ident">params</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">bool</span><span class="op">&gt;</span>;
-    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">add_named_policies</span>(
+    <span class="ident">async</span> <span class="kw">fn</span> <span class="ident">add_named_policies</span>(
         <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>,
         <span class="ident">ptype</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>,
         <span class="ident">paramss</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span><span class="op">&gt;</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">bool</span><span class="op">&gt;</span>;
-    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">remove_named_policy</span>(
+    <span class="ident">async</span> <span class="kw">fn</span> <span class="ident">remove_named_policy</span>(
         <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>,
         <span class="ident">ptype</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>,
         <span class="ident">params</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">bool</span><span class="op">&gt;</span>;
-    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">remove_named_policies</span>(
+    <span class="ident">async</span> <span class="kw">fn</span> <span class="ident">remove_named_policies</span>(
         <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>,
         <span class="ident">ptype</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>,
         <span class="ident">paramss</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span><span class="op">&gt;</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">bool</span><span class="op">&gt;</span>;
 
-    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">add_grouping_policy</span>(
-        <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>,
-        <span class="ident">params</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">bool</span><span class="op">&gt;</span> {
-        <span class="self">self</span>.<span class="ident">add_named_grouping_policy</span>(<span class="string">&quot;g&quot;</span>, <span class="ident">params</span>).<span class="kw">await</span>
-    }
-
-    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">add_grouping_policies</span>(
-        <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>,
-        <span class="ident">paramss</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span><span class="op">&gt;</span>,
-    ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">bool</span><span class="op">&gt;</span> {
-        <span class="self">self</span>.<span class="ident">add_named_grouping_policies</span>(<span class="string">&quot;g&quot;</span>, <span class="ident">paramss</span>).<span class="kw">await</span>
-    }
-
-    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">remove_grouping_policy</span>(
+    <span class="ident">async</span> <span class="kw">fn</span> <span class="ident">add_grouping_policy</span>(
         <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>,
         <span class="ident">params</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">bool</span><span class="op">&gt;</span> {
-        <span class="self">self</span>.<span class="ident">remove_named_grouping_policy</span>(<span class="string">&quot;g&quot;</span>, <span class="ident">params</span>).<span class="kw">await</span>
+        <span class="self">self</span>.<span class="ident">add_named_grouping_policy</span>(<span class="string">&quot;g&quot;</span>, <span class="ident">params</span>).<span class="ident">await</span>
     }
 
-    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">remove_grouping_policies</span>(
+    <span class="ident">async</span> <span class="kw">fn</span> <span class="ident">add_grouping_policies</span>(
         <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>,
         <span class="ident">paramss</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span><span class="op">&gt;</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">bool</span><span class="op">&gt;</span> {
-        <span class="self">self</span>.<span class="ident">remove_named_grouping_policies</span>(<span class="string">&quot;g&quot;</span>, <span class="ident">paramss</span>).<span class="kw">await</span>
+        <span class="self">self</span>.<span class="ident">add_named_grouping_policies</span>(<span class="string">&quot;g&quot;</span>, <span class="ident">paramss</span>).<span class="ident">await</span>
     }
 
-    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">add_named_grouping_policy</span>(
+    <span class="ident">async</span> <span class="kw">fn</span> <span class="ident">remove_grouping_policy</span>(
+        <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>,
+        <span class="ident">params</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>,
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">bool</span><span class="op">&gt;</span> {
+        <span class="self">self</span>.<span class="ident">remove_named_grouping_policy</span>(<span class="string">&quot;g&quot;</span>, <span class="ident">params</span>).<span class="ident">await</span>
+    }
+
+    <span class="ident">async</span> <span class="kw">fn</span> <span class="ident">remove_grouping_policies</span>(
+        <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>,
+        <span class="ident">paramss</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">bool</span><span class="op">&gt;</span> {
+        <span class="self">self</span>.<span class="ident">remove_named_grouping_policies</span>(<span class="string">&quot;g&quot;</span>, <span class="ident">paramss</span>).<span class="ident">await</span>
+    }
+
+    <span class="ident">async</span> <span class="kw">fn</span> <span class="ident">add_named_grouping_policy</span>(
         <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>,
         <span class="ident">ptype</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>,
         <span class="ident">params</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">bool</span><span class="op">&gt;</span>;
-    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">add_named_grouping_policies</span>(
+    <span class="ident">async</span> <span class="kw">fn</span> <span class="ident">add_named_grouping_policies</span>(
         <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>,
         <span class="ident">ptype</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>,
         <span class="ident">paramss</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span><span class="op">&gt;</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">bool</span><span class="op">&gt;</span>;
-    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">remove_named_grouping_policy</span>(
+    <span class="ident">async</span> <span class="kw">fn</span> <span class="ident">remove_named_grouping_policy</span>(
         <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>,
         <span class="ident">ptype</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>,
         <span class="ident">params</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">bool</span><span class="op">&gt;</span>;
-    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">remove_named_grouping_policies</span>(
+    <span class="ident">async</span> <span class="kw">fn</span> <span class="ident">remove_named_grouping_policies</span>(
         <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>,
         <span class="ident">ptype</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>,
         <span class="ident">paramss</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span><span class="op">&gt;</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">bool</span><span class="op">&gt;</span>;
 
-    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">remove_filtered_policy</span>(
+    <span class="ident">async</span> <span class="kw">fn</span> <span class="ident">remove_filtered_policy</span>(
         <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>,
         <span class="ident">field_index</span>: <span class="ident">usize</span>,
         <span class="ident">field_values</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">bool</span><span class="op">&gt;</span> {
         <span class="self">self</span>.<span class="ident">remove_filtered_named_policy</span>(<span class="string">&quot;p&quot;</span>, <span class="ident">field_index</span>, <span class="ident">field_values</span>)
-            .<span class="kw">await</span>
+            .<span class="ident">await</span>
     }
 
-    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">remove_filtered_grouping_policy</span>(
+    <span class="ident">async</span> <span class="kw">fn</span> <span class="ident">remove_filtered_grouping_policy</span>(
         <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>,
         <span class="ident">field_index</span>: <span class="ident">usize</span>,
         <span class="ident">field_values</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>,
@@ -1302,16 +1305,16 @@
             <span class="ident">field_index</span>,
             <span class="ident">field_values</span>,
         )
-        .<span class="kw">await</span>
+        .<span class="ident">await</span>
     }
 
-    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">remove_filtered_named_policy</span>(
+    <span class="ident">async</span> <span class="kw">fn</span> <span class="ident">remove_filtered_named_policy</span>(
         <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>,
         <span class="ident">ptype</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>,
         <span class="ident">field_index</span>: <span class="ident">usize</span>,
         <span class="ident">field_values</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">bool</span><span class="op">&gt;</span>;
-    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">remove_filtered_named_grouping_policy</span>(
+    <span class="ident">async</span> <span class="kw">fn</span> <span class="ident">remove_filtered_named_grouping_policy</span>(
         <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>,
         <span class="ident">ptype</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>,
         <span class="ident">field_index</span>: <span class="ident">usize</span>,
@@ -1406,77 +1409,77 @@
 <span class="kw">where</span>
     <span class="ident">T</span>: <span class="ident">InternalApi</span>,
 {
-    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">add_named_policy</span>(
+    <span class="ident">async</span> <span class="kw">fn</span> <span class="ident">add_named_policy</span>(
         <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>,
         <span class="ident">ptype</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>,
         <span class="ident">params</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">bool</span><span class="op">&gt;</span> {
-        <span class="self">self</span>.<span class="ident">add_policy_internal</span>(<span class="string">&quot;p&quot;</span>, <span class="ident">ptype</span>, <span class="ident">params</span>).<span class="kw">await</span>
+        <span class="self">self</span>.<span class="ident">add_policy_internal</span>(<span class="string">&quot;p&quot;</span>, <span class="ident">ptype</span>, <span class="ident">params</span>).<span class="ident">await</span>
     }
 
-    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">add_named_policies</span>(
+    <span class="ident">async</span> <span class="kw">fn</span> <span class="ident">add_named_policies</span>(
         <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>,
         <span class="ident">ptype</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>,
         <span class="ident">paramss</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span><span class="op">&gt;</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">bool</span><span class="op">&gt;</span> {
-        <span class="self">self</span>.<span class="ident">add_policies_internal</span>(<span class="string">&quot;p&quot;</span>, <span class="ident">ptype</span>, <span class="ident">paramss</span>).<span class="kw">await</span>
+        <span class="self">self</span>.<span class="ident">add_policies_internal</span>(<span class="string">&quot;p&quot;</span>, <span class="ident">ptype</span>, <span class="ident">paramss</span>).<span class="ident">await</span>
     }
 
-    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">remove_named_policy</span>(
+    <span class="ident">async</span> <span class="kw">fn</span> <span class="ident">remove_named_policy</span>(
         <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>,
         <span class="ident">ptype</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>,
         <span class="ident">params</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">bool</span><span class="op">&gt;</span> {
-        <span class="self">self</span>.<span class="ident">remove_policy_internal</span>(<span class="string">&quot;p&quot;</span>, <span class="ident">ptype</span>, <span class="ident">params</span>).<span class="kw">await</span>
+        <span class="self">self</span>.<span class="ident">remove_policy_internal</span>(<span class="string">&quot;p&quot;</span>, <span class="ident">ptype</span>, <span class="ident">params</span>).<span class="ident">await</span>
     }
 
-    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">remove_named_policies</span>(
+    <span class="ident">async</span> <span class="kw">fn</span> <span class="ident">remove_named_policies</span>(
         <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>,
         <span class="ident">ptype</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>,
         <span class="ident">paramss</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span><span class="op">&gt;</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">bool</span><span class="op">&gt;</span> {
-        <span class="self">self</span>.<span class="ident">remove_policies_internal</span>(<span class="string">&quot;p&quot;</span>, <span class="ident">ptype</span>, <span class="ident">paramss</span>).<span class="kw">await</span>
+        <span class="self">self</span>.<span class="ident">remove_policies_internal</span>(<span class="string">&quot;p&quot;</span>, <span class="ident">ptype</span>, <span class="ident">paramss</span>).<span class="ident">await</span>
     }
 
-    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">add_named_grouping_policy</span>(
+    <span class="ident">async</span> <span class="kw">fn</span> <span class="ident">add_named_grouping_policy</span>(
         <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>,
         <span class="ident">ptype</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>,
         <span class="ident">params</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">bool</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">rule_added</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">add_policy_internal</span>(<span class="string">&quot;g&quot;</span>, <span class="ident">ptype</span>, <span class="ident">params</span>).<span class="kw">await</span><span class="question-mark">?</span>;
+        <span class="kw">let</span> <span class="ident">rule_added</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">add_policy_internal</span>(<span class="string">&quot;g&quot;</span>, <span class="ident">ptype</span>, <span class="ident">params</span>).<span class="ident">await</span><span class="question-mark">?</span>;
         <span class="prelude-val">Ok</span>(<span class="ident">rule_added</span>)
     }
 
-    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">add_named_grouping_policies</span>(
+    <span class="ident">async</span> <span class="kw">fn</span> <span class="ident">add_named_grouping_policies</span>(
         <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>,
         <span class="ident">ptype</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>,
         <span class="ident">paramss</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span><span class="op">&gt;</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">bool</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">all_added</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">add_policies_internal</span>(<span class="string">&quot;g&quot;</span>, <span class="ident">ptype</span>, <span class="ident">paramss</span>).<span class="kw">await</span><span class="question-mark">?</span>;
+        <span class="kw">let</span> <span class="ident">all_added</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">add_policies_internal</span>(<span class="string">&quot;g&quot;</span>, <span class="ident">ptype</span>, <span class="ident">paramss</span>).<span class="ident">await</span><span class="question-mark">?</span>;
         <span class="prelude-val">Ok</span>(<span class="ident">all_added</span>)
     }
 
-    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">remove_named_grouping_policy</span>(
+    <span class="ident">async</span> <span class="kw">fn</span> <span class="ident">remove_named_grouping_policy</span>(
         <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>,
         <span class="ident">ptype</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>,
         <span class="ident">params</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">bool</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="ident">rule_removed</span> <span class="op">=</span>
-            <span class="self">self</span>.<span class="ident">remove_policy_internal</span>(<span class="string">&quot;g&quot;</span>, <span class="ident">ptype</span>, <span class="ident">params</span>).<span class="kw">await</span><span class="question-mark">?</span>;
+            <span class="self">self</span>.<span class="ident">remove_policy_internal</span>(<span class="string">&quot;g&quot;</span>, <span class="ident">ptype</span>, <span class="ident">params</span>).<span class="ident">await</span><span class="question-mark">?</span>;
         <span class="prelude-val">Ok</span>(<span class="ident">rule_removed</span>)
     }
 
-    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">remove_named_grouping_policies</span>(
+    <span class="ident">async</span> <span class="kw">fn</span> <span class="ident">remove_named_grouping_policies</span>(
         <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>,
         <span class="ident">ptype</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>,
         <span class="ident">paramss</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span><span class="op">&gt;</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">bool</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="ident">all_removed</span> <span class="op">=</span>
-            <span class="self">self</span>.<span class="ident">remove_policies_internal</span>(<span class="string">&quot;g&quot;</span>, <span class="ident">ptype</span>, <span class="ident">paramss</span>).<span class="kw">await</span><span class="question-mark">?</span>;
+            <span class="self">self</span>.<span class="ident">remove_policies_internal</span>(<span class="string">&quot;g&quot;</span>, <span class="ident">ptype</span>, <span class="ident">paramss</span>).<span class="ident">await</span><span class="question-mark">?</span>;
         <span class="prelude-val">Ok</span>(<span class="ident">all_removed</span>)
     }
 
-    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">remove_filtered_named_grouping_policy</span>(
+    <span class="ident">async</span> <span class="kw">fn</span> <span class="ident">remove_filtered_named_grouping_policy</span>(
         <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>,
         <span class="ident">ptype</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>,
         <span class="ident">field_index</span>: <span class="ident">usize</span>,
@@ -1490,11 +1493,11 @@
                 <span class="ident">field_index</span>,
                 <span class="ident">field_values</span>,
             )
-            .<span class="kw">await</span><span class="question-mark">?</span>;
+            .<span class="ident">await</span><span class="question-mark">?</span>;
         <span class="prelude-val">Ok</span>(<span class="ident">rule_removed</span>)
     }
 
-    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">remove_filtered_named_policy</span>(
+    <span class="ident">async</span> <span class="kw">fn</span> <span class="ident">remove_filtered_named_policy</span>(
         <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>,
         <span class="ident">ptype</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>,
         <span class="ident">field_index</span>: <span class="ident">usize</span>,
@@ -1507,7 +1510,7 @@
                 <span class="ident">field_index</span>,
                 <span class="ident">field_values</span>,
             )
-            .<span class="kw">await</span><span class="question-mark">?</span>
+            .<span class="ident">await</span><span class="question-mark">?</span>
             .<span class="number">0</span>)
     }
 
@@ -1630,13 +1633,13 @@
         <span class="ident">all</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;runtime-tokio&quot;</span>, <span class="ident">not</span>(<span class="ident">target_arch</span> <span class="op">=</span> <span class="string">&quot;wasm32&quot;</span>)),
         <span class="ident">tokio</span>::<span class="ident">test</span>
     )]</span>
-    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">test_modify_grouping_policy_api</span>() {
+    <span class="ident">async</span> <span class="kw">fn</span> <span class="ident">test_modify_grouping_policy_api</span>() {
         <span class="kw">let</span> <span class="ident">m</span> <span class="op">=</span> <span class="ident">DefaultModel</span>::<span class="ident">from_file</span>(<span class="string">&quot;examples/rbac_model.conf&quot;</span>)
-            .<span class="kw">await</span>
+            .<span class="ident">await</span>
             .<span class="ident">unwrap</span>();
 
         <span class="kw">let</span> <span class="ident">adapter</span> <span class="op">=</span> <span class="ident">FileAdapter</span>::<span class="ident">new</span>(<span class="string">&quot;examples/rbac_policy.csv&quot;</span>);
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">e</span> <span class="op">=</span> <span class="ident">Enforcer</span>::<span class="ident">new</span>(<span class="ident">m</span>, <span class="ident">adapter</span>).<span class="kw">await</span>.<span class="ident">unwrap</span>();
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">e</span> <span class="op">=</span> <span class="ident">Enforcer</span>::<span class="ident">new</span>(<span class="ident">m</span>, <span class="ident">adapter</span>).<span class="ident">await</span>.<span class="ident">unwrap</span>();
 
         <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="macro">vec</span><span class="macro">!</span>[<span class="string">&quot;data2_admin&quot;</span>], <span class="ident">e</span>.<span class="ident">get_roles_for_user</span>(<span class="string">&quot;alice&quot;</span>, <span class="prelude-val">None</span>));
         <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="macro">vec</span><span class="macro">!</span>[<span class="ident">String</span>::<span class="ident">new</span>(); <span class="number">0</span>], <span class="ident">e</span>.<span class="ident">get_roles_for_user</span>(<span class="string">&quot;bob&quot;</span>, <span class="prelude-val">None</span>));
@@ -1652,7 +1655,7 @@
                 .<span class="ident">map</span>(<span class="op">|</span><span class="ident">s</span><span class="op">|</span> <span class="ident">s</span>.<span class="ident">to_string</span>())
                 .<span class="ident">collect</span>(),
         )
-        .<span class="kw">await</span>
+        .<span class="ident">await</span>
         .<span class="ident">unwrap</span>();
         <span class="ident">e</span>.<span class="ident">add_grouping_policy</span>(
             <span class="macro">vec</span><span class="macro">!</span>[<span class="string">&quot;bob&quot;</span>, <span class="string">&quot;data1_admin&quot;</span>]
@@ -1660,7 +1663,7 @@
                 .<span class="ident">map</span>(<span class="op">|</span><span class="ident">s</span><span class="op">|</span> <span class="ident">s</span>.<span class="ident">to_string</span>())
                 .<span class="ident">collect</span>(),
         )
-        .<span class="kw">await</span>
+        .<span class="ident">await</span>
         .<span class="ident">unwrap</span>();
         <span class="ident">e</span>.<span class="ident">add_grouping_policy</span>(
             <span class="macro">vec</span><span class="macro">!</span>[<span class="string">&quot;eve&quot;</span>, <span class="string">&quot;data3_admin&quot;</span>]
@@ -1668,18 +1671,18 @@
                 .<span class="ident">map</span>(<span class="op">|</span><span class="ident">s</span><span class="op">|</span> <span class="ident">s</span>.<span class="ident">to_string</span>())
                 .<span class="ident">collect</span>(),
         )
-        .<span class="kw">await</span>
+        .<span class="ident">await</span>
         .<span class="ident">unwrap</span>();
 
         <span class="kw">let</span> <span class="ident">named_grouping_policy</span> <span class="op">=</span>
             <span class="macro">vec</span><span class="macro">!</span>[<span class="string">&quot;alice&quot;</span>.<span class="ident">to_string</span>(), <span class="string">&quot;data2_admin&quot;</span>.<span class="ident">to_string</span>()];
         <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="macro">vec</span><span class="macro">!</span>[<span class="ident">String</span>::<span class="ident">new</span>(); <span class="number">0</span>], <span class="ident">e</span>.<span class="ident">get_roles_for_user</span>(<span class="string">&quot;alice&quot;</span>, <span class="prelude-val">None</span>));
         <span class="ident">e</span>.<span class="ident">add_named_grouping_policy</span>(<span class="string">&quot;g&quot;</span>, <span class="ident">named_grouping_policy</span>.<span class="ident">clone</span>())
-            .<span class="kw">await</span>
+            .<span class="ident">await</span>
             .<span class="ident">unwrap</span>();
         <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="macro">vec</span><span class="macro">!</span>[<span class="string">&quot;data2_admin&quot;</span>], <span class="ident">e</span>.<span class="ident">get_roles_for_user</span>(<span class="string">&quot;alice&quot;</span>, <span class="prelude-val">None</span>));
         <span class="ident">e</span>.<span class="ident">remove_named_grouping_policy</span>(<span class="string">&quot;g&quot;</span>, <span class="ident">named_grouping_policy</span>.<span class="ident">clone</span>())
-            .<span class="kw">await</span>
+            .<span class="ident">await</span>
             .<span class="ident">unwrap</span>();
 
         <span class="ident">e</span>.<span class="ident">remove_grouping_policy</span>(
@@ -1688,7 +1691,7 @@
                 .<span class="ident">map</span>(<span class="op">|</span><span class="ident">s</span><span class="op">|</span> <span class="ident">s</span>.<span class="ident">to_string</span>())
                 .<span class="ident">collect</span>(),
         )
-        .<span class="kw">await</span>
+        .<span class="ident">await</span>
         .<span class="ident">unwrap</span>();
         <span class="ident">e</span>.<span class="ident">add_grouping_policy</span>(
             <span class="macro">vec</span><span class="macro">!</span>[<span class="string">&quot;bob&quot;</span>, <span class="string">&quot;data1_admin&quot;</span>]
@@ -1696,7 +1699,7 @@
                 .<span class="ident">map</span>(<span class="op">|</span><span class="ident">s</span><span class="op">|</span> <span class="ident">s</span>.<span class="ident">to_string</span>())
                 .<span class="ident">collect</span>(),
         )
-        .<span class="kw">await</span>
+        .<span class="ident">await</span>
         .<span class="ident">unwrap</span>();
         <span class="ident">e</span>.<span class="ident">add_grouping_policy</span>(
             <span class="macro">vec</span><span class="macro">!</span>[<span class="string">&quot;eve&quot;</span>, <span class="string">&quot;data3_admin&quot;</span>]
@@ -1704,7 +1707,7 @@
                 .<span class="ident">map</span>(<span class="op">|</span><span class="ident">s</span><span class="op">|</span> <span class="ident">s</span>.<span class="ident">to_string</span>())
                 .<span class="ident">collect</span>(),
         )
-        .<span class="kw">await</span>
+        .<span class="ident">await</span>
         .<span class="ident">unwrap</span>();
 
         <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="macro">vec</span><span class="macro">!</span>[<span class="string">&quot;bob&quot;</span>], <span class="ident">e</span>.<span class="ident">get_users_for_role</span>(<span class="string">&quot;data1_admin&quot;</span>, <span class="prelude-val">None</span>));
@@ -1718,7 +1721,7 @@
             <span class="number">0</span>,
             <span class="macro">vec</span><span class="macro">!</span>[<span class="string">&quot;bob&quot;</span>].<span class="ident">iter</span>().<span class="ident">map</span>(<span class="op">|</span><span class="ident">s</span><span class="op">|</span> <span class="ident">s</span>.<span class="ident">to_string</span>()).<span class="ident">collect</span>(),
         )
-        .<span class="kw">await</span>
+        .<span class="ident">await</span>
         .<span class="ident">unwrap</span>();
 
         <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="macro">vec</span><span class="macro">!</span>[<span class="ident">String</span>::<span class="ident">new</span>(); <span class="number">0</span>], <span class="ident">e</span>.<span class="ident">get_roles_for_user</span>(<span class="string">&quot;alice&quot;</span>, <span class="prelude-val">None</span>));
@@ -1749,13 +1752,13 @@
         <span class="ident">all</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;runtime-tokio&quot;</span>, <span class="ident">not</span>(<span class="ident">target_arch</span> <span class="op">=</span> <span class="string">&quot;wasm32&quot;</span>)),
         <span class="ident">tokio</span>::<span class="ident">test</span>
     )]</span>
-    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">test_modify_policy_api</span>() {
+    <span class="ident">async</span> <span class="kw">fn</span> <span class="ident">test_modify_policy_api</span>() {
         <span class="kw">let</span> <span class="ident">m</span> <span class="op">=</span> <span class="ident">DefaultModel</span>::<span class="ident">from_file</span>(<span class="string">&quot;examples/rbac_model.conf&quot;</span>)
-            .<span class="kw">await</span>
+            .<span class="ident">await</span>
             .<span class="ident">unwrap</span>();
 
         <span class="kw">let</span> <span class="ident">adapter</span> <span class="op">=</span> <span class="ident">FileAdapter</span>::<span class="ident">new</span>(<span class="string">&quot;examples/rbac_policy.csv&quot;</span>);
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">e</span> <span class="op">=</span> <span class="ident">Enforcer</span>::<span class="ident">new</span>(<span class="ident">m</span>, <span class="ident">adapter</span>).<span class="kw">await</span>.<span class="ident">unwrap</span>();
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">e</span> <span class="op">=</span> <span class="ident">Enforcer</span>::<span class="ident">new</span>(<span class="ident">m</span>, <span class="ident">adapter</span>).<span class="ident">await</span>.<span class="ident">unwrap</span>();
 
         <span class="macro">assert_eq</span><span class="macro">!</span>(
             <span class="macro">vec</span><span class="macro">!</span>[
@@ -1773,7 +1776,7 @@
                 .<span class="ident">map</span>(<span class="op">|</span><span class="ident">s</span><span class="op">|</span> <span class="ident">s</span>.<span class="ident">to_string</span>())
                 .<span class="ident">collect</span>(),
         )
-        .<span class="kw">await</span>
+        .<span class="ident">await</span>
         .<span class="ident">unwrap</span>();
         <span class="ident">e</span>.<span class="ident">remove_policy</span>(
             <span class="macro">vec</span><span class="macro">!</span>[<span class="string">&quot;bob&quot;</span>, <span class="string">&quot;data2&quot;</span>, <span class="string">&quot;write&quot;</span>]
@@ -1781,7 +1784,7 @@
                 .<span class="ident">map</span>(<span class="op">|</span><span class="ident">s</span><span class="op">|</span> <span class="ident">s</span>.<span class="ident">to_string</span>())
                 .<span class="ident">collect</span>(),
         )
-        .<span class="kw">await</span>
+        .<span class="ident">await</span>
         .<span class="ident">unwrap</span>();
         <span class="ident">e</span>.<span class="ident">remove_policy</span>(
             <span class="macro">vec</span><span class="macro">!</span>[<span class="string">&quot;alice&quot;</span>, <span class="string">&quot;data1&quot;</span>, <span class="string">&quot;read&quot;</span>]
@@ -1789,7 +1792,7 @@
                 .<span class="ident">map</span>(<span class="op">|</span><span class="ident">s</span><span class="op">|</span> <span class="ident">s</span>.<span class="ident">to_string</span>())
                 .<span class="ident">collect</span>(),
         )
-        .<span class="kw">await</span>
+        .<span class="ident">await</span>
         .<span class="ident">unwrap</span>();
         <span class="ident">e</span>.<span class="ident">add_policy</span>(
             <span class="macro">vec</span><span class="macro">!</span>[<span class="string">&quot;eve&quot;</span>, <span class="string">&quot;data3&quot;</span>, <span class="string">&quot;read&quot;</span>]
@@ -1797,7 +1800,7 @@
                 .<span class="ident">map</span>(<span class="op">|</span><span class="ident">s</span><span class="op">|</span> <span class="ident">s</span>.<span class="ident">to_string</span>())
                 .<span class="ident">collect</span>(),
         )
-        .<span class="kw">await</span>
+        .<span class="ident">await</span>
         .<span class="ident">unwrap</span>();
         <span class="ident">e</span>.<span class="ident">add_policy</span>(
             <span class="macro">vec</span><span class="macro">!</span>[<span class="string">&quot;eve&quot;</span>, <span class="string">&quot;data3&quot;</span>, <span class="string">&quot;read&quot;</span>]
@@ -1805,15 +1808,15 @@
                 .<span class="ident">map</span>(<span class="op">|</span><span class="ident">s</span><span class="op">|</span> <span class="ident">s</span>.<span class="ident">to_string</span>())
                 .<span class="ident">collect</span>(),
         )
-        .<span class="kw">await</span>
+        .<span class="ident">await</span>
         .<span class="ident">unwrap</span>();
 
         <span class="kw">let</span> <span class="ident">named_policy</span> <span class="op">=</span>
             <span class="macro">vec</span><span class="macro">!</span>[<span class="string">&quot;eve&quot;</span>.<span class="ident">to_string</span>(), <span class="string">&quot;data3&quot;</span>.<span class="ident">to_string</span>(), <span class="string">&quot;read&quot;</span>.<span class="ident">to_string</span>()];
         <span class="ident">e</span>.<span class="ident">remove_named_policy</span>(<span class="string">&quot;p&quot;</span>, <span class="ident">named_policy</span>.<span class="ident">clone</span>())
-            .<span class="kw">await</span>
+            .<span class="ident">await</span>
             .<span class="ident">unwrap</span>();
-        <span class="ident">e</span>.<span class="ident">add_named_policy</span>(<span class="string">&quot;p&quot;</span>, <span class="ident">named_policy</span>.<span class="ident">clone</span>()).<span class="kw">await</span>.<span class="ident">unwrap</span>();
+        <span class="ident">e</span>.<span class="ident">add_named_policy</span>(<span class="string">&quot;p&quot;</span>, <span class="ident">named_policy</span>.<span class="ident">clone</span>()).<span class="ident">await</span>.<span class="ident">unwrap</span>();
 
         <span class="macro">assert_eq</span><span class="macro">!</span>(
             <span class="macro">vec</span><span class="macro">!</span>[
@@ -1828,7 +1831,7 @@
             <span class="number">1</span>,
             <span class="macro">vec</span><span class="macro">!</span>[<span class="string">&quot;data2&quot;</span>].<span class="ident">iter</span>().<span class="ident">map</span>(<span class="op">|</span><span class="ident">s</span><span class="op">|</span> <span class="ident">s</span>.<span class="ident">to_string</span>()).<span class="ident">collect</span>(),
         )
-        .<span class="kw">await</span>
+        .<span class="ident">await</span>
         .<span class="ident">unwrap</span>();
         <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="macro">vec</span><span class="macro">!</span>[<span class="macro">vec</span><span class="macro">!</span>[<span class="string">&quot;eve&quot;</span>, <span class="string">&quot;data3&quot;</span>, <span class="string">&quot;read&quot;</span>],], <span class="ident">e</span>.<span class="ident">get_policy</span>());
     }
@@ -1842,13 +1845,13 @@
         <span class="ident">all</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;runtime-tokio&quot;</span>, <span class="ident">not</span>(<span class="ident">target_arch</span> <span class="op">=</span> <span class="string">&quot;wasm32&quot;</span>)),
         <span class="ident">tokio</span>::<span class="ident">test</span>
     )]</span>
-    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">test_get_policy_api</span>() {
+    <span class="ident">async</span> <span class="kw">fn</span> <span class="ident">test_get_policy_api</span>() {
         <span class="kw">let</span> <span class="ident">m</span> <span class="op">=</span> <span class="ident">DefaultModel</span>::<span class="ident">from_file</span>(<span class="string">&quot;examples/rbac_model.conf&quot;</span>)
-            .<span class="kw">await</span>
+            .<span class="ident">await</span>
             .<span class="ident">unwrap</span>();
 
         <span class="kw">let</span> <span class="ident">adapter</span> <span class="op">=</span> <span class="ident">FileAdapter</span>::<span class="ident">new</span>(<span class="string">&quot;examples/rbac_policy.csv&quot;</span>);
-        <span class="kw">let</span> <span class="ident">e</span> <span class="op">=</span> <span class="ident">Enforcer</span>::<span class="ident">new</span>(<span class="ident">m</span>, <span class="ident">adapter</span>).<span class="kw">await</span>.<span class="ident">unwrap</span>();
+        <span class="kw">let</span> <span class="ident">e</span> <span class="op">=</span> <span class="ident">Enforcer</span>::<span class="ident">new</span>(<span class="ident">m</span>, <span class="ident">adapter</span>).<span class="ident">await</span>.<span class="ident">unwrap</span>();
 
         <span class="macro">assert_eq</span><span class="macro">!</span>(
             <span class="macro">vec</span><span class="macro">!</span>[
@@ -2068,13 +2071,13 @@
         <span class="ident">all</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;runtime-tokio&quot;</span>, <span class="ident">not</span>(<span class="ident">target_arch</span> <span class="op">=</span> <span class="string">&quot;wasm32&quot;</span>)),
         <span class="ident">tokio</span>::<span class="ident">test</span>
     )]</span>
-    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">test_get_list</span>() {
+    <span class="ident">async</span> <span class="kw">fn</span> <span class="ident">test_get_list</span>() {
         <span class="kw">let</span> <span class="ident">m</span> <span class="op">=</span> <span class="ident">DefaultModel</span>::<span class="ident">from_file</span>(<span class="string">&quot;examples/rbac_model.conf&quot;</span>)
-            .<span class="kw">await</span>
+            .<span class="ident">await</span>
             .<span class="ident">unwrap</span>();
 
         <span class="kw">let</span> <span class="ident">adapter</span> <span class="op">=</span> <span class="ident">FileAdapter</span>::<span class="ident">new</span>(<span class="string">&quot;examples/rbac_policy.csv&quot;</span>);
-        <span class="kw">let</span> <span class="ident">e</span> <span class="op">=</span> <span class="ident">Enforcer</span>::<span class="ident">new</span>(<span class="ident">m</span>, <span class="ident">adapter</span>).<span class="kw">await</span>.<span class="ident">unwrap</span>();
+        <span class="kw">let</span> <span class="ident">e</span> <span class="op">=</span> <span class="ident">Enforcer</span>::<span class="ident">new</span>(<span class="ident">m</span>, <span class="ident">adapter</span>).<span class="ident">await</span>.<span class="ident">unwrap</span>();
 
         <span class="macro">assert_eq</span><span class="macro">!</span>(
             <span class="macro">vec</span><span class="macro">!</span>[<span class="string">&quot;alice&quot;</span>, <span class="string">&quot;bob&quot;</span>, <span class="string">&quot;data2_admin&quot;</span>],
@@ -2094,13 +2097,13 @@
         <span class="ident">all</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;runtime-tokio&quot;</span>, <span class="ident">not</span>(<span class="ident">target_arch</span> <span class="op">=</span> <span class="string">&quot;wasm32&quot;</span>)),
         <span class="ident">tokio</span>::<span class="ident">test</span>
     )]</span>
-    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">test_modify_policies_api</span>() {
+    <span class="ident">async</span> <span class="kw">fn</span> <span class="ident">test_modify_policies_api</span>() {
         <span class="kw">let</span> <span class="ident">m</span> <span class="op">=</span> <span class="ident">DefaultModel</span>::<span class="ident">from_file</span>(<span class="string">&quot;examples/rbac_model.conf&quot;</span>)
-            .<span class="kw">await</span>
+            .<span class="ident">await</span>
             .<span class="ident">unwrap</span>();
 
         <span class="kw">let</span> <span class="ident">adapter</span> <span class="op">=</span> <span class="ident">FileAdapter</span>::<span class="ident">new</span>(<span class="string">&quot;examples/rbac_policy.csv&quot;</span>);
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">e</span> <span class="op">=</span> <span class="ident">Enforcer</span>::<span class="ident">new</span>(<span class="ident">m</span>, <span class="ident">adapter</span>).<span class="kw">await</span>.<span class="ident">unwrap</span>();
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">e</span> <span class="op">=</span> <span class="ident">Enforcer</span>::<span class="ident">new</span>(<span class="ident">m</span>, <span class="ident">adapter</span>).<span class="ident">await</span>.<span class="ident">unwrap</span>();
 
         <span class="macro">assert_eq</span><span class="macro">!</span>(
             <span class="macro">vec</span><span class="macro">!</span>[
@@ -2122,13 +2125,13 @@
                 .<span class="ident">map</span>(<span class="op">|</span><span class="ident">s</span><span class="op">|</span> <span class="ident">s</span>.<span class="ident">to_string</span>())
                 .<span class="ident">collect</span>(),
         ])
-        .<span class="kw">await</span>
+        .<span class="ident">await</span>
         .<span class="ident">unwrap</span>();
         <span class="ident">e</span>.<span class="ident">remove_policies</span>(<span class="macro">vec</span><span class="macro">!</span>[<span class="macro">vec</span><span class="macro">!</span>[<span class="string">&quot;alice&quot;</span>, <span class="string">&quot;data1&quot;</span>, <span class="string">&quot;read&quot;</span>]
             .<span class="ident">iter</span>()
             .<span class="ident">map</span>(<span class="op">|</span><span class="ident">s</span><span class="op">|</span> <span class="ident">s</span>.<span class="ident">to_string</span>())
             .<span class="ident">collect</span>()])
-            .<span class="kw">await</span>
+            .<span class="ident">await</span>
             .<span class="ident">unwrap</span>();
         <span class="macro">assert_eq</span><span class="macro">!</span>(
             <span class="bool-val">false</span>,
@@ -2170,7 +2173,7 @@
             .<span class="ident">iter</span>()
             .<span class="ident">map</span>(<span class="op">|</span><span class="ident">s</span><span class="op">|</span> <span class="ident">s</span>.<span class="ident">to_string</span>())
             .<span class="ident">collect</span>()])
-            .<span class="kw">await</span>
+            .<span class="ident">await</span>
             .<span class="ident">unwrap</span>();
         <span class="ident">e</span>.<span class="ident">add_policies</span>(<span class="macro">vec</span><span class="macro">!</span>[
             <span class="macro">vec</span><span class="macro">!</span>[<span class="string">&quot;eve&quot;</span>, <span class="string">&quot;data3&quot;</span>, <span class="string">&quot;read&quot;</span>]
@@ -2182,7 +2185,7 @@
                 .<span class="ident">map</span>(<span class="op">|</span><span class="ident">s</span><span class="op">|</span> <span class="ident">s</span>.<span class="ident">to_string</span>())
                 .<span class="ident">collect</span>(),
         ])
-        .<span class="kw">await</span>
+        .<span class="ident">await</span>
         .<span class="ident">unwrap</span>();
         <span class="macro">assert_eq</span><span class="macro">!</span>(
             <span class="bool-val">false</span>,
@@ -2233,10 +2236,10 @@
         <span class="kw">let</span> <span class="ident">named_policy</span> <span class="op">=</span>
             <span class="macro">vec</span><span class="macro">!</span>[<span class="string">&quot;eve&quot;</span>.<span class="ident">to_string</span>(), <span class="string">&quot;data3&quot;</span>.<span class="ident">to_string</span>(), <span class="string">&quot;read&quot;</span>.<span class="ident">to_string</span>()];
         <span class="ident">e</span>.<span class="ident">remove_named_policies</span>(<span class="string">&quot;p&quot;</span>, <span class="macro">vec</span><span class="macro">!</span>[<span class="ident">named_policy</span>.<span class="ident">clone</span>()])
-            .<span class="kw">await</span>
+            .<span class="ident">await</span>
             .<span class="ident">unwrap</span>();
         <span class="ident">e</span>.<span class="ident">add_named_policies</span>(<span class="string">&quot;p&quot;</span>, <span class="macro">vec</span><span class="macro">!</span>[<span class="ident">named_policy</span>.<span class="ident">clone</span>()])
-            .<span class="kw">await</span>
+            .<span class="ident">await</span>
             .<span class="ident">unwrap</span>();
 
         <span class="macro">assert_eq</span><span class="macro">!</span>(
@@ -2252,7 +2255,7 @@
             <span class="number">1</span>,
             <span class="macro">vec</span><span class="macro">!</span>[<span class="string">&quot;data2&quot;</span>].<span class="ident">iter</span>().<span class="ident">map</span>(<span class="op">|</span><span class="ident">s</span><span class="op">|</span> <span class="ident">s</span>.<span class="ident">to_string</span>()).<span class="ident">collect</span>(),
         )
-        .<span class="kw">await</span>
+        .<span class="ident">await</span>
         .<span class="ident">unwrap</span>();
         <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="macro">vec</span><span class="macro">!</span>[<span class="macro">vec</span><span class="macro">!</span>[<span class="string">&quot;eve&quot;</span>, <span class="string">&quot;data3&quot;</span>, <span class="string">&quot;read&quot;</span>],], <span class="ident">e</span>.<span class="ident">get_policy</span>());
     }
@@ -2266,13 +2269,13 @@
         <span class="ident">all</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;runtime-tokio&quot;</span>, <span class="ident">not</span>(<span class="ident">target_arch</span> <span class="op">=</span> <span class="string">&quot;wasm32&quot;</span>)),
         <span class="ident">tokio</span>::<span class="ident">test</span>
     )]</span>
-    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">test_modify_grouping_policies_api</span>() {
+    <span class="ident">async</span> <span class="kw">fn</span> <span class="ident">test_modify_grouping_policies_api</span>() {
         <span class="kw">let</span> <span class="ident">m</span> <span class="op">=</span> <span class="ident">DefaultModel</span>::<span class="ident">from_file</span>(<span class="string">&quot;examples/rbac_model.conf&quot;</span>)
-            .<span class="kw">await</span>
+            .<span class="ident">await</span>
             .<span class="ident">unwrap</span>();
 
         <span class="kw">let</span> <span class="ident">adapter</span> <span class="op">=</span> <span class="ident">FileAdapter</span>::<span class="ident">new</span>(<span class="string">&quot;examples/rbac_policy.csv&quot;</span>);
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">e</span> <span class="op">=</span> <span class="ident">Enforcer</span>::<span class="ident">new</span>(<span class="ident">m</span>, <span class="ident">adapter</span>).<span class="kw">await</span>.<span class="ident">unwrap</span>();
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">e</span> <span class="op">=</span> <span class="ident">Enforcer</span>::<span class="ident">new</span>(<span class="ident">m</span>, <span class="ident">adapter</span>).<span class="ident">await</span>.<span class="ident">unwrap</span>();
 
         <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="macro">vec</span><span class="macro">!</span>[<span class="string">&quot;data2_admin&quot;</span>], <span class="ident">e</span>.<span class="ident">get_roles_for_user</span>(<span class="string">&quot;alice&quot;</span>, <span class="prelude-val">None</span>));
         <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="macro">vec</span><span class="macro">!</span>[<span class="ident">String</span>::<span class="ident">new</span>(); <span class="number">0</span>], <span class="ident">e</span>.<span class="ident">get_roles_for_user</span>(<span class="string">&quot;bob&quot;</span>, <span class="prelude-val">None</span>));
@@ -2286,7 +2289,7 @@
             .<span class="ident">iter</span>()
             .<span class="ident">map</span>(<span class="op">|</span><span class="ident">s</span><span class="op">|</span> <span class="ident">s</span>.<span class="ident">to_string</span>())
             .<span class="ident">collect</span>()])
-            .<span class="kw">await</span>
+            .<span class="ident">await</span>
             .<span class="ident">unwrap</span>();
         <span class="ident">e</span>.<span class="ident">add_grouping_policies</span>(<span class="macro">vec</span><span class="macro">!</span>[
             <span class="macro">vec</span><span class="macro">!</span>[<span class="string">&quot;bob&quot;</span>, <span class="string">&quot;data1_admin&quot;</span>]
@@ -2298,7 +2301,7 @@
                 .<span class="ident">map</span>(<span class="op">|</span><span class="ident">s</span><span class="op">|</span> <span class="ident">s</span>.<span class="ident">to_string</span>())
                 .<span class="ident">collect</span>(),
         ])
-        .<span class="kw">await</span>
+        .<span class="ident">await</span>
         .<span class="ident">unwrap</span>();
         <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="macro">vec</span><span class="macro">!</span>[<span class="ident">String</span>::<span class="ident">new</span>(); <span class="number">0</span>], <span class="ident">e</span>.<span class="ident">get_roles_for_user</span>(<span class="string">&quot;alice&quot;</span>, <span class="prelude-val">None</span>));
         <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="macro">vec</span><span class="macro">!</span>[<span class="string">&quot;data1_admin&quot;</span>], <span class="ident">e</span>.<span class="ident">get_roles_for_user</span>(<span class="string">&quot;bob&quot;</span>, <span class="prelude-val">None</span>));
@@ -2308,21 +2311,21 @@
             <span class="macro">vec</span><span class="macro">!</span>[<span class="string">&quot;alice&quot;</span>.<span class="ident">to_string</span>(), <span class="string">&quot;data2_admin&quot;</span>.<span class="ident">to_string</span>()];
         <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="macro">vec</span><span class="macro">!</span>[<span class="ident">String</span>::<span class="ident">new</span>(); <span class="number">0</span>], <span class="ident">e</span>.<span class="ident">get_roles_for_user</span>(<span class="string">&quot;alice&quot;</span>, <span class="prelude-val">None</span>));
         <span class="ident">e</span>.<span class="ident">add_named_grouping_policies</span>(<span class="string">&quot;g&quot;</span>, <span class="macro">vec</span><span class="macro">!</span>[<span class="ident">named_grouping_policy</span>.<span class="ident">clone</span>()])
-            .<span class="kw">await</span>
+            .<span class="ident">await</span>
             .<span class="ident">unwrap</span>();
         <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="macro">vec</span><span class="macro">!</span>[<span class="string">&quot;data2_admin&quot;</span>], <span class="ident">e</span>.<span class="ident">get_roles_for_user</span>(<span class="string">&quot;alice&quot;</span>, <span class="prelude-val">None</span>));
         <span class="ident">e</span>.<span class="ident">remove_named_grouping_policies</span>(
             <span class="string">&quot;g&quot;</span>,
             <span class="macro">vec</span><span class="macro">!</span>[<span class="ident">named_grouping_policy</span>.<span class="ident">clone</span>()],
         )
-        .<span class="kw">await</span>
+        .<span class="ident">await</span>
         .<span class="ident">unwrap</span>();
 
         <span class="ident">e</span>.<span class="ident">remove_grouping_policies</span>(<span class="macro">vec</span><span class="macro">!</span>[<span class="macro">vec</span><span class="macro">!</span>[<span class="string">&quot;alice&quot;</span>, <span class="string">&quot;data2_admin&quot;</span>]
             .<span class="ident">iter</span>()
             .<span class="ident">map</span>(<span class="op">|</span><span class="ident">s</span><span class="op">|</span> <span class="ident">s</span>.<span class="ident">to_string</span>())
             .<span class="ident">collect</span>()])
-            .<span class="kw">await</span>
+            .<span class="ident">await</span>
             .<span class="ident">unwrap</span>();
 
         <span class="ident">e</span>.<span class="ident">add_grouping_policies</span>(<span class="macro">vec</span><span class="macro">!</span>[
@@ -2335,7 +2338,7 @@
                 .<span class="ident">map</span>(<span class="op">|</span><span class="ident">s</span><span class="op">|</span> <span class="ident">s</span>.<span class="ident">to_string</span>())
                 .<span class="ident">collect</span>(),
         ])
-        .<span class="kw">await</span>
+        .<span class="ident">await</span>
         .<span class="ident">unwrap</span>();
 
         <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="macro">vec</span><span class="macro">!</span>[<span class="string">&quot;bob&quot;</span>], <span class="ident">e</span>.<span class="ident">get_users_for_role</span>(<span class="string">&quot;data1_admin&quot;</span>, <span class="prelude-val">None</span>));
@@ -2349,7 +2352,7 @@
             <span class="number">0</span>,
             <span class="macro">vec</span><span class="macro">!</span>[<span class="string">&quot;bob&quot;</span>].<span class="ident">iter</span>().<span class="ident">map</span>(<span class="op">|</span><span class="ident">s</span><span class="op">|</span> <span class="ident">s</span>.<span class="ident">to_string</span>()).<span class="ident">collect</span>(),
         )
-        .<span class="kw">await</span>
+        .<span class="ident">await</span>
         .<span class="ident">unwrap</span>();
 
         <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="macro">vec</span><span class="macro">!</span>[<span class="ident">String</span>::<span class="ident">new</span>(); <span class="number">0</span>], <span class="ident">e</span>.<span class="ident">get_roles_for_user</span>(<span class="string">&quot;alice&quot;</span>, <span class="prelude-val">None</span>));

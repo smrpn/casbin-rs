@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1601108229597,
+  "lastUpdate": 1607423115576,
   "repoUrl": "https://github.com/casbin/casbin-rs",
   "entries": {
     "Rust Benchmark": [
@@ -11937,6 +11937,186 @@ window.BENCHMARK_DATA = {
             "name": "b_benmark_cached_basic_model",
             "value": 660,
             "range": "± 86",
+            "unit": "ns/iter"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "PsiACE@Outlook.com",
+            "name": "Chojan Shang",
+            "username": "PsiACE"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "c60e6b4d76942e3ef63c150d58fffb22db4e8ec5",
+          "message": "upgrade versions of rhai & tokio (#211)\n\n* Update Changelog\r\n\r\nSigned-off-by: Chojan Shang <psiace@outlook.com>\r\n\r\n* upgrade versions of rhai & others\r\n\r\nSigned-off-by: Chojan Shang <psiace@outlook.com>\r\n\r\n* upgrade version of tokio\r\n\r\nSigned-off-by: Chojan Shang <psiace@outlook.com>\r\n\r\n* Update Changelog\r\n\r\nSigned-off-by: Chojan Shang <psiace@outlook.com>\r\n\r\n* Update Changelog\r\n\r\nSigned-off-by: Chojan Shang <psiace@outlook.com>\r\n\r\n* make clippy happy\r\n\r\nSigned-off-by: Chojan Shang <psiace@outlook.com>\r\n\r\n* Update Changelog\r\n\r\nSigned-off-by: Chojan Shang <psiace@outlook.com>\r\n\r\n* Update Changelog\r\n\r\nSigned-off-by: Chojan Shang <psiace@outlook.com>\r\n\r\n* only update changelog on master\r\n\r\nSigned-off-by: Chojan Shang <psiace@outlook.com>\r\n\r\n* fix changelog generator\r\n\r\nSigned-off-by: Chojan Shang <psiace@outlook.com>\r\n\r\n* change to rhai v0.19.7\r\n\r\nSigned-off-by: Chojan Shang <psiace@outlook.com>\r\n\r\nCo-authored-by: GopherJ <GopherJ@users.noreply.github.com>\r\nCo-authored-by: PsiACE <PsiACE@users.noreply.github.com>",
+          "timestamp": "2020-12-08T11:20:49+01:00",
+          "tree_id": "199a78d6f4888fb4082a878dcbc065f21e3ec4a8",
+          "url": "https://github.com/casbin/casbin-rs/commit/c60e6b4d76942e3ef63c150d58fffb22db4e8ec5"
+        },
+        "date": 1607423114438,
+        "tool": "cargo",
+        "benches": [
+          {
+            "name": "b_benchmark_abac_model",
+            "value": 7794,
+            "range": "± 341",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_basic_model",
+            "value": 10248,
+            "range": "± 583",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_cached_abac_model",
+            "value": 1262,
+            "range": "± 68",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_cached_key_match",
+            "value": 525,
+            "range": "± 22",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_cached_priority_model",
+            "value": 507,
+            "range": "± 40",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_cached_rbac_model",
+            "value": 512,
+            "range": "± 28",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_cached_rbac_model_large",
+            "value": 522,
+            "range": "± 22",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_cached_rbac_model_medium",
+            "value": 519,
+            "range": "± 21",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_cached_rbac_model_small",
+            "value": 519,
+            "range": "± 33",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_cached_rbac_model_with_domains",
+            "value": 867,
+            "range": "± 65",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_cached_rbac_with_deny",
+            "value": 515,
+            "range": "± 21",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_cached_rbac_with_resource_roles",
+            "value": 513,
+            "range": "± 54",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_key_match",
+            "value": 30969,
+            "range": "± 1362",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_priority_model",
+            "value": 11387,
+            "range": "± 254",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_raw",
+            "value": 18,
+            "range": "± 0",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_rbac_model",
+            "value": 13580,
+            "range": "± 940",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_rbac_model_large",
+            "value": 17110480,
+            "range": "± 374196",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_rbac_model_medium",
+            "value": 1615497,
+            "range": "± 47662",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_rbac_model_small",
+            "value": 172439,
+            "range": "± 9020",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_rbac_model_with_domains",
+            "value": 15811,
+            "range": "± 788",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_rbac_with_deny",
+            "value": 17159,
+            "range": "± 865",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_rbac_with_resource_roles",
+            "value": 12462,
+            "range": "± 467",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_role_manager_large",
+            "value": 9226254,
+            "range": "± 214912",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_role_manager_medium",
+            "value": 843623,
+            "range": "± 43059",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benchmark_role_manager_small",
+            "value": 83915,
+            "range": "± 2039",
+            "unit": "ns/iter"
+          },
+          {
+            "name": "b_benmark_cached_basic_model",
+            "value": 512,
+            "range": "± 23",
             "unit": "ns/iter"
           }
         ]

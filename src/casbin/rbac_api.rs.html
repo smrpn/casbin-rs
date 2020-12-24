@@ -1385,6 +1385,7 @@
 <span id="1382">1382</span>
 <span id="1383">1383</span>
 <span id="1384">1384</span>
+<span id="1385">1385</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="kw">use</span> <span class="kw">crate</span>::{<span class="ident">MgmtApi</span>, <span class="prelude-ty">Result</span>};
 
@@ -2018,7 +2019,8 @@
 
             <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;runtime-tokio&quot;</span>)]</span>
             {
-                <span class="ident">tokio</span>::<span class="ident">runtime</span>::<span class="ident">Builder</span>::<span class="ident">new_current_thread</span>()
+                <span class="ident">tokio</span>::<span class="ident">runtime</span>::<span class="ident">Builder</span>::<span class="ident">new</span>()
+                    .<span class="ident">basic_scheduler</span>()
                     .<span class="ident">enable_all</span>()
                     .<span class="ident">build</span>()
                     .<span class="ident">unwrap</span>()

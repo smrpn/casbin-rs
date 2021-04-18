@@ -31,7 +31,7 @@ in the first <a href="../../casbin/rhai/struct.AST.html" title="AST"><code>AST</
             &quot;#</span>)<span class="question-mark">?</span>;
 
 <span class="kw">let</span> <span class="ident">ast2</span> <span class="op">=</span> <span class="ident">engine</span>.<span class="ident">compile</span>(<span class="string">r#&quot;
-                fn foo(n) { &quot;hello&quot; + n }
+                fn foo(n) { `hello${n}` }
                 foo(&quot;!&quot;)
             &quot;#</span>)<span class="question-mark">?</span>;
 
@@ -42,7 +42,7 @@ in the first <a href="../../casbin/rhai/struct.AST.html" title="AST"><code>AST</
 
 <span class="comment">// &#39;ast&#39; is essentially:</span>
 <span class="comment">//</span>
-<span class="comment">//    fn foo(n) { &quot;hello&quot; + n } // &lt;- definition of first &#39;foo&#39; is overwritten</span>
+<span class="comment">//    fn foo(n) { `hello${n}` } // &lt;- definition of first &#39;foo&#39; is overwritten</span>
 <span class="comment">//    foo(1)                    // &lt;- notice this will be &quot;hello1&quot; instead of 43,</span>
 <span class="comment">//                              //    but it is no longer the return value</span>
 <span class="comment">//    foo(&quot;!&quot;)                  // returns &quot;hello!&quot;</span>
@@ -68,7 +68,7 @@ in the first <a href="../../casbin/rhai/struct.AST.html" title="AST"><code>AST</
                 &quot;#</span>)<span class="question-mark">?</span>;
 
 <span class="kw">let</span> <span class="ident">ast2</span> <span class="op">=</span> <span class="ident">engine</span>.<span class="ident">compile</span>(<span class="string">r#&quot;
-                fn foo(n) { &quot;hello&quot; + n }
+                fn foo(n) { `hello${n}` }
                 foo(&quot;!&quot;)
             &quot;#</span>)<span class="question-mark">?</span>;
 
@@ -79,7 +79,7 @@ in the first <a href="../../casbin/rhai/struct.AST.html" title="AST"><code>AST</
 
 <span class="comment">// &#39;ast1&#39; is essentially:</span>
 <span class="comment">//</span>
-<span class="comment">//    fn foo(n) { &quot;hello&quot; + n } // &lt;- definition of first &#39;foo&#39; is overwritten</span>
+<span class="comment">//    fn foo(n) { `hello${n}` } // &lt;- definition of first &#39;foo&#39; is overwritten</span>
 <span class="comment">//    foo(1)                    // &lt;- notice this will be &quot;hello1&quot; instead of 43,</span>
 <span class="comment">//                              //    but it is no longer the return value</span>
 <span class="comment">//    foo(&quot;!&quot;)                  // returns &quot;hello!&quot;</span>
@@ -107,7 +107,7 @@ same number of parameters.</p>
             &quot;#</span>)<span class="question-mark">?</span>;
 
 <span class="kw">let</span> <span class="ident">ast2</span> <span class="op">=</span> <span class="ident">engine</span>.<span class="ident">compile</span>(<span class="string">r#&quot;
-                fn foo(n) { &quot;hello&quot; + n }
+                fn foo(n) { `hello${n}` }
                 fn error() { 0 }
                 foo(&quot;!&quot;)
             &quot;#</span>)<span class="question-mark">?</span>;
@@ -147,7 +147,7 @@ same number of parameters.</p>
                 &quot;#</span>)<span class="question-mark">?</span>;
 
 <span class="kw">let</span> <span class="ident">ast2</span> <span class="op">=</span> <span class="ident">engine</span>.<span class="ident">compile</span>(<span class="string">r#&quot;
-                fn foo(n) { &quot;hello&quot; + n }
+                fn foo(n) { `hello${n}` }
                 fn error() { 0 }
                 foo(&quot;!&quot;)
             &quot;#</span>)<span class="question-mark">?</span>;

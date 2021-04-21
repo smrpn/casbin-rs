@@ -44,13 +44,13 @@ jobs:
           script: |
             var file = "benchResults.txt"
             if (file) {
-            var fs = require('fs');
-            var issue_number = Number(fs.readFileSync('./NR'));
-            await github.issues.createComment({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              issue_number: issue_number,
-              body: (fs.readFileSync('./benchResults.txt')).toString('utf8')
-            });
-          }
+              var fs = require('fs');
+              var issue_number = Number(fs.readFileSync('./NR'));
+              await github.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issue_number,
+                body: (fs.readFileSync('./benchResults.txt')).toString('utf8')
+              });
+            }
 
